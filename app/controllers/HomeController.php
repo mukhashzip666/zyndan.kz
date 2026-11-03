@@ -38,9 +38,9 @@ class HomeController extends Controller
         // Hero новость - автоматически берем самую свежую (первую в списке)
         $heroPost = !empty($latestNews) ? $latestNews[0] : null;
 
-        // Убираем Hero из списка остальных новостей (чтобы не дублировать)
-        if ($heroPost) {
-            array_shift($latestNews); // Удаляем первый элемент
+        // Убираем Hero из списка остальных новостей (если новостей больше одной)
+        if ($heroPost && count($latestNews) > 1) {
+            array_shift($latestNews);
         }
 
         // Анонсы (is_announcement = 1)
@@ -66,8 +66,9 @@ class HomeController extends Controller
         // Получаем последние видео
         $videos = $this->videoModel->getLatest($lang, 4);
 
-        // Получаем рекламу для сайдбара
+        // Получаем рекламу для главной страницы
         $sidebarAds = $this->adModel->getActiveByPosition('sidebar');
+        $contentAds = $this->adModel->getActiveByPosition('content_bottom');
 
         // Передаем данные в представление
         $this->view('home/index', [
@@ -81,7 +82,8 @@ class HomeController extends Controller
             'categories' => $categories,
             'calendarDates' => $calendarDates,
             'videos' => $videos,
-            'sidebarAds' => $sidebarAds
+            'sidebarAds' => $sidebarAds,
+            'contentAds' => $contentAds
         ]);
     }
 
