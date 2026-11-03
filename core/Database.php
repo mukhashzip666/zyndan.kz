@@ -14,7 +14,8 @@ class Database
         $config = require __DIR__ . '/../config/database.php';
 
         try {
-            $dsn = "mysql:host={$config['host']};dbname={$config['database']};charset={$config['charset']}";
+            $port = !empty($config['port']) ? ";port={$config['port']}" : '';
+            $dsn = "mysql:host={$config['host']}{$port};dbname={$config['database']};charset={$config['charset']}";
             $this->pdo = new PDO($dsn, $config['username'], $config['password'], $config['options']);
         } catch (PDOException $e) {
             die("Ошибка подключения к базе данных: " . $e->getMessage());

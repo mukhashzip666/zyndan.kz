@@ -5,55 +5,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php $siteConfig = require __DIR__ . '/../../../config/app.php'; ?>
-    <title>
-        <?= $pageTitle ?? ($siteConfig['name'] . ' - Аймақтық ақпарат агенттігі') ?>
-    </title>
+    <title><?= $pageTitle ?? ($siteConfig['name'] . ' — Aqparat • Taldau • Senim') ?></title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="/assets/favicon-192.png">
 
     <!-- Meta Tags -->
     <?php if (isset($metaDescription)): ?>
         <meta name="description" content="<?= htmlspecialchars($metaDescription) ?>">
+    <?php else: ?>
+        <meta name="description" content="ZYNDAN.KZ — Қазақстанның ақпараттық-сараптамалық медиа порталы. Ақпарат • Талдау • Сенім.">
     <?php endif; ?>
 
     <!-- Open Graph -->
+    <meta property="og:site_name" content="ZYNDAN.KZ">
+    <meta property="og:type" content="website">
     <?php if (isset($ogTitle)): ?>
         <meta property="og:title" content="<?= htmlspecialchars($ogTitle) ?>">
         <meta property="og:description" content="<?= htmlspecialchars($ogDescription ?? '') ?>">
-        <meta property="og:image" content="<?= $ogImage ?? '' ?>">
+        <meta property="og:image" content="<?= $ogImage ?? '/assets/zyndan-logo.jpg' ?>">
         <meta property="og:url" content="<?= $ogUrl ?? '' ?>">
+    <?php else: ?>
+        <meta property="og:title" content="ZYNDAN.KZ — Aqparat • Taldau • Senim">
+        <meta property="og:description" content="Қазақстанның ақпараттық-сараптамалық жаңалықтар порталы">
+        <meta property="og:image" content="/assets/zyndan-logo.jpg">
     <?php endif; ?>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Иконки Line Awesome -->
-    <link rel="stylesheet"
-        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <!-- Line Awesome Icons -->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
-    <!-- Шрифт Google Fonts: Plus Jakarta Sans -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <!-- Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Конфигурация темы -->
+    <!-- Theme Config (Чисто белый светлый фон) -->
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        serif: ['Inter', 'sans-serif'],
+                        sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+                        heading: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
                     },
                     colors: {
-                        'brand': '#09090b', // zinc-950
-                        'brand-accent': '#fafafa',
-                    },
-                    borderRadius: {
-                        'premium': '1rem',
+                        'zyndan-navy': '#101C31',
+                        'zyndan-dark': '#0B1322',
+                        'zyndan-red': '#D71920',
+                        'zyndan-red-hover': '#B8141A',
+                        'zyndan-gray': '#F5F6F8',
+                        'zyndan-border': '#E5E7EB',
+                        'zyndan-muted': '#626B78',
                     },
                     boxShadow: {
-                        'premium': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-                        'premium-hover': '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025)',
+                        'zyndan-sm': '0 1px 2px 0 rgba(16, 28, 49, 0.05)',
+                        'zyndan-card': '0 1px 3px 0 rgba(16, 28, 49, 0.06), 0 1px 2px -1px rgba(16, 28, 49, 0.06)',
+                        'zyndan-hover': '0 8px 20px -4px rgba(16, 28, 49, 0.10)',
                     }
                 }
             }
@@ -61,61 +74,140 @@
     </script>
 
     <script>
-        // Применяем тему до рендера страницы во избежание мерцания
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
+        // Гарантированно чисто белый фон
+        try {
+            localStorage.clear();
+            localStorage.setItem('theme', 'light');
             document.documentElement.classList.remove('dark');
-        }
+            document.documentElement.classList.add('light');
+        } catch (e) {}
     </script>
 
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        html, body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             -webkit-font-smoothing: antialiased;
-            background-color: #fafafa;
+            background-color: #FFFFFF !important;
+            background: #FFFFFF !important;
+            color: #101C31;
         }
 
-        .brand-red {
-            background: #09090b;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            color: inherit;
         }
 
-        .text-brand-red {
-            color: #09090b;
+        /* Заголовок и метаданные на Hero баннере всегда чисто белые без анимаций */
+        .hero-white-title,
+        .hero-overlay-title,
+        .hero-white-title:hover,
+        .hero-overlay-title:hover {
+            color: #FFFFFF !important;
+            transition: none !important;
+            transform: none !important;
         }
 
-        .border-brand-red {
-            border-color: #09090b;
+        .hero-white-meta,
+        .hero-overlay-meta,
+        .hero-white-meta *,
+        .hero-overlay-meta * {
+            color: #FFFFFF !important;
         }
 
+        /* Signature ZYNDAN Red Line styling */
+        .zyndan-brand-line {
+            height: 3px;
+            background: linear-gradient(90deg, #101C31 0%, #101C31 35%, #D71920 35%, #D71920 65%, #101C31 65%, #101C31 100%);
+        }
+
+        .zyndan-red-tag {
+            background-color: #D71920;
+            color: #FFFFFF;
+        }
+
+        .zyndan-section-title {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .zyndan-section-title::before {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 18px;
+            background-color: #D71920;
+            margin-right: 10px;
+            border-radius: 1px;
+            flex-shrink: 0;
+        }
+
+        /* Glass / Nav Blur */
         .glass-nav {
-            background: rgba(250, 250, 250, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
-        .dark .glass-nav {
-            background: rgba(9, 9, 11, 0.85);
-            border-bottom-color: rgba(255, 255, 255, 0.05);
+        /* Logo image wrapper - displays original logo without cropping or changes */
+        .zyndan-logo-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #FFFFFF;
         }
 
-        .btn-premium {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .zyndan-logo-wrapper img {
+            height: 88px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            user-select: none;
         }
 
-        .btn-premium:hover {
+        @media (max-width: 640px) {
+            .zyndan-logo-wrapper img {
+                height: 70px;
+            }
+        }
+
+        /* Navigation active underline */
+        .zyndan-nav-link {
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .zyndan-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background-color: #D71920;
+            transition: width 0.25s ease;
+        }
+
+        .zyndan-nav-link:hover::after,
+        .zyndan-nav-link.active::after {
+            width: 100%;
+        }
+
+        .zyndan-card {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid #E5E7EB;
+        }
+
+        .zyndan-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-        }
-
-        .btn-premium:active {
-            transform: scale(0.97);
+            box-shadow: 0 10px 22px -4px rgba(16, 28, 49, 0.08);
+            border-color: #D1D5DB;
         }
 
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
-
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -123,42 +215,30 @@
     </style>
 </head>
 
+<body class="bg-white flex flex-col min-h-screen text-[#101C31] transition-colors duration-200" style="background-color: #FFFFFF !important;">
 
-<body
-    class="bg-slate-50 dark:bg-zinc-950 flex flex-col min-h-screen text-slate-800 dark:text-slate-200 transition-colors duration-300">
-
-    <!-- === HEADER (ПОВТОРЯЕТСЯ С ГЛАВНОЙ) === -->
-    <div
-        class="bg-white dark:bg-zinc-950 border-b border-slate-200/60 dark:border-white/10 py-2.5 hidden md:block text-sm transition-colors duration-300">
-        <div class="container mx-auto px-4 flex justify-end items-center">
-            <!-- Info -->
-            <div
-                class="flex items-center bg-slate-900 dark:bg-zinc-800 text-white rounded-xl px-5 py-2.5 space-x-6 text-sm font-medium shadow-sm transition-colors duration-300">
-                <div>Қызылорда <?= number_format($weather['temperature'] ?? -5, 1) ?>°C</div>
-                <div><?= date('d.m.Y') ?></div>
-                <div class="border-l border-slate-700 pl-4">
-                    USD: <?= number_format($currency['usd_rate'] ?? 502, 2) ?> <br> EUR:
-                    <?= number_format($currency['eur_rate'] ?? 545, 2) ?>
+    <!-- === HEADER (BRAND ROW) === -->
+    <header class="bg-white border-b border-zyndan-border transition-colors" style="background-color: #FFFFFF !important;">
+        <div class="container mx-auto px-4 py-4 md:py-5 flex justify-between items-center">
+            
+            <!-- Левая часть: Фирменный логотип ZYNDAN.KZ -->
+            <div class="flex items-center gap-4">
+                <a href="<?= $lang === 'ru' ? '/ru/' : '/' ?>" class="inline-flex items-center group cursor-pointer focus:outline-none" title="ZYNDAN.KZ">
+                    <div class="zyndan-logo-wrapper rounded-sm">
+                        <img src="/assets/zyndan-logo.jpg?v=2" alt="ZYNDAN.KZ — Aqparat • Taldau • Senim">
+                    </div>
+                </a>
+                
+                <!-- Девиз / Слоган медиа -->
+                <div class="hidden lg:block pl-4 border-l border-zyndan-border dark:border-white/10">
+                    <div class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-zyndan-navy dark:text-slate-200">
+                        Aqparat <span class="text-zyndan-red">·</span> Taldau <span class="text-zyndan-red">·</span> Senim
+                    </div>
+                    <div class="text-[11px] text-zyndan-muted dark:text-slate-400 font-medium mt-0.5">
+                        <?= $lang === 'ru' ? 'Информационно-аналитический портал' : 'Ақпараттық-сараптамалық портал' ?>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- === HEADER (LOGO) === -->
-    <header
-        class="bg-white dark:bg-zinc-950 border-b border-slate-200 dark:border-white/10 transition-colors duration-300">
-        <div class="container mx-auto px-4 py-8 flex justify-between items-center">
-            <a href="<?= $lang === 'ru' ? '/ru/' : '/' ?>" class="flex items-center gap-4 group cursor-pointer">
-                <div
-                    class="w-14 h-14 bg-slate-900 dark:bg-white rounded-2xl flex items-center justify-center text-white dark:text-slate-900 text-3xl font-black shadow-md group-hover:scale-105 transition-transform">
-                    I</div>
-                <div>
-                    <h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white leading-none">
-                        Informnews</h1>
-                    <span
-                        class="text-sm font-semibold tracking-widest text-slate-400 dark:text-slate-500 uppercase mt-1 block">Ақпарат
-                        агенттігі</span>
-                </div>
-            </a>
         </div>
     </header>

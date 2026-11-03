@@ -16,4 +16,4 @@ Allow: /uploads/
 Allow: /assets/
 
 # Sitemap
-Sitemap: https://informnews.kz/sitemap.xml
+Sitemap: https://zyndan.kz/sitemap.xml

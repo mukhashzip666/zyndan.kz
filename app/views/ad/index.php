@@ -7,37 +7,37 @@ require_once __DIR__ . '/../partials/_header.php';
 require_once __DIR__ . '/../partials/_navigation.php';
 ?>
 
-<main class="container mx-auto px-4 py-12 md:py-20 lg:py-24">
+<main class="container mx-auto px-4 py-10 md:py-16">
     <!-- Header Section -->
-    <div class="max-w-4xl mx-auto text-center mb-16 md:mb-24">
-        <h1
-            class="text-4xl md:text-5xl lg:text-7xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-8 animate-fade-in">
-            <?= $lang === 'kz' ? 'Жарнама' : 'Реклама' ?>
+    <div class="max-w-3xl mx-auto text-center mb-14">
+        <div class="flex items-center justify-center gap-2 mb-3">
+            <span class="w-8 h-[2.5px] bg-zyndan-red"></span>
+            <span class="text-xs font-bold uppercase tracking-widest text-zyndan-muted"><?= $lang === 'kz' ? 'Серіктестік' : 'Сотрудничество' ?></span>
+            <span class="w-8 h-[2.5px] bg-zyndan-red"></span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-black text-zyndan-navy dark:text-white uppercase tracking-tight mb-4">
+            <?= $lang === 'kz' ? 'Жарнама және серіктестік' : 'Реклама на портале' ?>
         </h1>
-        <div class="h-1.5 w-24 bg-brand mx-auto rounded-full shadow-[0_0_15px_rgba(214,0,35,0.4)] mb-8"></div>
-        <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 font-medium leading-relaxed max-w-2xl mx-auto">
+        <p class="text-base text-zyndan-muted font-normal leading-relaxed max-w-xl mx-auto">
             <?= $lang === 'kz'
-                ? 'Біздің порталда жарнамаңызды орналастырып,AUDITORIYAҢЫЗДЫ тауып, бизнесіңізді дамытыңыз.'
-                : 'Разместите свою рекламу на нашем портале, найдите свою аудиторию и развивайте свой бизнес.' ?>
+                ? 'ZYNDAN.KZ медиа порталында жарнамаңызды орналастырып, сапалы аудиторияға қол жеткізіңіз.'
+                : 'Разместите рекламу на портале ZYNDAN.KZ и охватите качественную целевую аудиторию.' ?>
         </p>
     </div>
 
     <!-- Ads Gallery -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-24">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
         <?php if (!empty($ads)): ?>
             <?php foreach ($ads as $ad): ?>
-                <div
-                    class="group relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-brand/30 bg-white dark:bg-black p-4 aspect-[4/3] flex items-center justify-center">
+                <div class="group relative overflow-hidden rounded-xl border border-zyndan-border zyndan-card bg-white dark:bg-zyndan-navy p-4 aspect-[4/3] flex items-center justify-center">
                     <a href="<?= htmlspecialchars($ad['link'] ?? '#') ?>" target="_blank"
-                        class="block w-full h-full relative overflow-hidden rounded-2xl">
+                        class="block w-full h-full relative overflow-hidden rounded-lg">
                         <img src="/uploads/large/<?= $ad['image'] ?>" alt="<?= htmlspecialchars($ad['title'] ?? 'Реклама') ?>"
-                            class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+                            class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                             loading="lazy">
 
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
-                            <span
-                                class="text-white text-xs font-black uppercase tracking-widest bg-brand px-4 py-2 rounded-xl shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-5">
+                            <span class="text-white text-xs font-bold uppercase tracking-wider bg-zyndan-red px-3.5 py-1.5 rounded shadow-md transform translate-y-2 group-hover:translate-y-0 transition-transform">
                                 <?= $lang === 'kz' ? 'Толығырақ' : 'Подробнее' ?>
                             </span>
                         </div>

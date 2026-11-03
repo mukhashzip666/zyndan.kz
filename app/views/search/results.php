@@ -1,29 +1,34 @@
 <?php
 /**
  * Страница результатов поиска
+ * ZYNDAN.KZ
  */
 
-$pageTitle = ($lang === 'kz' ? 'Іздеу нәтижелері' : 'Результаты поиска') . ' - Informnews.kz';
+$pageTitle = ($lang === 'kz' ? 'Іздеу нәтижелері' : 'Результаты поиска') . ' — ZYNDAN.KZ';
 require_once __DIR__ . '/../partials/_header.php';
 require_once __DIR__ . '/../partials/_navigation.php';
 ?>
 
-<main class="container mx-auto px-4 py-8">
+<main class="container mx-auto px-4 py-8 md:py-12">
 
     <!-- Заголовок поиска -->
-    <div class="mb-10">
-        <h1 class="text-3xl font-black text-slate-900 mb-2 uppercase tracking-tight">
+    <div class="mb-10 pb-6 border-b border-zyndan-border">
+        <div class="flex items-center gap-2.5 mb-2">
+            <span class="w-2.5 h-6 bg-zyndan-red inline-block"></span>
+            <span class="text-xs font-bold uppercase tracking-widest text-zyndan-muted"><?= $lang === 'kz' ? 'Іздеу қызметі' : 'Служба поиска' ?></span>
+        </div>
+        <h1 class="text-2xl md:text-4xl font-black text-zyndan-navy dark:text-white tracking-tight mb-3">
             <?= $lang === 'kz' ? 'Іздеу нәтижелері' : 'Результаты поиска' ?>
         </h1>
 
         <?php if (!empty($query)): ?>
-            <p class="text-slate-600 font-medium">
-                <?= $lang === 'kz' ? 'Сұраныс' : 'Запрос' ?>:
-                <span class="text-slate-900 font-black">"<?= htmlspecialchars($query) ?>"</span>
+            <p class="text-sm text-zyndan-muted font-medium">
+                <?= $lang === 'kz' ? 'Сұраныс бойынша' : 'По запросу' ?>:
+                <span class="text-zyndan-navy dark:text-white font-bold">"<?= htmlspecialchars($query) ?>"</span>
             </p>
 
             <?php if (isset($totalResults)): ?>
-                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-2">
+                <p class="text-xs text-zyndan-red font-bold uppercase tracking-wider mt-2 font-mono">
                     <?= $lang === 'kz'
                         ? "Табылды: {$totalResults} мақала"
                         : "Найдено: {$totalResults} материалов" ?>
@@ -34,10 +39,10 @@ require_once __DIR__ . '/../partials/_navigation.php';
 
     <!-- Ошибка (минимум символов) -->
     <?php if (isset($error)): ?>
-        <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-2xl mb-8">
-            <div class="flex items-center gap-4">
-                <i class="las la-exclamation-triangle text-amber-500 text-2xl"></i>
-                <p class="text-sm text-amber-900 font-bold">
+        <div class="bg-amber-50 border-l-4 border-zyndan-red p-4 rounded-r-xl mb-8">
+            <div class="flex items-center gap-3">
+                <i class="las la-exclamation-triangle text-zyndan-red text-xl"></i>
+                <p class="text-xs font-bold text-amber-900">
                     <?= htmlspecialchars($error) ?>
                 </p>
             </div>
@@ -46,38 +51,40 @@ require_once __DIR__ . '/../partials/_navigation.php';
 
     <!-- Результаты -->
     <?php if (!empty($results)): ?>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             <?php foreach ($results as $post): ?>
                 <?php
                 $postTitle = $lang === 'kz' ? ($post['title_kz'] ?? $post['title_ru']) : ($post['title_ru'] ?? $post['title_kz']);
                 $postExcerpt = $lang === 'kz' ? ($post['excerpt_kz'] ?? $post['excerpt_ru']) : ($post['excerpt_ru'] ?? $post['excerpt_kz']);
                 $postSlug = $lang === 'kz' ? $post['slug_kz'] : $post['slug_ru'];
                 $categorySlug = $post['category_slug'] ?? '';
-                $postImage = !empty($post['image']) ? '/uploads/medium/' . $post['image'] : 'https://placehold.co/400x300/666/FFF?text=News';
+                $postImage = !empty($post['image']) ? '/uploads/medium/' . $post['image'] : 'https://placehold.co/400x300/101c31/FFF?text=ZYNDAN.KZ';
                 ?>
 
                 <!-- Карточка новости -->
                 <a href="/<?= $lang === 'ru' ? 'ru/' : '' ?><?= $categorySlug ?>/<?= $postSlug ?>"
-                    class="bg-white border border-slate-200 group cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 rounded-2xl overflow-hidden flex flex-col">
-                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                    class="bg-white dark:bg-zyndan-navy border border-zyndan-border zyndan-card group cursor-pointer rounded-xl overflow-hidden flex flex-col">
+                    <div class="relative h-48 overflow-hidden bg-zyndan-gray">
                         <img src="<?= $postImage ?>" alt="<?= htmlspecialchars($postTitle) ?>"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-slate-900 text-[10px] font-bold px-2.5 py-1 rounded-md shadow-sm tracking-widest uppercase">
-                            <i class="las la-eye mr-1"></i>
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 right-3 bg-zyndan-navy/90 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm tracking-wider uppercase flex items-center gap-1 font-mono">
+                            <i class="las la-eye text-zyndan-red"></i>
                             <?= number_format($post['views'] ?? 0) ?>
                         </span>
                     </div>
-                    <div class="p-5 flex flex-col flex-1">
-                        <div class="text-[11px] font-semibold text-slate-400 mb-3 flex items-center gap-1.5 uppercase tracking-widest">
-                            <i class="las la-calendar text-sm"></i>
-                            <?= date('d.m.Y', strtotime($post['published_at'])) ?>
+                    <div class="p-5 flex flex-col flex-1 justify-between">
+                        <div>
+                            <div class="text-[11px] font-semibold text-zyndan-muted mb-2 flex items-center gap-1.5 uppercase tracking-wider font-mono">
+                                <i class="las la-calendar text-zyndan-red text-sm"></i>
+                                <?= date('d.m.Y', strtotime($post['published_at'])) ?>
+                            </div>
+                            <h3 class="text-base font-bold leading-snug text-black dark:text-white group-hover:text-zyndan-red transition-colors mb-2 line-clamp-2">
+                                <?= htmlspecialchars($postTitle) ?>
+                            </h3>
+                            <p class="text-xs text-zyndan-muted line-clamp-2 leading-relaxed">
+                                <?= htmlspecialchars($postExcerpt ?? '') ?>
+                            </p>
                         </div>
-                        <h3 class="text-lg font-bold leading-snug text-slate-900 group-hover:text-slate-600 transition-colors mb-3 line-clamp-2">
-                            <?= htmlspecialchars($postTitle) ?>
-                        </h3>
-                        <p class="text-sm text-slate-500 line-clamp-3 leading-relaxed mt-auto">
-                            <?= htmlspecialchars($postExcerpt ?? '') ?>
-                        </p>
                     </div>
                 </a>
             <?php endforeach; ?>
@@ -86,18 +93,18 @@ require_once __DIR__ . '/../partials/_navigation.php';
         <!-- Пагинация -->
         <?php if (isset($totalPages) && $totalPages > 1): ?>
             <div class="mt-12 flex justify-center">
-                <nav class="flex items-center gap-2">
+                <nav class="flex items-center gap-1.5">
                     <?php if ($currentPage > 1): ?>
                         <a href="?q=<?= urlencode($query) ?>&page=<?= $currentPage - 1 ?>"
-                            class="px-5 py-3 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-all text-slate-900 font-bold group text-sm flex items-center justify-center">
-                            <i class="las la-angle-left text-sm mr-1"></i>
+                            class="px-4 py-2 bg-white border border-zyndan-border rounded-lg hover:border-zyndan-red hover:text-zyndan-red transition text-zyndan-navy font-bold text-xs uppercase tracking-wider">
+                            <i class="las la-angle-left mr-1"></i>
                         </a>
                     <?php endif; ?>
 
-                    <div class="flex gap-2">
+                    <div class="flex gap-1.5">
                         <?php for ($i = max(1, $currentPage - 2); $i <= min($totalPages, $currentPage + 2); $i++): ?>
                             <a href="?q=<?= urlencode($query) ?>&page=<?= $i ?>"
-                                class="w-12 h-12 flex items-center justify-center rounded-xl transition-all font-bold text-sm border <?= $i === $currentPage ? 'bg-slate-900 text-white border-slate-900 shadow-md' : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-600' ?>">
+                                class="w-10 h-10 flex items-center justify-center rounded-lg transition font-bold text-xs border <?= $i === $currentPage ? 'bg-zyndan-red text-white border-zyndan-red shadow-sm' : 'bg-white border-zyndan-border hover:border-zyndan-red text-zyndan-navy' ?>">
                                 <?= $i ?>
                             </a>
                         <?php endfor; ?>
@@ -105,8 +112,8 @@ require_once __DIR__ . '/../partials/_navigation.php';
 
                     <?php if ($currentPage < $totalPages): ?>
                         <a href="?q=<?= urlencode($query) ?>&page=<?= $currentPage + 1 ?>"
-                            class="px-5 py-3 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-all text-slate-900 font-bold group text-sm flex items-center justify-center">
-                            <i class="las la-angle-right text-sm ml-1"></i>
+                            class="px-4 py-2 bg-white border border-zyndan-border rounded-lg hover:border-zyndan-red hover:text-zyndan-red transition text-zyndan-navy font-bold text-xs uppercase tracking-wider">
+                            <i class="las la-angle-right ml-1"></i>
                         </a>
                     <?php endif; ?>
                 </nav>

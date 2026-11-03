@@ -1,121 +1,98 @@
 <?php $this->view('partials/_header', ['pageTitle' => $pageTitle, 'lang' => $lang]); ?>
 <?php $this->view('partials/_navigation', ['categories' => $categories, 'lang' => $lang, 'weather' => $weather, 'currency' => $currency]); ?>
 
-<main class="flex-grow">
+<main class="flex-grow bg-white">
     <!-- Hero Section -->
-    <section
-        class="relative py-20 overflow-hidden bg-white/5 dark:bg-black/40 border-b border-slate-200 dark:border-white/5">
-        <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand/10 rounded-full filter blur-[120px]"></div>
-        <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-600/5 rounded-full filter blur-[100px]"></div>
-
+    <section class="relative py-16 overflow-hidden bg-[#F5F6F8] border-b border-[#E5E7EB]">
         <div class="container mx-auto px-4 relative z-10 text-center">
-            <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-white border border-[#E5E7EB] rounded-full text-xs font-bold text-brand uppercase tracking-wider mb-4 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+                <?= $lang === 'kz' ? 'Редакция алқасы' : 'Редакция издания' ?>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-black text-brand uppercase tracking-tight mb-4">
                 <?= $lang === 'kz' ? 'Редакция' : 'Редакция' ?>
             </h1>
-            <div class="flex items-center justify-center gap-4">
-                <span class="h-1 w-12 bg-brand rounded-full"></span>
-                <p class="text-brand font-serif italic text-xl md:text-2xl">Informnews.kz</p>
-                <span class="h-1 w-12 bg-brand rounded-full"></span>
+            <div class="flex items-center justify-center gap-3">
+                <span class="h-[2px] w-12 bg-brand"></span>
+                <span class="h-[3px] w-8 bg-brand-red"></span>
+                <p class="text-brand font-bold uppercase tracking-widest text-lg">ZYNDAN.KZ</p>
+                <span class="h-[3px] w-8 bg-brand-red"></span>
+                <span class="h-[2px] w-12 bg-brand"></span>
             </div>
+            <p class="text-xs uppercase tracking-widest text-[#626B78] mt-2 font-semibold">Aqparat • Taldau • Senim</p>
         </div>
     </section>
 
     <!-- Content Section -->
-    <section class="py-16 md:py-24 container mx-auto px-4">
+    <section class="py-12 md:py-16 container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
-            <div
-                class="glass p-8 md:p-12 rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl relative overflow-hidden">
-                <!-- Decorative element -->
-                <div class="absolute top-0 right-0 w-32 h-32 bg-brand/5 rounded-bl-full"></div>
-
-                <div class="prose prose-lg dark:prose-invert max-w-none">
+            <div class="bg-white p-8 md:p-12 rounded-2xl border border-[#E5E7EB] shadow-sm relative overflow-hidden">
+                <div class="prose prose-lg max-w-none">
                     <?php if ($lang === 'kz'): ?>
-                        <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6 font-medium">
-                            Informnews.kz – өңірдегі және ел көлеміндегі өзекті әлеуметтік, экономикалық және
-                            қоғамдық-саяси жаңалықтарды жедел әрі сапалы жариялайтын ақпарат агенттігі. Басылымның негізгі
+                        <p class="text-black leading-relaxed mb-6 font-medium text-lg">
+                            <strong class="text-brand">ZYNDAN.KZ</strong> – өңірдегі және ел көлеміндегі өзекті әлеуметтік, экономикалық және
+                            қоғамдық-саяси жаңалықтарды жедел әрі сапалы жариялайтын заманауи ақпараттық-сараптамалық медиа портал. Басылымның негізгі
                             бағыты – ақпараттық, талдамалы және танымдық контент ұсыну.
                         </p>
-                        <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-10 font-medium">
-                            Агенттік сайтында күн сайынғы жаңалықтармен қатар, сараптамалық мақалалар, арнайы репортаждар,
-                            сұхбаттар және авторлық шығармашылық материалдар тұрақты түрде жарияланып тұрады. Informnews.kz
+                        <p class="text-[#626B78] leading-relaxed mb-10 font-medium">
+                            Сайтта күн сайынғы жедел жаңалықтармен қатар, сараптамалық мақалалар, арнайы репортаждар,
+                            сұхбаттар және авторлық шығармашылық материалдар тұрақты түрде жарияланып тұрады. <strong class="text-brand">ZYNDAN.KZ</strong>
                             оқырманға шынайы ақпарат ұсынып қана қоймай, маңызды мәселелерге терең талдау жасап,
                             қоғамдық пікір қалыптастыруға үлес қосуды мақсат етеді.
                         </p>
 
-                        <div
-                            class="mt-16 pt-10 border-t border-slate-200 dark:border-white/10 flex flex-col md:flex-row items-center gap-10">
+                        <div class="mt-12 pt-8 border-t border-[#E5E7EB] flex flex-col md:flex-row items-center gap-8">
                             <div class="relative group">
-                                <div
-                                    class="w-48 md:w-64 rounded-2xl overflow-hidden border-4 border-brand/20 group-hover:border-brand transition-all duration-500 shadow-2xl">
-                                    <img src="/assets/aslan.png" alt="Aslan Sagyndyk"
-                                        class="w-full h-auto transition-all duration-700">
-                                </div>
-                                <!-- Decorative glow -->
-                                <div
-                                    class="absolute -inset-4 bg-brand/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10">
+                                <div class="w-48 md:w-56 rounded-xl overflow-hidden border-2 border-[#101C31] shadow-md">
+                                    <img src="/assets/aslan.png" alt="Aslan Sagyndyk" class="w-full h-auto">
                                 </div>
                             </div>
                             <div class="text-center md:text-left">
-                                <h3
-                                    class="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-2">
-                                    Аслан Сағындық</h3>
-                                <p class="text-brand font-bold uppercase tracking-widest text-sm mb-4">Ақпарат агенттігінің
-                                    бас редакторы</p>
-                                <div class="flex gap-4 justify-center md:justify-start">
-                                    <a href="#"
-                                        class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 hover:bg-brand hover:text-white transition-all"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                    <a href="#"
-                                        class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 hover:bg-brand hover:text-white transition-all"><i
-                                            class="fab fa-instagram"></i></a>
-                                    <a href="#"
-                                        class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 hover:bg-brand hover:text-white transition-all"><i
-                                            class="fab fa-telegram-plane"></i></a>
+                                <span class="inline-block w-8 h-[2px] bg-brand-red mb-2"></span>
+                                <h3 class="text-2xl font-black text-brand uppercase tracking-tight mb-1">
+                                    Аслан Сағындық
+                                </h3>
+                                <p class="text-brand-red font-bold uppercase tracking-wider text-xs mb-4">
+                                    Бас редактор
+                                </p>
+                                <div class="flex gap-3 justify-center md:justify-start">
+                                    <a href="#" class="w-9 h-9 rounded-lg bg-[#F5F6F8] border border-[#E5E7EB] flex items-center justify-center text-brand hover:bg-brand hover:text-white transition-colors"><i class="lab la-facebook-f"></i></a>
+                                    <a href="#" class="w-9 h-9 rounded-lg bg-[#F5F6F8] border border-[#E5E7EB] flex items-center justify-center text-brand hover:bg-brand hover:text-white transition-colors"><i class="lab la-instagram"></i></a>
+                                    <a href="#" class="w-9 h-9 rounded-lg bg-[#F5F6F8] border border-[#E5E7EB] flex items-center justify-center text-brand hover:bg-brand-red hover:text-white transition-colors"><i class="lab la-telegram-plane"></i></a>
                                 </div>
                             </div>
                         </div>
                     <?php else: ?>
-                        <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6 font-medium">
-                            Informnews.kz — это информационное агентство, оперативно и качественно освещающее актуальные
-                            социальные, экономические и общественно-политические новости региона и страны. Основное
-                            направление издания — предоставление информационного, аналитического и познавательного контента.
+                        <p class="text-black leading-relaxed mb-6 font-medium text-lg">
+                            <strong class="text-brand">ZYNDAN.KZ</strong> — современное информационно-аналитическое медиа, оперативно и качественно освещающее актуальные
+                            социальные, экономические и общественно-политические события Казахстана и мира. Основное
+                            направление издания — предоставление проверенного информационного, аналитического и познавательного контента.
                         </p>
-                        <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-10 font-medium">
-                            На сайте агентства, помимо ежедневных новостей, регулярно публикуются аналитические статьи,
-                            специальные репортажи, интервью и авторские творческие материалы. Цель Informnews.kz — не
+                        <p class="text-[#626B78] leading-relaxed mb-10 font-medium">
+                            На сайте издания, помимо оперативных новостей, регулярно публикуются аналитические статьи,
+                            специальные репортажи, экспертные интервью и авторские материалы. Цель <strong class="text-brand">ZYNDAN.KZ</strong> — не
                             просто предоставлять читателям достоверную информацию, но и проводить глубокий анализ значимых
-                            проблем, внося свой вклад в формирование общественного мнения.
+                            вопросов, формируя объективное общественное мнение.
                         </p>
 
-                        <div
-                            class="mt-16 pt-10 border-t border-slate-200 dark:border-white/10 flex flex-col md:flex-row items-center gap-10">
+                        <div class="mt-12 pt-8 border-t border-[#E5E7EB] flex flex-col md:flex-row items-center gap-8">
                             <div class="relative group">
-                                <div
-                                    class="w-48 md:w-64 rounded-2xl overflow-hidden border-4 border-brand/20 group-hover:border-brand transition-all duration-500 shadow-2xl">
-                                    <img src="/assets/aslan.png" alt="Аслан Сагындык"
-                                        class="w-full h-auto transition-all duration-700">
-                                </div>
-                                <!-- Decorative glow -->
-                                <div
-                                    class="absolute -inset-4 bg-brand/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10">
+                                <div class="w-48 md:w-56 rounded-xl overflow-hidden border-2 border-[#101C31] shadow-md">
+                                    <img src="/assets/aslan.png" alt="Аслан Сагындык" class="w-full h-auto">
                                 </div>
                             </div>
                             <div class="text-center md:text-left">
-                                <h3
-                                    class="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-2">
-                                    Аслан Сагындык</h3>
-                                <p class="text-brand font-bold uppercase tracking-widest text-sm mb-4">Главный редактор
-                                    информационного агентства</p>
-                                <div class="flex gap-4 justify-center md:justify-start">
-                                    <a href="#"
-                                        class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 hover:bg-brand hover:text-white transition-all"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                    <a href="#"
-                                        class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 hover:bg-brand hover:text-white transition-all"><i
-                                            class="fab fa-instagram"></i></a>
-                                    <a href="#"
-                                        class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 hover:bg-brand hover:text-white transition-all"><i
-                                            class="fab fa-telegram-plane"></i></a>
+                                <span class="inline-block w-8 h-[2px] bg-brand-red mb-2"></span>
+                                <h3 class="text-2xl font-black text-brand uppercase tracking-tight mb-1">
+                                    Аслан Сагындык
+                                </h3>
+                                <p class="text-brand-red font-bold uppercase tracking-wider text-xs mb-4">
+                                    Главный редактор
+                                </p>
+                                <div class="flex gap-3 justify-center md:justify-start">
+                                    <a href="#" class="w-9 h-9 rounded-lg bg-[#F5F6F8] border border-[#E5E7EB] flex items-center justify-center text-brand hover:bg-brand hover:text-white transition-colors"><i class="lab la-facebook-f"></i></a>
+                                    <a href="#" class="w-9 h-9 rounded-lg bg-[#F5F6F8] border border-[#E5E7EB] flex items-center justify-center text-brand hover:bg-brand hover:text-white transition-colors"><i class="lab la-instagram"></i></a>
+                                    <a href="#" class="w-9 h-9 rounded-lg bg-[#F5F6F8] border border-[#E5E7EB] flex items-center justify-center text-brand hover:bg-brand-red hover:text-white transition-colors"><i class="lab la-telegram-plane"></i></a>
                                 </div>
                             </div>
                         </div>

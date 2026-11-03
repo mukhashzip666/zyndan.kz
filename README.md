@@ -324,3 +324,4 @@ Proprietary - Все права защищены © 2026 Qyzylorda Times
 - [Инструкция по деплою](DEPLOYMENT.md)
 - [Настройка API](api-setup.md)
 - [Аудит безопасности](security-audit.md)
+# zyndan.kz

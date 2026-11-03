@@ -5,15 +5,16 @@
  */
 
 return array (
-  'name' => 'Informnews.kz',
-  'url' => 'https://informnews.kz',
+  'name' => 'ZYNDAN.KZ',
+  'url' => 'https://zyndan.kz',
   'default_lang' => 'kz',
   'supported_langs' => 
   array (
     0 => 'kz',
     1 => 'ru',
   ),
-  'brand_color' => '#1c3d81',
+  'brand_color' => '#101C31',
+  'brand_red' => '#D71920',
   'timezone' => 'Asia/Qyzylorda',
   'pagination' => 15,
   'image_sizes' => 
@@ -43,14 +44,16 @@ return array (
   'recaptcha_site_key' => '6Lcxbl0sAAAAAAiop-H3G_5n6Xevm4O104KFBP6h',
   'recaptcha_secret_key' => '6Lcxbl0sAAAAABTnNyuHqjqyCtFgwaRwCdvTe49_',
   'recaptcha_enabled' => false,
-  'contact_email' => 'editor@informnews.kz',
-  'admin_email' => 'admin@informnews.kz',
-  'phone' => '8 (747) 064 5196',
-  'address' => 'Қызылорда қ.',
-  'company_name' => 'Inform news',
-  'info_email' => 'info@informnews.kz',
-  'social_instagram' => '#',
-  'social_facebook' => '#',
+  'contact_email' => 'editor@zyndan.kz',
+  'admin_email' => 'admin@zyndan.kz',
+  'phone' => '+77470645196',
+  'address' => 'Қазақстан, Қызылорда қ.',
+  'company_name' => 'ZYNDAN.KZ',
+  'info_email' => 'info@zyndan.kz',
+  'social_instagram' => 'https://www.instagram.com/zyndan.kz?utm_source=qr&dlrf=b3l2c3V0aHc3cnZ3',
+  'social_facebook' => 'https://www.facebook.com/people/Zyndan-KZ/pfbid02sXeGgRiiUymaiPHdx6LAw28LTstctiAbjSmXbrn9g95uC89JVM3Pptbf8eG6aYNRl/?rdid=dJfw75vxvx0rvdfP&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19nmaGHaF2%2F%3Fref%3D1',
+  'social_threads' => 'https://www.threads.com/@zyndan.kz',
+  'social_whatsapp' => 'https://wa.me/77470645196',
   'social_telegram' => '#',
   'social_tiktok' => '#',
 );

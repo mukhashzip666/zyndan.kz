@@ -234,6 +234,24 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-1">
+                                    <i class="fas fa-at mr-1"></i> Threads
+                                </label>
+                                <input type="text" name="social_threads"
+                                    value="<?= $config['social_threads'] ?? 'https://www.threads.com/@zyndan.kz' ?>"
+                                    placeholder="https://www.threads.com/@..."
+                                    class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-red-500 focus:border-red-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">
+                                    <i class="fab fa-whatsapp mr-1"></i> WhatsApp
+                                </label>
+                                <input type="text" name="social_whatsapp"
+                                    value="<?= $config['social_whatsapp'] ?? 'https://wa.me/77470645196' ?>"
+                                    placeholder="https://wa.me/..."
+                                    class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-red-500 focus:border-red-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">
                                     <i class="fab fa-telegram mr-1"></i> Telegram
                                 </label>
                                 <input type="text" name="social_telegram"

@@ -1,0 +1,9 @@
+.git
+.gitignore
+.vscode
+.DS_Store
+*.log
+deploy.sh
+copy_key.exp
+*.md
+

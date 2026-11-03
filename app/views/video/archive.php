@@ -7,24 +7,22 @@ require_once __DIR__ . '/../partials/_header.php';
 require_once __DIR__ . '/../partials/_navigation.php';
 ?>
 
-<main class="container mx-auto px-4 py-10 lg:py-16">
+<main class="container mx-auto px-4 py-8 lg:py-12">
     <!-- Header Section -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-zyndan-border gap-6">
         <div>
-            <nav class="flex mb-4 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="/" class="hover:text-slate-900 transition flex items-center gap-1.5"><i class="las la-home text-sm"></i> Басты бет</a>
-                <span class="mx-3 text-slate-300"><i class="las la-angle-right"></i></span>
-                <span class="text-slate-900 font-black">Бейнежазбалар</span>
+            <nav class="flex mb-3 text-[11px] font-bold uppercase tracking-wider text-zyndan-muted">
+                <a href="<?= $lang === 'ru' ? '/ru/' : '/' ?>" class="hover:text-zyndan-red transition flex items-center gap-1.5"><i class="las la-home text-sm"></i> <?= $lang === 'ru' ? 'Главная' : 'Басты бет' ?></a>
+                <span class="mx-2 text-zyndan-border"><i class="las la-angle-right"></i></span>
+                <span class="text-zyndan-navy dark:text-white font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 bg-zyndan-red rounded-full"></span> <?= $lang === 'kz' ? 'Бейнежазбалар' : 'Видеогалерея' ?></span>
             </nav>
-            <h1 class="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tight">
+            <h1 class="text-3xl md:text-4xl font-black text-zyndan-navy dark:text-white uppercase tracking-tight flex items-center gap-2.5">
+                <span class="w-2 h-7 bg-zyndan-red inline-block"></span>
                 <?= $lang === 'kz' ? 'Бейнежазбалар' : 'Видеогалерея' ?>
             </h1>
         </div>
-        <div class="h-px flex-1 bg-slate-200 mx-8 hidden lg:block"></div>
-        <div
-            class="text-[11px] font-black text-slate-500 uppercase tracking-widest bg-slate-50 px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
-            Барлығы:
-            <?= $totalVideos ?? 0 ?>
+        <div class="text-xs font-bold text-zyndan-navy uppercase tracking-wider bg-zyndan-gray px-4 py-2 rounded-lg border border-zyndan-border shadow-sm">
+            <?= $lang === 'kz' ? 'Барлығы:' : 'Всего:' ?> <?= $totalVideos ?? 0 ?>
         </div>
     </div>
 
@@ -35,18 +33,15 @@ require_once __DIR__ . '/../partials/_navigation.php';
                 $vTitle = $lang === 'kz' ? $video['title_kz'] : $video['title_ru'];
                 $vLink = $video['youtube_url'];
                 ?>
-                <div
-                    class="group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm transition-all hover:shadow-md hover:-translate-y-1">
+                <div class="group relative bg-white dark:bg-zyndan-navy rounded-xl overflow-hidden border border-zyndan-border zyndan-card flex flex-col">
                     <!-- Preview Image -->
-                    <a href="<?= $vLink ?>" target="_blank" class="relative block aspect-video overflow-hidden">
+                    <a href="<?= $vLink ?>" target="_blank" class="relative block aspect-video overflow-hidden bg-zyndan-gray">
                         <img src="/uploads/large/<?= $video['image'] ?>"
                             class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
                             alt="<?= htmlspecialchars($vTitle) ?>">
-                        <div
-                            class="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-all flex items-center justify-center">
-                            <div
-                                class="w-14 h-14 bg-white/90 backdrop-blur-md text-slate-900 rounded-full flex items-center justify-center shadow-lg transform transition group-hover:scale-110">
-                                <i class="las la-play text-2xl ml-1"></i>
+                        <div class="absolute inset-0 bg-black/25 group-hover:bg-black/40 transition-all flex items-center justify-center">
+                            <div class="w-12 h-12 bg-zyndan-red text-white rounded-full flex items-center justify-center shadow-lg transform transition group-hover:scale-110">
+                                <i class="las la-play text-xl ml-0.5"></i>
                             </div>
                         </div>
                     </a>

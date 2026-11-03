@@ -5,10 +5,11 @@
  */
 
 return [
-    'host' => 'localhost',
-    'database' => 'qyzylorda_times',
-    'username' => 'qyzylorda_user',
-    'password' => 'qyzylorda_pass_2026',
+    'host' => getenv('DB_HOST') ?: 'localhost',
+    'port' => getenv('DB_PORT') ?: '3306',
+    'database' => getenv('DB_NAME') ?: 'qyzylorda_times',
+    'username' => getenv('DB_USER') ?: 'qyzylorda_user',
+    'password' => getenv('DB_PASS') !== false ? getenv('DB_PASS') : 'qyzylorda_pass_2026',
     'charset' => 'utf8mb4',
     'collation' => 'utf8mb4_unicode_ci',
     'options' => [
@@ -17,3 +18,4 @@ return [
         PDO::ATTR_EMULATE_PREPARES => false,
     ]
 ];
+

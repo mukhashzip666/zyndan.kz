@@ -79,6 +79,12 @@ class AdminSettingsController extends \Controller
         // Социальные сети
         $config['social_instagram'] = $this->post('social_instagram');
         $config['social_facebook'] = $this->post('social_facebook');
+        if ($this->post('social_threads') !== null) {
+            $config['social_threads'] = $this->post('social_threads');
+        }
+        if ($this->post('social_whatsapp') !== null) {
+            $config['social_whatsapp'] = $this->post('social_whatsapp');
+        }
         $config['social_telegram'] = $this->post('social_telegram');
         $config['social_tiktok'] = $this->post('social_tiktok');
 

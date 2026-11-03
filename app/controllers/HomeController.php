@@ -104,7 +104,7 @@ class HomeController extends Controller
             'categories' => $categories,
             'weather' => $weather,
             'currency' => $currency,
-            'pageTitle' => $lang === 'kz' ? 'Редакция - Informnews.kz' : 'Редакция - Informnews.kz'
+            'pageTitle' => $lang === 'kz' ? 'Редакция — ZYNDAN.KZ' : 'Редакция — ZYNDAN.KZ'
         ]);
     }
 }

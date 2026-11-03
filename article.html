@@ -1,37 +1,56 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html lang="kk" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сыр өңірінде күріш жинау науқаны басталды - Informnews.kz</title>
+    <title>Қызылордалық ғалымдар жаңа күріш сортын ойлап тапты — ZYNDAN.KZ</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="assets/favicon-192.png">
+
+    <!-- Meta Tags -->
+    <meta name="description" content="Қызылорда облыстық ауыл шаруашылығы басқармасы жаңа «Сыр маржаны 2.0» сұрыпын таныстырды — ZYNDAN.KZ">
+    <meta property="og:title" content="Қызылордалық ғалымдар жаңа күріш сортын ойлап тапты — ZYNDAN.KZ">
+    <meta property="og:description" content="Мамандардың айтуынша, жаңа сұрып суды аз қажет етеді және тұзды топыраққа төзімді.">
+    <meta property="og:image" content="assets/zyndan-logo.jpg">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Иконки Line Awesome -->
+    <!-- Line Awesome Icons -->
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
-    <!-- Шрифт Google Fonts: Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+                        heading: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
                     },
                     colors: {
-                        'brand': '#09090b', // zinc-950
-                        'brand-accent': '#fafafa',
-                    },
-                    borderRadius: {
-                        'premium': '1rem',
+                        'zyndan-navy': '#101C31',
+                        'zyndan-dark': '#0B1322',
+                        'zyndan-red': '#D71920',
+                        'zyndan-red-hover': '#B8141A',
+                        'zyndan-gray': '#F5F6F8',
+                        'zyndan-border': '#E5E7EB',
+                        'zyndan-muted': '#626B78',
                     },
                     boxShadow: {
-                        'premium': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        'zyndan-sm': '0 1px 2px 0 rgba(16, 28, 49, 0.05)',
+                        'zyndan-card': '0 1px 3px 0 rgba(16, 28, 49, 0.06), 0 1px 2px -1px rgba(16, 28, 49, 0.06)',
+                        'zyndan-hover': '0 10px 22px -4px rgba(16, 28, 49, 0.10)',
                     }
                 }
             }
@@ -40,342 +59,761 @@
 
     <style>
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             -webkit-font-smoothing: antialiased;
-            background-color: #fafafa;
+            background-color: #FFFFFF;
+            color: #000000;
         }
 
-        .brand-red {
-            background: #09090b;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            color: #101C31;
         }
 
-        .text-brand-red {
-            color: #09090b;
+        /* Reading Progress Bar */
+        #scrollProgress {
+            transition: width 0.1s linear;
         }
 
-        .border-brand-red {
-            border-color: #09090b;
+        /* Signature ZYNDAN Red Line styling */
+        .zyndan-section-title {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
         }
 
-        /* Modern Typography */
-        .article-content p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            color: #334155;
-            font-family: 'Inter', sans-serif;
+        .zyndan-section-title::before {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 18px;
+            background-color: #D71920;
+            margin-right: 10px;
+            border-radius: 1px;
+            flex-shrink: 0;
         }
 
-        .article-content h2 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 800;
-            font-size: 1.75rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1.25rem;
-            color: #0F172A;
-            letter-spacing: -0.025em;
-        }
-
+        /* Glass / Nav Blur */
         .glass-nav {
-            background: rgba(250, 250, 250, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
-        .btn-premium {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Logo image wrapper - displays original logo crisp without extra padding */
+        .zyndan-logo-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            height: 54px;
+            width: 172px;
+            background: #FFFFFF;
         }
 
-        .btn-premium:hover {
+        .zyndan-logo-wrapper img {
+            width: 142%;
+            max-width: none;
+            height: auto;
+            object-fit: contain;
+            user-select: none;
+            mix-blend-mode: multiply;
+        }
+
+        @media (max-width: 640px) {
+            .zyndan-logo-wrapper {
+                height: 42px;
+                width: 134px;
+            }
+        }
+
+        /* Navigation active underline */
+        .zyndan-nav-link {
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .zyndan-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background-color: #D71920;
+            transition: width 0.25s ease;
+        }
+
+        .zyndan-nav-link:hover::after,
+        .zyndan-nav-link.active::after {
+            width: 100%;
+        }
+
+        .zyndan-card {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid #E5E7EB;
+        }
+
+        .zyndan-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 22px -4px rgba(16, 28, 49, 0.08);
+            border-color: #D1D5DB;
         }
 
-        .btn-premium:active {
-            transform: scale(0.97);
+        /* Editorial Article Typography */
+        .article-body p {
+            margin-bottom: 1.4rem;
+            line-height: 1.85;
+            font-size: 1.075rem;
+            color: #111827;
+        }
+
+        .article-body h2 {
+            font-size: 1.625rem;
+            font-weight: 800;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #101C31;
+            letter-spacing: -0.02em;
+        }
+
+        .article-body h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 0.85rem;
+            color: #101C31;
+        }
+
+        .article-body blockquote {
+            position: relative;
+            border-left: 3px solid #D71920;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            background-color: #F5F6F8;
+            font-style: italic;
+            color: #101C31;
+            border-radius: 0 8px 8px 0;
         }
     </style>
 </head>
 
-<body class="bg-slate-50 flex flex-col min-h-screen text-slate-800">
+<body class="bg-[#FFFFFF] flex flex-col min-h-screen text-[#000000]">
 
-    <!-- === HEADER (ПОВТОРЯЕТСЯ С ГЛАВНОЙ) === -->
-    <div class="bg-white border-b border-slate-200/60 py-2.5 hidden md:block text-sm">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <!-- Kaspi QR -->
-            <div class="flex items-center space-x-4">
-                <div class="border border-slate-200 rounded-xl p-2.5 flex items-center gap-3 bg-slate-50 shadow-sm">
-                    <i class="las la-qrcode text-3xl text-slate-900"></i>
-                    <div class="text-[11px] leading-tight font-medium text-slate-600">
-                        <strong class="text-slate-900 text-sm">Kaspi QR</strong><br>Газетке жазылу
-                    </div>
+    <!-- READING PROGRESS BAR (TOP EDGE ACCENT) -->
+    <div id="scrollProgress" class="fixed top-0 left-0 h-[3px] bg-zyndan-red z-[100]" style="width: 0%"></div>
+
+    <!-- MAIN HEADER -->
+    <header class="bg-white border-b border-zyndan-border">
+        <div class="container mx-auto px-4 py-4 md:py-6 flex justify-between items-center gap-4">
+            <!-- Logo Section -->
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="zyndan-logo-wrapper" title="ZYNDAN.KZ — Басты бет">
+                    <img src="assets/zyndan-logo.jpg" alt="ZYNDAN.KZ — Aqparat • Taldau • Senim">
+                </a>
+                <div class="hidden lg:block pl-4 border-l border-zyndan-border">
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-zyndan-navy block">Республикалық медиа-портал</span>
+                    <span class="text-[10px] text-zyndan-muted font-medium uppercase tracking-wider">Aqparat • Taldau • Senim</span>
                 </div>
             </div>
-            <!-- Info -->
-            <div class="flex items-center bg-slate-900 text-white rounded-xl px-5 py-2.5 space-x-6 text-sm font-medium shadow-sm">
-                <div>Қызылорда -5.0°C</div>
-                <div>27.01.2026</div>
-                <div class="border-l border-slate-700 pl-4">
-                    USD: 501.50 <br> EUR: 545.20
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <header class="bg-white border-b border-slate-200">
-        <div class="container mx-auto px-4 py-8 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-4 group cursor-pointer">
-                <div
-                    class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-md group-hover:scale-105 transition-transform">
-                    I</div>
-                <div>
-                    <h1 class="text-3xl font-black tracking-tight text-slate-900 leading-none">Informnews</h1>
-                    <span class="text-sm font-semibold tracking-widest text-slate-400 uppercase mt-1 block">Ақпарат агенттігі</span>
-                </div>
-            </a>
+            <!-- Header Right Actions -->
+            <div class="flex items-center gap-3">
+                <button onclick="openSearchModal()" class="flex items-center gap-2 px-3.5 py-2 bg-zyndan-gray hover:bg-white text-zyndan-navy border border-zyndan-border rounded-lg text-xs font-semibold transition-all">
+                    <i class="las la-search text-base text-zyndan-red"></i>
+                    <span class="hidden sm:inline">Іздеу...</span>
+                </button>
+                <a href="index.html#breaking" class="hidden sm:flex items-center gap-1.5 px-3.5 py-2 bg-zyndan-navy hover:bg-zyndan-red text-white rounded-lg text-xs font-bold uppercase tracking-wider transition-colors shadow-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red animate-ping"></span>
+                    <span>Жедел ақпарат</span>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-zyndan-navy hover:text-zyndan-red text-2xl" aria-label="Мәзір">
+                    <i class="las la-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <nav class="glass-nav border-b border-slate-200 shadow-sm sticky top-0 z-50">
+    <!-- 3. STICKY NAVIGATION WITH SIGNATURE TRIPARTITE BRAND LINE -->
+    <nav class="glass-nav border-b border-zyndan-border sticky top-0 z-40">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center">
-                <div class="cursor-pointer py-5 pr-4 md:hidden text-slate-600"><i class="las la-bars text-xl"></i></div>
-                <ul class="hidden md:flex space-x-8 py-5 font-semibold text-[13px] text-slate-500 uppercase tracking-wider">
-                    <li class="hover:text-slate-900 cursor-pointer transition-colors">ЖАҢАЛЫҚТАР</li>
-                    <li class="hover:text-slate-900 cursor-pointer transition-colors">САЯСАТ</li>
-                    <li class="hover:text-slate-900 cursor-pointer transition-colors">ҚОҒАМ</li>
-                    <li class="hover:text-slate-900 cursor-pointer transition-colors">ЕЛ АУЗЫНДА</li>
-                    <li class="hover:text-slate-900 cursor-pointer transition-colors">СПОРТ</li>
+                <!-- Nav Links -->
+                <ul class="hidden md:flex items-center space-x-1 lg:space-x-6 text-[13px] font-bold text-zyndan-navy uppercase tracking-wider">
+                    <li>
+                        <a href="index.html" class="zyndan-nav-link block py-3.5 px-2 hover:text-zyndan-red">Басты бет</a>
+                    </li>
+                    <li>
+                        <a href="index.html#latest" class="zyndan-nav-link active text-zyndan-red block py-3.5 px-2">Жаңалықтар</a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="zyndan-nav-link block py-3.5 px-2 hover:text-zyndan-red">Саясат</a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="zyndan-nav-link block py-3.5 px-2 hover:text-zyndan-red">Экономика</a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="zyndan-nav-link block py-3.5 px-2 hover:text-zyndan-red">Қоғам</a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="zyndan-nav-link block py-3.5 px-2 hover:text-zyndan-red">Талдау</a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="zyndan-nav-link block py-3.5 px-2 hover:text-zyndan-red">Спорт</a>
+                    </li>
+                    <li>
+                        <a href="article.html" class="zyndan-nav-link block py-3.5 px-2 hover:text-zyndan-red">Сұхбат</a>
+                    </li>
                 </ul>
-                <div class="flex items-center space-x-5 text-slate-400 pl-6 border-l border-slate-200">
-                    <i class="las la-search cursor-pointer hover:text-slate-900 text-xl transition-colors"></i>
-                    <i class="las la-moon cursor-pointer hover:text-slate-900 text-xl transition-colors"></i>
-                    <span class="cursor-pointer hover:text-slate-900 font-bold text-xs tracking-widest bg-slate-100 px-2 py-1 rounded">KAZ</span>
+
+                <!-- Right Live Status Indicator -->
+                <div class="hidden md:flex items-center gap-4 py-3 text-xs">
+                    <span class="inline-flex items-center gap-1.5 font-bold uppercase text-[11px] text-zyndan-navy">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-zyndan-red opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-zyndan-red"></span>
+                        </span>
+                        Тікелей эфир
+                    </span>
                 </div>
             </div>
         </div>
+
+        <!-- Signature Brand Line: Tripartite [Navy] -- [Red] -- [Navy] -->
+        <div class="h-[3px] w-full flex">
+            <div class="h-full bg-zyndan-navy flex-1"></div>
+            <div class="h-full bg-zyndan-red w-32 md:w-48"></div>
+            <div class="h-full bg-zyndan-navy flex-1"></div>
+        </div>
     </nav>
 
-    <!-- === MAIN ARTICLE CONTAINER === -->
-    <main class="container mx-auto px-4 py-8">
+    <!-- 4. MAIN ARTICLE CONTAINER -->
+    <main class="container mx-auto px-4 py-6 md:py-10 flex-grow">
 
-        <!-- Хлебные крошки -->
-        <div class="text-xs font-medium text-slate-500 mb-8 uppercase tracking-wide flex items-center gap-2">
-            <a href="index.html" class="hover:text-slate-900 transition flex items-center gap-1"><i class="las la-home text-sm mb-0.5"></i> Басты</a>
-            <i class="las la-angle-right opacity-40"></i>
-            <span class="text-slate-700 font-semibold flex items-center gap-1"><i class="las la-folder text-sm mb-0.5"></i> Қызылорда жаңалықтары</span>
-        </div>
+        <!-- Breadcrumbs -->
+        <nav class="text-xs font-semibold text-zyndan-muted uppercase tracking-wider mb-6 flex items-center flex-wrap gap-2" aria-label="Нан қиқымдары">
+            <a href="index.html" class="hover:text-zyndan-navy transition-colors flex items-center gap-1">
+                <i class="las la-home text-sm"></i> Басты бет
+            </a>
+            <i class="las la-angle-right text-[10px] text-gray-400"></i>
+            <a href="index.html#latest" class="hover:text-zyndan-navy transition-colors">
+                Ауыл шаруашылығы
+            </a>
+            <i class="las la-angle-right text-[10px] text-gray-400"></i>
+            <span class="text-zyndan-navy font-bold truncate max-w-xs md:max-w-md">Жаңа күріш сорты</span>
+        </nav>
 
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
-            <!-- LEFT COLUMN (ARTICLE CONTENT) - 75% width -->
-            <div class="lg:col-span-3">
+            <!-- LEFT COLUMN: ARTICLE CONTENT (8 of 12 cols = 67%) -->
+            <article class="lg:col-span-8">
 
-                <!-- Заголовок -->
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6 tracking-tight">
+                <!-- Category Badge -->
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-zyndan-navy text-white text-xs font-bold uppercase tracking-wider rounded">
+                        <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span>
+                        Ғылым және Ауыл шаруашылығы
+                    </span>
+                    <span class="text-xs text-zyndan-muted font-medium flex items-center gap-1">
+                        <i class="las la-clock text-sm text-zyndan-red"></i> 3 мин оқу
+                    </span>
+                </div>
+
+                <!-- Main Editorial Headline -->
+                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-black text-zyndan-navy leading-tight md:leading-snug mb-5 tracking-tight">
                     Қызылордалық ғалымдар жаңа күріш сортын ойлап тапты
                 </h1>
 
-                <!-- Автор и Дата -->
-                <div class="flex flex-wrap items-center justify-between border-y border-slate-200 py-4 gap-4 mb-8">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 border border-slate-200 shadow-sm">
-                            <i class="las la-user text-xl"></i>
+                <!-- Article Metadata Bar -->
+                <div class="flex flex-wrap items-center justify-between border-y border-zyndan-border py-3.5 gap-4 mb-7 bg-zyndan-gray/40 px-3 rounded-lg">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-zyndan-navy text-white flex items-center justify-center font-bold text-sm shadow-sm border border-zyndan-navy">
+                            АН
                         </div>
                         <div class="leading-tight">
-                            <div class="font-semibold text-slate-900 text-sm">Айдос Нұрпейіс</div>
-                            <div class="text-xs text-slate-500 font-medium flex items-center gap-1.5 mt-0.5">
-                                <i class="las la-clock"></i> 27.01.2026 14:30
+                            <div class="font-bold text-zyndan-navy text-sm">Айдос Нұрпейіс</div>
+                            <div class="text-[11px] text-zyndan-muted font-medium flex items-center gap-2 mt-0.5">
+                                <span>27 қаңтар 2026, 14:30</span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1"><i class="las la-eye text-zyndan-red"></i> 1 248 көрілім</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Social Share Buttons -->
                     <div class="flex items-center gap-2">
-                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mr-2 hidden sm:block">
-                            Бөлісу:
-                        </div>
-                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-50 text-slate-500 hover:bg-green-50 hover:text-green-600 flex items-center justify-center transition border border-slate-200 shadow-sm">
-                            <i class="lab la-whatsapp text-xl"></i>
+                        <span class="text-xs font-bold text-zyndan-muted uppercase tracking-wider hidden sm:inline">Бөлісу:</span>
+                        <a href="https://api.whatsapp.com/send?text=Қызылордалық%20ғалымдар%20жаңа%20күріш%20сортын%20ойлап%20тапты" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-white hover:bg-emerald-600 hover:text-white text-emerald-600 flex items-center justify-center border border-zyndan-border shadow-sm transition-colors" title="WhatsApp арқылы бөлісу">
+                            <i class="lab la-whatsapp text-lg"></i>
                         </a>
-                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-50 text-slate-500 hover:bg-blue-50 hover:text-blue-600 flex items-center justify-center transition border border-slate-200 shadow-sm">
-                            <i class="lab la-telegram-plane text-xl"></i>
+                        <a href="https://t.me/share/url?url=https://zyndan.kz/article.html" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-white hover:bg-sky-600 hover:text-white text-sky-600 flex items-center justify-center border border-zyndan-border shadow-sm transition-colors" title="Telegram арқылы бөлісу">
+                            <i class="lab la-telegram-plane text-lg"></i>
                         </a>
+                        <a href="https://facebook.com/sharer/sharer.php?u=https://zyndan.kz/article.html" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-white hover:bg-blue-600 hover:text-white text-blue-600 flex items-center justify-center border border-zyndan-border shadow-sm transition-colors" title="Facebook арқылы бөлісу">
+                            <i class="lab la-facebook-f text-base"></i>
+                        </a>
+                        <button onclick="copyArticleLink()" class="w-8 h-8 rounded-lg bg-white hover:bg-zyndan-navy hover:text-white text-zyndan-navy flex items-center justify-center border border-zyndan-border shadow-sm transition-colors" title="Сілтемені көшіру">
+                            <i class="las la-link text-base"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Главное фото -->
-                <figure class="mb-10 rounded-2xl overflow-hidden shadow-sm border border-slate-200 bg-slate-50">
-                    <img src="https://placehold.co/800x500/10b981/FFF?text=Rice+Field+Technology"
-                        class="w-full h-auto object-cover" alt="Main News Image">
-                    <figcaption class="text-center text-xs text-slate-500 italic py-2 bg-slate-50">
-                        © "Informnews.kz"
+                <!-- Main Featured Photo -->
+                <figure class="mb-8 rounded-xl overflow-hidden border border-zyndan-border bg-zyndan-gray">
+                    <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=1200&q=80"
+                        class="w-full h-[320px] sm:h-[420px] md:h-[460px] object-cover"
+                        alt="Қызылорда облысындағы күріш алқабы">
+                    <figcaption class="px-4 py-2.5 text-xs text-zyndan-muted italic bg-zyndan-gray border-t border-zyndan-border flex justify-between items-center">
+                        <span>Сыр бойындағы күріш алқаптарында су үнемдеу тәжірибесі енгізілуде</span>
+                        <span class="font-semibold text-zyndan-navy">© ZYNDAN.KZ / Дереккөз</span>
                     </figcaption>
                 </figure>
 
-                <div class="flex gap-6">
-                    <!-- Текст статьи -->
-                    <div class="article-content flex-1 max-w-none prose prose-slate">
-                        <p class="font-semibold text-lg text-slate-900">
-                            Бүгін Қызылорда облыстық ауыл шаруашылығы басқармасы жаңа "Сыр маржаны 2.0" сұрыпын
-                            таныстырды. Бұл туралы Informnews.kz тілшісі хабарлайды.
-                        </p>
-                        <p>
-                            Мамандардың айтуынша, жаңа сұрып суды аз қажет етеді және тұзды топыраққа төзімді. Соңғы
-                            жылдары өңірдегі су тапшылығы мәселесі диқандарды қатты алаңдатып отырғаны жасырын емес.
-                            Сондықтан ғалымдар 3 жыл бойы зерттеу жүргізіп, нәтижесінде осы сұрыпты шығарды.
-                        </p>
-                        <p>
-                            — Біз су үнемдеу технологияларын енгізуге мәжбүрміз. Жаңа сұрып 15-20% аз су ішеді, ал
-                            түсімділігі гектарына 60 центнерден кем түспейді, — деді агроном Берік Смағұлов.
-                        </p>
-                        <p>
-                            Сонымен қатар, жиында келесі егіс науқанына дайындық барысы да талқыланды. Техникалардың 90%
-                            қазірдің өзінде сайланып қойған.
-                        </p>
-                        <div class="bg-blue-50/50 border-l-[3px] border-slate-900 p-5 my-6 italic text-slate-700 rounded-r-xl shadow-sm text-[15px]">
-                            Айта кетейік, биылғы жылы Қызылорда облысында 89 мың гектар жерге күріш егілу жоспарлануда.
+                <!-- Article Body Content -->
+                <div class="article-body font-sans text-black">
+                    <p class="font-bold text-lg md:text-xl text-zyndan-navy leading-relaxed border-l-2 border-zyndan-red pl-4">
+                        Бүгін Қызылорда облыстық ауыл шаруашылығы басқармасы мен Ы.Жақаев атындағы Қазақ күріш шаруашылығы ғылыми-зерттеу институты бірлесіп, жаңа "Сыр маржаны 2.0" күріш сұрыпын таныстырды. Бұл туралы ZYNDAN.KZ ақпарат агенттігі хабарлайды.
+                    </p>
+
+                    <p>
+                        Мамандардың мәліметінше, жаңа отандық селекция суды әдеттегі сұрыптардан 15-20%-ға аз қажет етеді және Арал өңіріне тән сортаң топыраққа ерекше төзімді. Соңғы жылдары өңірдегі су тапшылығы мәселесі диқандар мен ғалымдарды баламалы агротехнологиялар іздеуге мәжбүрлеген еді. Үш жылға созылған ғылыми сынақ оң нәтижесін беріп, мемлекеттік сорт сынау инспекциясынан сәтті өтті.
+                    </p>
+
+                    <!-- Editorial Blockquote -->
+                    <blockquote>
+                        — Біз Сырдария өзеніндегі су ресурстарын үнемдеудің кешенді тетіктерін қолдануға тиіспіз. Жаңа сұрып вегетациялық кезеңді 10 күнге қысқартады әрі гектарына 60-65 центнерден кем түспейтін жоғары өнімділікті қамтамасыз ете алады, — деп атап өтті бас агроном Берік Смағұлов.
+                    </blockquote>
+
+                    <h2>Инновациялық технология және су үнемдеу</h2>
+
+                    <p>
+                        Жаңа сұрыптың басты артықшылықтарының бірі — лазерлік тегістеу және тамшылатып ылғалдандырудың аралас әдісіне бейімділігі. Осы тәсіл арқылы әр гектарға жұмсалатын су көлемі нормативтік 24-26 мың текше метрден 18-19 мың текше метрге дейін төмендейді.
+                    </p>
+
+                    <p>
+                        Сонымен қатар, аймақта өткен жиында алдағы көктемгі егіс науқанына дайындық барысы да жан-жақты қаралды. Облыстық басқарма өкілдерінің дерегінше, шаруашылықтардағы ауыл шаруашылығы техникаларының 92%-ы сақадай сайланған, дизель отыны субсидияланған бағамен жеткізілуде.
+                    </p>
+
+                    <!-- Callout Info Box -->
+                    <div class="bg-zyndan-gray border-l-4 border-zyndan-navy p-5 my-6 rounded-r-lg">
+                        <div class="text-xs font-bold uppercase tracking-wider text-zyndan-red mb-1">Ресми мәлімет</div>
+                        <div class="text-sm font-semibold text-zyndan-navy leading-relaxed">
+                            Биылғы жылы Қызылорда облысында 89 мың гектарға жуық жерге күріш егіледі. Оның 15 мың гектарына алғаш рет су үнемдеу технологиялары мен жаңа селекциялық сұрыптар қолданылмақ.
                         </div>
                     </div>
+
+                    <p>
+                        Ғалымдар алдағы уақытта "Сыр маржаны 2.0" тұқымын өңірдегі ірі тұқым шаруашылықтарына таратуды жоспарлап отыр. Бұл өз кезегінде экспорттық сапаны арттыруға және экологиялық тепе-теңдікті сақтауға қосымша серпін бермек.
+                    </p>
                 </div>
 
-                <!-- Теги -->
-                <div class="mt-8 pt-6 border-t border-slate-200 flex gap-3 flex-wrap items-center">
-                    <a href="#"
-                        class="bg-slate-50 border border-slate-200 hover:bg-slate-100 transition px-4 py-1.5 rounded-full text-xs font-semibold text-slate-600 uppercase tracking-wide flex items-center gap-1.5 shadow-sm">
-                        <i class="las la-tag"></i> Ауыл шаруашылығы
+                <!-- Tags Section -->
+                <div class="mt-8 pt-6 border-t border-zyndan-border flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-zyndan-muted mr-2">Тегтер:</span>
+                    <a href="#" class="px-3 py-1 bg-zyndan-gray hover:bg-zyndan-navy hover:text-white border border-zyndan-border rounded-full text-xs font-medium text-zyndan-navy transition-colors">
+                        #Күріш
                     </a>
-                    <a href="#"
-                        class="bg-slate-50 border border-slate-200 hover:bg-slate-100 transition px-4 py-1.5 rounded-full text-xs font-semibold text-slate-600 uppercase tracking-wide flex items-center gap-1.5 shadow-sm">
-                        <i class="las la-tag"></i> Күріш
+                    <a href="#" class="px-3 py-1 bg-zyndan-gray hover:bg-zyndan-navy hover:text-white border border-zyndan-border rounded-full text-xs font-medium text-zyndan-navy transition-colors">
+                        #АуылШаруашылығы
+                    </a>
+                    <a href="#" class="px-3 py-1 bg-zyndan-gray hover:bg-zyndan-navy hover:text-white border border-zyndan-border rounded-full text-xs font-medium text-zyndan-navy transition-colors">
+                        #Қызылорда
+                    </a>
+                    <a href="#" class="px-3 py-1 bg-zyndan-gray hover:bg-zyndan-navy hover:text-white border border-zyndan-border rounded-full text-xs font-medium text-zyndan-navy transition-colors">
+                        #Ғылым
+                    </a>
+                    <a href="#" class="px-3 py-1 bg-zyndan-gray hover:bg-zyndan-navy hover:text-white border border-zyndan-border rounded-full text-xs font-medium text-zyndan-navy transition-colors">
+                        #СуҮнемдеу
                     </a>
                 </div>
 
-                <!-- Блок Комментарии: Форма -->
-                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm mt-12 border border-slate-200">
-                    <h3 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                        <span class="w-1.5 h-6 bg-slate-900 rounded-full block"></span>
-                        <i class="las la-comments text-slate-400 text-2xl"></i> Комментарии
-                    </h3>
-                    <div class="mb-4 relative">
-                        <i class="las la-pen absolute left-4 top-4 text-slate-400 text-lg"></i>
-                        <textarea
-                            class="w-full border border-slate-200 rounded-2xl pl-12 pr-4 py-3.5 text-sm focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition shadow-inner bg-slate-50 h-24"
-                            placeholder="Написать комментарий..."></textarea>
+                <!-- Editorial Author Signature Box -->
+                <div class="mt-10 p-6 bg-zyndan-gray rounded-xl border border-zyndan-border flex flex-col sm:flex-row items-center sm:items-start gap-5">
+                    <div class="w-16 h-16 rounded-full bg-zyndan-navy text-white flex items-center justify-center font-bold text-xl flex-shrink-0 border-2 border-zyndan-red">
+                        АН
                     </div>
-                    <button
-                        class="bg-slate-900 text-white hover:bg-slate-800 px-8 py-3.5 rounded-xl text-sm font-semibold shadow-md btn-premium flex items-center gap-2">
-                        <i class="las la-paper-plane text-lg"></i> Отправить
-                    </button>
-                    <p class="text-[11px] text-slate-400 mt-3 font-medium flex items-center gap-1"><i class="las la-info-circle text-sm"></i> Пікір модератор тексергеннен кейін жарияланады</p>
+                    <div class="text-center sm:text-left">
+                        <div class="text-xs uppercase font-bold tracking-wider text-zyndan-red mb-0.5">Материалдың авторы</div>
+                        <h4 class="text-lg font-black text-zyndan-navy">Айдос Нұрпейіс</h4>
+                        <p class="text-xs text-zyndan-muted mt-1 leading-relaxed">
+                            ZYNDAN.KZ ақпараттық-сараптамалық порталының өңірлік шолушысы. Экономика, экология және агросектор тақырыптарына маманданған.
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Блок Комментарии: Список (Пустой как на макете) -->
-                <div
-                    class="bg-white p-8 rounded-3xl shadow-sm mt-6 border border-slate-200 min-h-[150px] flex flex-col justify-center items-center text-center">
-                    <i class="las la-comment-slash text-4xl text-slate-300 mb-2"></i>
-                    <div class="text-slate-400 text-sm font-medium">Нет комментариев. Будьте первым!</div>
-                </div>
+                <!-- Comments Section -->
+                <section class="mt-12 pt-8 border-t border-zyndan-border">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-black text-zyndan-navy uppercase tracking-tight flex items-center">
+                            <span class="w-1.5 h-5 bg-zyndan-red rounded-sm mr-2.5 inline-block"></span>
+                            Пікірлер <span class="ml-2 text-sm text-zyndan-muted font-bold">(2)</span>
+                        </h3>
+                    </div>
 
-            </div>
-
-            <!-- RIGHT COLUMN (SIDEBAR) - 25% width -->
-            <aside class="lg:col-span-1 space-y-8">
-                <div class="sticky top-24">
-                    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 overflow-hidden">
-                        <!-- Табы: Басты / Танымал -->
-                        <div class="flex mb-6 bg-slate-100 p-1 rounded-xl">
-                            <button class="flex-1 bg-white text-slate-900 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg shadow-sm">
-                                Басты
-                            </button>
-                            <button
-                                class="flex-1 text-slate-500 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg hover:text-slate-900 transition-colors">
-                                Танымал
+                    <!-- Add Comment Form -->
+                    <div class="bg-white p-5 rounded-xl border border-zyndan-border shadow-sm mb-8">
+                        <div class="text-xs font-bold uppercase tracking-wider text-zyndan-navy mb-3">Өз пікіріңізді қалдырыңыз</div>
+                        <div class="space-y-3">
+                            <input type="text" placeholder="Аты-жөніңіз немесе бүркеншік есім" class="w-full px-4 py-2.5 bg-zyndan-gray border border-zyndan-border rounded-lg text-xs font-medium focus:outline-none focus:ring-1 focus:ring-zyndan-navy focus:bg-white transition-all">
+                            <textarea rows="3" placeholder="Ойыңызбен бөлісіңіз..." class="w-full px-4 py-2.5 bg-zyndan-gray border border-zyndan-border rounded-lg text-xs font-medium focus:outline-none focus:ring-1 focus:ring-zyndan-navy focus:bg-white transition-all"></textarea>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between">
+                            <span class="text-[11px] text-zyndan-muted italic">Пікірлер редакциялық сүзгіден өтеді</span>
+                            <button class="px-5 py-2.5 bg-zyndan-navy hover:bg-zyndan-red text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors shadow-sm flex items-center gap-1.5">
+                                <i class="las la-paper-plane text-sm"></i> Жіберу
                             </button>
                         </div>
-
-                        <!-- Лента новостей справа -->
-                        <div class="space-y-4">
-
-                            <!-- Item 1 -->
-                            <a href="article.html" class="block group cursor-pointer">
-                                <h4
-                                    class="font-semibold text-slate-800 text-sm leading-snug group-hover:text-slate-500 transition-colors mb-1.5">
-                                    "Қызылорда жылу электр орталығы" жаңғыртудан өтуде
-                                </h4>
-                                <div class="text-[11px] font-medium text-slate-400 flex items-center gap-1.5"><i class="las la-clock text-sm"></i> 27.01.2026 13:45</div>
-                                <div class="border-b border-slate-100 mt-4 mb-4"></div>
-                            </a>
-
-                            <!-- Item 2 -->
-                            <a href="article.html" class="block group cursor-pointer">
-                                <h4
-                                    class="font-semibold text-slate-800 text-sm leading-snug group-hover:text-slate-500 transition-colors mb-1.5">
-                                    Қайсар футбол клубы Түркияда оқу-жаттығу жиынын аяқтады
-                                </h4>
-                                <div class="text-[11px] font-medium text-slate-400 flex items-center gap-1.5"><i class="las la-clock text-sm"></i> 27.01.2026 12:10</div>
-                                <div class="border-b border-slate-100 mt-4 mb-4"></div>
-                            </a>
-
-                            <!-- Item 3 -->
-                            <a href="article.html" class="block group cursor-pointer">
-                                <h4
-                                    class="font-semibold text-slate-800 text-sm leading-snug group-hover:text-slate-500 transition-colors mb-1.5">
-                                    Қармақшы ауданында жаңа мектеп пайдалануға берілді
-                                </h4>
-                                <div class="text-[11px] font-medium text-slate-400 flex items-center gap-1.5"><i class="las la-clock text-sm"></i> 27.01.2026 10:30</div>
-                                <div class="border-b border-slate-100 mt-4 mb-4"></div>
-                            </a>
-
-                            <!-- Item 4 -->
-                            <a href="article.html" class="block group cursor-pointer">
-                                <h4
-                                    class="font-semibold text-slate-800 text-sm leading-snug group-hover:text-slate-500 transition-colors mb-1.5">
-                                    "Батыс Еуропа - Батыс Қытай" жолында көлік қозғалысы шектелді
-                                </h4>
-                                <div class="text-[11px] font-medium text-slate-400 flex items-center gap-1.5"><i class="las la-clock text-sm"></i> 26.01.2026 19:20</div>
-                            </a>
-
-                        </div>
-
-                        <!-- Кнопка Все новости -->
-                        <div class="mt-6">
-                            <a href="#"
-                                class="block w-full bg-slate-50 text-slate-900 border border-slate-200 text-center py-3 rounded-xl font-semibold text-sm hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">
-                                Барлық жаңалықтар <i class="las la-arrow-right text-lg"></i>
-                            </a>
-                        </div>
                     </div>
 
-                    <!-- Рекламный баннер справа -->
-                    <div class="mt-6 bg-white rounded-3xl border border-slate-200 shadow-sm p-6 text-center">
-                        <div class="text-xs font-semibold text-slate-400 tracking-wider mb-4 flex items-center justify-center gap-2">
-                            <i class="las la-ad"></i> Жарнама
+                    <!-- Existing Comments List -->
+                    <div class="space-y-4">
+                        <div class="p-4 bg-zyndan-gray/50 rounded-xl border border-zyndan-border">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-xs text-zyndan-navy">Нұрбол Сапарбаев</span>
+                                <span class="text-[11px] text-zyndan-muted">27.01.2026, 15:10</span>
+                            </div>
+                            <p class="text-xs text-slate-800 leading-relaxed">
+                                Өте өзекті жаңалық! Су тапшылығы кезінде осындай отандық ғалымдардың сұрыптарын тезірек енгізу керек.
+                            </p>
                         </div>
-                        <div class="bg-slate-100 w-full h-48 flex items-center justify-center text-slate-400 rounded-2xl font-medium text-sm">
-                            Жарнама орны
+                        <div class="p-4 bg-zyndan-gray/50 rounded-xl border border-zyndan-border">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-xs text-zyndan-navy">Асқар Диқан</span>
+                                <span class="text-[11px] text-zyndan-muted">27.01.2026, 16:45</span>
+                            </div>
+                            <p class="text-xs text-slate-800 leading-relaxed">
+                                Тұқымның бағасы мен субсидия мәселесі қалай болады екен? Басқарма бұл жағын да нақтыласа екен.
+                            </p>
                         </div>
+                    </div>
+                </section>
+
+            </article>
+
+            <!-- RIGHT COLUMN: SIDEBAR (4 of 12 cols = 33%) -->
+            <aside class="lg:col-span-4 space-y-6">
+
+                <!-- 1. EDITORIAL TABS: Өзекті / Көп оқылған -->
+                <div class="bg-white rounded-xl border border-zyndan-border shadow-sm p-5">
+                    <div class="flex border-b border-zyndan-border mb-4">
+                        <button class="flex-1 pb-2.5 text-xs font-bold uppercase tracking-wider text-zyndan-navy border-b-2 border-zyndan-red">
+                            Өзекті хабарлар
+                        </button>
+                        <button class="flex-1 pb-2.5 text-xs font-bold uppercase tracking-wider text-zyndan-muted hover:text-zyndan-navy">
+                            Көп оқылған
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Sidebar Item 1 -->
+                        <a href="article.html" class="block group">
+                            <div class="text-[11px] text-zyndan-red font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span> Энергетика
+                            </div>
+                            <h4 class="text-xs font-bold text-zyndan-navy group-hover:text-zyndan-red transition-colors leading-snug">
+                                "Қызылорда жылу электр орталығы" жаңғыртудан өтуде
+                            </h4>
+                            <div class="text-[10px] text-zyndan-muted mt-1.5 flex items-center gap-2">
+                                <span>13:45</span>
+                                <span>•</span>
+                                <span>1 530 оқылды</span>
+                            </div>
+                        </a>
+                        <div class="border-b border-zyndan-border"></div>
+
+                        <!-- Sidebar Item 2 -->
+                        <a href="article.html" class="block group">
+                            <div class="text-[11px] text-zyndan-red font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span> Спорт
+                            </div>
+                            <h4 class="text-xs font-bold text-zyndan-navy group-hover:text-zyndan-red transition-colors leading-snug">
+                                "Қайсар" футбол клубы Түркиядағы оқу-жаттығу жиынын аяқтады
+                            </h4>
+                            <div class="text-[10px] text-zyndan-muted mt-1.5 flex items-center gap-2">
+                                <span>12:10</span>
+                                <span>•</span>
+                                <span>2 140 оқылды</span>
+                            </div>
+                        </a>
+                        <div class="border-b border-zyndan-border"></div>
+
+                        <!-- Sidebar Item 3 -->
+                        <a href="article.html" class="block group">
+                            <div class="text-[11px] text-zyndan-red font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span> Білім
+                            </div>
+                            <h4 class="text-xs font-bold text-zyndan-navy group-hover:text-zyndan-red transition-colors leading-snug">
+                                Қармақшы ауданында 600 орындық жаңа мектеп пайдалануға берілді
+                            </h4>
+                            <div class="text-[10px] text-zyndan-muted mt-1.5 flex items-center gap-2">
+                                <span>10:30</span>
+                                <span>•</span>
+                                <span>890 оқылды</span>
+                            </div>
+                        </a>
+                        <div class="border-b border-zyndan-border"></div>
+
+                        <!-- Sidebar Item 4 -->
+                        <a href="article.html" class="block group">
+                            <div class="text-[11px] text-zyndan-red font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span> Көлік және жол
+                            </div>
+                            <h4 class="text-xs font-bold text-zyndan-navy group-hover:text-zyndan-red transition-colors leading-snug">
+                                "Батыс Еуропа — Батыс Қытай" күрежолында қозғалыс қалыпқа келтірілді
+                            </h4>
+                            <div class="text-[10px] text-zyndan-muted mt-1.5 flex items-center gap-2">
+                                <span>Кеше, 19:20</span>
+                                <span>•</span>
+                                <span>3 410 оқылды</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <a href="index.html#latest" class="mt-5 block text-center py-2.5 bg-zyndan-gray hover:bg-zyndan-navy hover:text-white text-zyndan-navy text-xs font-bold uppercase tracking-wider rounded-lg transition-colors border border-zyndan-border">
+                        Барлық жаңалықтарды оқу →
+                    </a>
+                </div>
+
+                <!-- 2. KASPI QR WIDGET -->
+                <div class="bg-zyndan-gray rounded-xl border border-zyndan-border p-5 text-center">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-white border border-zyndan-border flex items-center justify-center text-zyndan-red text-2xl mb-3 shadow-sm">
+                        <i class="las la-newspaper"></i>
+                    </div>
+                    <h4 class="font-black text-sm text-zyndan-navy uppercase tracking-tight">Газетке онлайн жазылыңыз</h4>
+                    <p class="text-xs text-zyndan-muted mt-1 mb-4">Kaspi QR арқылы өңірлік басылымдар мен ZYNDAN.KZ топтамаларына жедел жазылу</p>
+                    <div class="inline-block p-2 bg-white rounded-lg border border-zyndan-border shadow-inner mb-3">
+                        <i class="las la-qrcode text-6xl text-zyndan-navy"></i>
+                    </div>
+                    <div class="text-[11px] font-bold text-zyndan-navy uppercase tracking-wider">Kaspi.kz қосымшасымен сканерлеңіз</div>
+                </div>
+
+                <!-- 3. CLEAN AD PLACEMENT -->
+                <div class="bg-white rounded-xl border border-dashed border-zyndan-border p-6 text-center">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-zyndan-muted block mb-2">Жарнамалық кеңістік</span>
+                    <div class="h-44 bg-zyndan-gray rounded-lg flex flex-col items-center justify-center text-zyndan-muted text-xs font-medium border border-zyndan-border">
+                        <i class="las la-ad text-3xl text-zyndan-muted mb-1"></i>
+                        <span>Жарнама беру үшін:</span>
+                        <strong class="text-zyndan-navy mt-1">reklama@zyndan.kz</strong>
                     </div>
                 </div>
+
             </aside>
         </div>
     </main>
 
-    <!-- === FOOTER (ПОВТОРЯЕТСЯ С ГЛАВНОЙ) === -->
-    <footer class="bg-slate-950 text-white pt-16 mt-auto">
-        <div class="container mx-auto px-4 pb-12 text-center border-b border-white/10">
-            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight">Informnews</h2>
-            <p class="text-slate-500 text-sm mb-8 font-medium"></p>
-            <div class="flex justify-center gap-4 text-3xl mb-8">
-                <a href="#" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-colors"><i class="lab la-telegram-plane"></i></a>
-                <a href="#" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-colors"><i class="lab la-instagram"></i></a>
-                <a href="#" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-colors"><i class="lab la-facebook-f"></i></a>
+    <!-- 5. FOOTER IN ZYNDAN NAVY WITH SIGNATURE RED BORDER -->
+    <footer class="bg-zyndan-navy text-white mt-16 border-t-2 border-zyndan-red">
+        <!-- Top Footer Container -->
+        <div class="container mx-auto px-4 py-12 md:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+
+                <!-- Col 1: Brand & Slogan -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-zyndan-red flex items-center justify-center text-white font-black text-xl tracking-tighter shadow-md">
+                            Z
+                        </div>
+                        <span class="text-2xl font-black tracking-tight text-white">ZYNDAN<span class="text-zyndan-red">.KZ</span></span>
+                    </div>
+                    <p class="text-xs uppercase tracking-widest font-bold text-zyndan-red">Aqparat • Taldau • Senim</p>
+                    <p class="text-xs text-slate-300 leading-relaxed max-w-sm">
+                        «Zyndan.kz» сайтында жарияланған барлық материалдардың (мәтін, иллюстрациялар, графика, фото, видео, аудио, сұхбаттар, шолулар, жеке авторлар бағаналары, арнайы жоба мәліметтері — бұдан әрі Материалдар) авторлық құқығы «Zyndan.kz» сайтына тиесілі. Сайтта жарияланған материалдарды басқа интернет-ресурстар пайдаланған жағдайда, авторлық құқық белгісін (©), авторды және Материал иесін, сондай-ақ гиперсілтеме (мақаланың www.zyndan.kz сайтындағы тұрақты сілтемесін көрсету) түрінде дереккөзге сілтеме көрсету міндетті. Түпнұсқадағы мәтіннің мазмұнын өзгертуге, мағынасын бұрмалап көшіруге тыйым салынады. Мазмұны өзгертілген немесе мағынасы бұрмаланған көшірме материалға қатысты жауапкершілікті көшіріп басқан жеке немесе заңды тұлға өз мойнына алады. Материалды толық немесе кез келген бөлігін көшіру, тарату үшін редакцияның жазбаша рұқсатын алу қажет.
+                    </p>
+                    <div class="flex items-center gap-2 pt-2">
+                        <a href="#" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-zyndan-red flex items-center justify-center text-white text-base transition-colors" aria-label="Telegram">
+                            <i class="lab la-telegram-plane"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-zyndan-red flex items-center justify-center text-white text-base transition-colors" aria-label="Facebook">
+                            <i class="lab la-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-zyndan-red flex items-center justify-center text-white text-base transition-colors" aria-label="Instagram">
+                            <i class="lab la-instagram"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-zyndan-red flex items-center justify-center text-white text-base transition-colors" aria-label="YouTube">
+                            <i class="lab la-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Categories -->
+                <div>
+                    <h5 class="text-xs font-black uppercase tracking-wider text-white mb-4 flex items-center">
+                        <span class="w-1.5 h-3 bg-zyndan-red rounded-xs mr-2 inline-block"></span>
+                        Айдарлар
+                    </h5>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li><a href="index.html#latest" class="hover:text-white transition-colors">Жаңалықтар</a></li>
+                        <li><a href="index.html" class="hover:text-white transition-colors">Саясат</a></li>
+                        <li><a href="index.html" class="hover:text-white transition-colors">Экономика</a></li>
+                        <li><a href="index.html" class="hover:text-white transition-colors">Қоғам</a></li>
+                        <li><a href="index.html" class="hover:text-white transition-colors">Спорт</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Editorial Links -->
+                <div>
+                    <h5 class="text-xs font-black uppercase tracking-wider text-white mb-4 flex items-center">
+                        <span class="w-1.5 h-3 bg-zyndan-red rounded-xs mr-2 inline-block"></span>
+                        Жоба туралы
+                    </h5>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li><a href="editor.html" class="hover:text-white transition-colors">Редакция ұжымы</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Жарнама тарифтері</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Құпиялылық саясаты</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Пайдалану шарттары</a></li>
+                        <li><a href="admin.html" class="hover:text-zyndan-red transition-colors flex items-center gap-1 text-[11px]"><i class="las la-lock"></i> Басқару жүйесі</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contacts -->
+                <div>
+                    <h5 class="text-xs font-black uppercase tracking-wider text-white mb-4 flex items-center">
+                        <span class="w-1.5 h-3 bg-zyndan-red rounded-xs mr-2 inline-block"></span>
+                        Байланыс
+                    </h5>
+                    <ul class="space-y-2.5 text-xs text-slate-300">
+                        <li class="flex items-start gap-2">
+                            <i class="las la-map-marker text-zyndan-red text-sm mt-0.5"></i>
+                            <span>Қазақстан, Қызылорда қ., Бұқарбай батыр к-сі, 64</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="las la-phone text-zyndan-red text-sm"></i>
+                            <span>+7 (7242) 27-84-48</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="las la-envelope text-zyndan-red text-sm"></i>
+                            <a href="mailto:editor@zyndan.kz" class="hover:underline">editor@zyndan.kz</a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
-        <div class="bg-black py-6 text-center">
-            <div class="text-xs font-medium text-slate-500">
+
+        <!-- Bottom Copyright Line -->
+        <div class="border-t border-white/10 bg-zyndan-dark py-4 text-center text-xs text-slate-400">
+            <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div>
+                    © 2026 ZYNDAN.KZ. Барлық құқықтар қорғалған.
+                </div>
+                <div class="text-[11px] text-slate-500">
+                    Сайт материалдарын пайдаланған жағдайда ZYNDAN.KZ белсенді гиперсілтемесі міндетті.
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- 6. SEARCH MODAL DIALOG -->
+    <div id="searchModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-start justify-center pt-20 px-4">
+        <div class="bg-white rounded-2xl w-full max-w-xl p-6 shadow-2xl border border-zyndan-border">
+            <div class="flex justify-between items-center pb-4 border-b border-zyndan-border">
+                <span class="text-sm font-bold uppercase tracking-wider text-zyndan-navy flex items-center gap-2">
+                    <i class="las la-search text-zyndan-red text-lg"></i> Мақалаларды іздеу
+                </span>
+                <button onclick="closeSearchModal()" class="text-zyndan-muted hover:text-zyndan-red text-xl">
+                    <i class="las la-times"></i>
+                </button>
+            </div>
+            <div class="mt-4">
+                <input type="text" placeholder="Іздейтін кілт сөзді енгізіңіз..." class="w-full px-4 py-3 bg-zyndan-gray border border-zyndan-border rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-zyndan-navy focus:bg-white transition-all">
+            </div>
+            <div class="mt-4 flex justify-end gap-2">
+                <button onclick="closeSearchModal()" class="px-4 py-2 text-xs font-semibold text-zyndan-muted hover:text-zyndan-navy">Жабу</button>
+                <button class="px-5 py-2 bg-zyndan-navy hover:bg-zyndan-red text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors">Табу</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. MOBILE SLIDEOUT DRAWER -->
+    <div id="mobileDrawer" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden">
+        <div class="bg-white w-72 h-full p-6 flex flex-col justify-between shadow-2xl">
+            <div>
+                <div class="flex justify-between items-center pb-4 border-b border-zyndan-border mb-6">
+                    <div class="zyndan-logo-wrapper" style="height: 38px; width: 120px;">
+                        <img src="assets/zyndan-logo.jpg" alt="ZYNDAN.KZ">
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="text-zyndan-navy text-2xl hover:text-zyndan-red">
+                        <i class="las la-times"></i>
+                    </button>
+                </div>
+                <ul class="space-y-3 text-sm font-bold uppercase tracking-wider text-zyndan-navy">
+                    <li><a href="index.html" class="block py-1 hover:text-zyndan-red">Басты бет</a></li>
+                    <li><a href="index.html#latest" class="block py-1 text-zyndan-red">Жаңалықтар</a></li>
+                    <li><a href="index.html" class="block py-1 hover:text-zyndan-red">Саясат</a></li>
+                    <li><a href="index.html" class="block py-1 hover:text-zyndan-red">Экономика</a></li>
+                    <li><a href="index.html" class="block py-1 hover:text-zyndan-red">Қоғам</a></li>
+                    <li><a href="index.html" class="block py-1 hover:text-zyndan-red">Талдау</a></li>
+                    <li><a href="index.html" class="block py-1 hover:text-zyndan-red">Спорт</a></li>
+                </ul>
+            </div>
+            <div class="border-t border-zyndan-border pt-4 text-xs text-zyndan-muted">
+                <div class="font-bold text-zyndan-navy mb-1">ZYNDAN.KZ</div>
+                <div>Aqparat • Taldau • Senim</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT FOR PROGRESS BAR AND MODALS -->
+    <script>
+        // Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const docElement = document.documentElement;
+            const docBody = document.body;
+            const scrollTop = docElement.scrollTop || docBody.scrollTop;
+            const scrollHeight = (docElement.scrollHeight || docBody.scrollHeight) - docElement.clientHeight;
+            const percent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            const bar = document.getElementById('scrollProgress');
+            if (bar) {
+                bar.style.width = percent + '%';
+            }
+        });
+
+        // Search Modal controls
+        function openSearchModal() {
+            document.getElementById('searchModal').classList.remove('hidden');
+        }
+        function closeSearchModal() {
+            document.getElementById('searchModal').classList.add('hidden');
+        }
+
+        // Mobile drawer controls
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        // Copy link notification
+        function copyArticleLink() {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Мақаланың сілтемесі көшірілді!');
+            }
+        }
+
+        // ЗАЩИТА АВТОРСКИХ ПРАВ ПРИ КОПИРОВАНИИ / АВТОРЛЫҚ ҚҰҚЫҚТЫ ҚОРҒАУ
+        document.addEventListener('copy', function (e) {
+            const target = e.target;
+            if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+                return;
+            }
+
+            const selection = window.getSelection();
+            const selectedText = selection ? selection.toString() : '';
+
+            if (!selectedText || selectedText.trim().length === 0) {
+                return;
+            }
+
+            const copyrightNotice = "\n\n«Zyndan.kz» сайтында жарияланған барлық материалдардың (мәтін, иллюстрациялар, графика, фото, видео, аудио, сұхбаттар, шолулар, жеке авторлар бағаналары, арнайы жоба мәліметтері — бұдан әрі Материалдар) авторлық құқығы «Zyndan.kz» сайтына тиесілі. Сайтта жарияланған материалдарды басқа интернет-ресурстар пайдаланған жағдайда, авторлық құқық белгісін (©), авторды және Материал иесін, сондай-ақ гиперсілтеме (мақаланың www.zyndan.kz сайтындағы тұрақты сілтемесін көрсету) түрінде дереккөзге сілтеме көрсету міндетті. Түпнұсқадағы мәтіннің мазмұнын өзгертуге, мағынасын бұрмалап көшіруге тыйым салынады. Мазмұны өзгертілген немесе мағынасы бұрмаланған көшірме материалға қатысты жауапкершілікті көшіріп басқан жеке немесе заңды тұлға өз мойнына алады. Материалды толық немесе кез келген бөлігін көшіру, тарату үшін редакцияның жазбаша рұқсатын алу қажет.\nДереккөз: " + window.location.href;
+
+            if (e.clipboardData) {
+                e.clipboardData.setData('text/plain', selectedText + copyrightNotice);
+                e.preventDefault();
+            }
+        });
+    </script>
 
 </body>
 
