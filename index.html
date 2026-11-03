@@ -4,19 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZYNDAN.KZ — Aqparat • Taldau • Senim</title>
+        <title>ZYNDAN.KZ — Aqparat • Taldau • Senim</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
-    <link rel="apple-touch-icon" href="assets/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="/assets/favicon-192.png">
 
     <!-- Meta Tags -->
-    <meta name="description" content="ZYNDAN.KZ — Қазақстанның ақпараттық-сараптамалық медиа порталы. Ақпарат • Талдау • Сенім.">
-    <meta property="og:title" content="ZYNDAN.KZ — Aqparat • Taldau • Senim">
-    <meta property="og:description" content="Қазақстанның ақпараттық-сараптамалық жаңалықтар порталы">
-    <meta property="og:image" content="assets/zyndan-logo.jpg">
-
+            <meta name="description" content="ZYNDAN.KZ — Қазақстанның ақпараттық-сараптамалық медиа порталы. Ақпарат • Талдау • Сенім.">
+    
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="ZYNDAN.KZ">
+    <meta property="og:type" content="website">
+            <meta property="og:title" content="ZYNDAN.KZ — Aqparat • Taldau • Senim">
+        <meta property="og:description" content="Қазақстанның ақпараттық-сараптамалық жаңалықтар порталы">
+        <meta property="og:image" content="/assets/zyndan-logo.jpg">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -28,7 +32,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Tailwind Config -->
+    <!-- Theme Config (Чисто белый светлый фон) -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -50,27 +54,92 @@
                     boxShadow: {
                         'zyndan-sm': '0 1px 2px 0 rgba(16, 28, 49, 0.05)',
                         'zyndan-card': '0 1px 3px 0 rgba(16, 28, 49, 0.06), 0 1px 2px -1px rgba(16, 28, 49, 0.06)',
-                        'zyndan-hover': '0 10px 22px -4px rgba(16, 28, 49, 0.10)',
+                        'zyndan-hover': '0 8px 20px -4px rgba(16, 28, 49, 0.10)',
                     }
                 }
             }
         }
     </script>
 
+    <script>
+        // Гарантированно чисто белый фон
+        try {
+            localStorage.clear();
+            localStorage.setItem('theme', 'light');
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+        } catch (e) {}
+    </script>
+
     <style>
-        body {
+        html, body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             -webkit-font-smoothing: antialiased;
-            background-color: #FFFFFF;
-            color: #000000;
+            background-color: #FFFFFF !important;
+            background: #FFFFFF !important;
+            color: #101C31;
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        /* Адаптивность контента внутри статей на мобильных */
+        .article-body img,
+        .article-body video,
+        .article-body iframe {
+            max-width: 100% !important;
+            height: auto !important;
+            border-radius: 0.5rem;
+        }
+
+        .article-body table {
+            display: block;
+            width: 100% !important;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .article-body p,
+        .article-body h1,
+        .article-body h2,
+        .article-body h3,
+        .article-body li {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-            color: #101C31;
+            color: inherit;
+        }
+
+        /* Заголовок и метаданные на Hero баннере всегда чисто белые без анимаций */
+        .hero-white-title,
+        .hero-overlay-title,
+        .hero-white-title:hover,
+        .hero-overlay-title:hover {
+            color: #FFFFFF !important;
+            transition: none !important;
+            transform: none !important;
+        }
+
+        .hero-white-meta,
+        .hero-overlay-meta,
+        .hero-white-meta *,
+        .hero-overlay-meta * {
+            color: #FFFFFF !important;
         }
 
         /* Signature ZYNDAN Red Line styling */
+        .zyndan-brand-line {
+            height: 3px;
+            background: linear-gradient(90deg, #101C31 0%, #101C31 35%, #D71920 35%, #D71920 65%, #101C31 65%, #101C31 100%);
+        }
+
+        .zyndan-red-tag {
+            background-color: #D71920;
+            color: #FFFFFF;
+        }
+
         .zyndan-section-title {
             position: relative;
             display: inline-flex;
@@ -90,36 +159,31 @@
 
         /* Glass / Nav Blur */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
         }
 
-        /* Logo image wrapper - displays original logo crisp without extra padding */
+        /* Logo image wrapper - displays original logo without cropping or changes */
         .zyndan-logo-wrapper {
             position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            height: 54px;
-            width: 172px;
             background: #FFFFFF;
         }
 
         .zyndan-logo-wrapper img {
-            width: 142%;
-            max-width: none;
-            height: auto;
+            height: 88px;
+            width: auto;
+            max-width: 100%;
             object-fit: contain;
             user-select: none;
-            mix-blend-mode: multiply;
         }
 
         @media (max-width: 640px) {
-            .zyndan-logo-wrapper {
-                height: 42px;
-                width: 134px;
+            .zyndan-logo-wrapper img {
+                height: 60px;
             }
         }
 
@@ -166,588 +230,804 @@
     </style>
 </head>
 
-<body class="bg-white flex flex-col min-h-screen text-black">
+<body class="bg-white flex flex-col min-h-screen text-[#101C31] transition-colors duration-200" style="background-color: #FFFFFF !important;">
 
     <!-- === HEADER (BRAND ROW) === -->
-    <header class="bg-white border-b border-zyndan-border">
-        <div class="container mx-auto px-4 py-4 md:py-5 flex justify-between items-center">
+    <header class="bg-white border-b border-zyndan-border transition-colors" style="background-color: #FFFFFF !important;">
+        <div class="container mx-auto px-3 sm:px-4 py-2.5 sm:py-4 md:py-5 flex justify-between items-center">
             
             <!-- Левая часть: Фирменный логотип ZYNDAN.KZ -->
             <div class="flex items-center gap-4">
-                <a href="index.html" class="inline-flex items-center group cursor-pointer focus:outline-none" title="ZYNDAN.KZ">
+                <a href="/" class="inline-flex items-center group cursor-pointer focus:outline-none" title="ZYNDAN.KZ">
                     <div class="zyndan-logo-wrapper rounded-sm">
-                        <img src="assets/zyndan-logo.jpg" alt="ZYNDAN.KZ — Aqparat • Taldau • Senim" class="transition-transform duration-300 group-hover:scale-[1.03]">
+                        <img src="/assets/zyndan-logo.jpg?v=2" alt="ZYNDAN.KZ — Aqparat • Taldau • Senim">
                     </div>
                 </a>
                 
                 <!-- Девиз / Слоган медиа -->
-                <div class="hidden lg:block pl-4 border-l border-zyndan-border">
-                    <div class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-zyndan-navy">
+                <div class="hidden lg:block pl-4 border-l border-zyndan-border dark:border-white/10">
+                    <div class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-zyndan-navy dark:text-slate-200">
                         Aqparat <span class="text-zyndan-red">·</span> Taldau <span class="text-zyndan-red">·</span> Senim
                     </div>
-                    <div class="text-[11px] text-zyndan-muted font-medium mt-0.5">
-                        Ақпараттық-сараптамалық медиа порталы
-                    </div>
+                    <div class="text-[11px] text-zyndan-muted dark:text-slate-400 font-medium mt-0.5">
+                        Ақпараттық-сараптамалық портал                    </div>
                 </div>
             </div>
 
         </div>
     </header>
-
-    <!-- === МЕНЮ НАВИГАЦИИ === -->
-    <nav class="glass-nav border-b border-zyndan-border sticky top-0 z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center h-14">
-                
-                <!-- Мобильная кнопка меню -->
-                <button type="button" class="cursor-pointer py-2 pr-3 text-zyndan-navy hover:text-zyndan-red md:hidden focus:outline-none flex items-center gap-2" onclick="openMobileMenu()" aria-label="Мәзір">
-                    <i class="las la-bars text-2xl"></i>
-                    <span class="text-xs font-bold uppercase tracking-wider">Мәзір</span>
+<!-- === МЕНЮ НАВИГАЦИИ === -->
+<nav class="glass-nav border-b border-zyndan-border dark:border-white/10 sticky top-0 z-50 transition-colors">
+    <div class="container mx-auto px-3 sm:px-4">
+        <div class="flex justify-between items-center h-12 sm:h-14">
+            
+            <!-- Кнопка меню (Гамбургер / Три полоски) -->
+            <button type="button" class="cursor-pointer py-2 pr-3 text-zyndan-navy hover:text-zyndan-red dark:text-slate-200 dark:hover:text-white transition-colors focus:outline-none flex items-center gap-2 min-h-[44px]" onclick="openMobileMenu()" aria-label="Мәзір">
+                <i class="las la-bars text-2xl"></i>
+                <span class="text-xs font-bold uppercase tracking-wider">Мәзір</span>
+            </button>
+            
+            <!-- Правая панель: Поиск, Язык -->
+            <div class="flex items-center space-x-2.5 sm:space-x-3 text-zyndan-muted pl-3 sm:pl-4 border-l border-zyndan-border">
+                <!-- Поиск -->
+                <button type="button" onclick="openSearchModal()" class="w-9 h-9 rounded-lg hover:bg-zyndan-gray flex items-center justify-center text-zyndan-navy hover:text-zyndan-red transition-colors focus:outline-none" title="Іздеу (Ctrl+K)">
+                    <i class="las la-search text-lg"></i>
                 </button>
                 
-                <!-- Основные разделы -->
-                <ul class="hidden md:flex items-center space-x-1 lg:space-x-2 h-full font-semibold text-[13px] tracking-wide overflow-x-auto whitespace-nowrap no-scrollbar">
-                    <li class="h-full flex items-center">
-                        <a href="index.html" class="h-full flex items-center px-3 text-black font-bold zyndan-nav-link active uppercase text-xs tracking-wider transition-colors">
-                            Басты бет
+                <!-- Переключатель языка -->
+                                <a href="/ru/" class="px-2.5 py-1 text-[11px] font-bold tracking-wider rounded border border-zyndan-border hover:border-zyndan-red bg-zyndan-gray hover:bg-zyndan-red hover:text-white text-zyndan-navy transition-all uppercase">
+                    РУС                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ФИРМЕННАЯ РАЗДЕЛИТЕЛЬНАЯ ЛИНИЯ ПОД ШАПКОЙ (ТЕМНО-СИНИЙ + КРАСНЫЙ АКЦЕНТ ПО МОТИВАМ ЛОГОТИПА) -->
+    <div class="h-[2.5px] w-full flex">
+        <div class="h-full bg-zyndan-navy flex-1"></div>
+        <div class="h-full bg-zyndan-red w-32 md:w-56"></div>
+        <div class="h-full bg-zyndan-navy flex-1"></div>
+    </div>
+</nav>
+
+<script>
+    function openSearchModal() {
+        const modal = document.getElementById('searchModal');
+        if (!modal) return;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        setTimeout(() => {
+            const input = document.getElementById('searchInput');
+            if (input) input.focus();
+        }, 100);
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearchModal() {
+        const modal = document.getElementById('searchModal');
+        if (!modal) return;
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+    }
+
+    function openMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        if (!menu) return;
+        menu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        if (!menu) return;
+        menu.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    function toggleTheme() {
+        try {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        } catch (e) {}
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeSearchModal();
+            closeMobileMenu();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            openSearchModal();
+        }
+    });
+</script>
+
+<!-- Модальное окно поиска -->
+<div id="searchModal" class="fixed inset-0 bg-zyndan-dark/80 backdrop-blur-md z-[100] hidden items-center justify-center p-4 transition-all" onclick="closeSearchModal()">
+    <div class="bg-white dark:bg-zyndan-navy border border-zyndan-border dark:border-white/10 rounded-2xl shadow-2xl max-w-xl w-full p-6 md:p-8 transition-colors" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-lg font-bold text-zyndan-navy dark:text-white flex items-center gap-2.5">
+                <span class="w-2 h-5 bg-zyndan-red rounded-none inline-block"></span>
+                Сайт бойынша іздеу            </h3>
+            <button onclick="closeSearchModal()" class="w-8 h-8 rounded-lg bg-zyndan-gray hover:bg-zyndan-red hover:text-white dark:bg-white/10 transition flex items-center justify-center text-zyndan-muted focus:outline-none">
+                <i class="las la-times text-lg"></i>
+            </button>
+        </div>
+        <form action="/search" method="GET">
+            <div class="relative mb-4">
+                <i class="las la-search absolute left-4 top-1/2 -translate-y-1/2 text-zyndan-muted text-xl"></i>
+                <input type="text" name="q" id="searchInput" placeholder="Іздеу сұранысын енгізіңіз..."
+                    class="w-full pl-12 pr-4 py-3.5 bg-zyndan-gray dark:bg-zyndan-dark border border-zyndan-border dark:border-white/10 rounded-xl text-black dark:text-white placeholder-zyndan-muted focus:outline-none focus:border-zyndan-red focus:ring-1 focus:ring-zyndan-red transition-all">
+            </div>
+            <button type="submit" class="w-full bg-zyndan-red hover:bg-zyndan-red-hover text-white font-bold py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 uppercase text-xs tracking-wider">
+                <i class="las la-search text-base"></i> Іздеу            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Мобильное меню (Выезжающая панель) -->
+<div id="mobileMenu" class="fixed inset-0 bg-zyndan-dark/60 backdrop-blur-sm z-[90] hidden transition-all" onclick="closeMobileMenu()">
+    <div class="bg-white dark:bg-zyndan-dark w-[85%] max-w-xs sm:max-w-sm h-[100dvh] p-4 sm:p-6 overflow-y-auto flex flex-col justify-between shadow-2xl" onclick="event.stopPropagation()">
+        <div>
+            <!-- Шапка мобильного меню с логотипом -->
+            <div class="flex justify-between items-center mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-zyndan-border dark:border-white/10">
+                <div class="zyndan-logo-wrapper">
+                    <img src="/assets/zyndan-logo.jpg?v=2" alt="ZYNDAN.KZ" style="height: 48px; width: auto;">
+                </div>
+                <button onclick="closeMobileMenu()" class="w-9 h-9 rounded-lg bg-zyndan-gray dark:bg-white/10 hover:bg-zyndan-red hover:text-white transition flex items-center justify-center text-zyndan-navy dark:text-white focus:outline-none">
+                    <i class="las la-times text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Поиск в мобильном меню -->
+            <form action="/search" method="GET" class="mb-6">
+                <div class="relative">
+                    <input type="text" name="q" placeholder="Іздеу..."
+                        class="w-full pl-10 pr-4 py-2.5 bg-zyndan-gray dark:bg-zyndan-navy border border-zyndan-border dark:border-white/10 rounded-lg text-sm text-black dark:text-white placeholder-zyndan-muted focus:outline-none focus:border-zyndan-red">
+                    <i class="las la-search absolute left-3 top-1/2 -translate-y-1/2 text-zyndan-muted text-lg"></i>
+                </div>
+            </form>
+
+            <!-- Список разделов -->
+            <div class="text-[11px] font-bold text-zyndan-muted uppercase tracking-wider mb-2 flex items-center gap-2">
+                <span class="w-1.5 h-3 bg-zyndan-red"></span>
+                Бөлімдер            </div>
+
+            <div class="space-y-1 mb-6">
+                <a href="/" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-zyndan-navy dark:text-white hover:bg-zyndan-gray dark:hover:bg-white/5 hover:text-zyndan-red transition flex items-center justify-between">
+                    <span>Басты бет</span>
+                    <i class="las la-angle-right text-xs text-zyndan-muted"></i>
+                </a>
+
+                                                                                    <a href="/" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-zyndan-navy dark:text-white hover:bg-zyndan-gray dark:hover:bg-white/5 hover:text-zyndan-red transition flex items-center justify-between">
+                            <span>Жаңалықтар</span>
+                            <i class="las la-angle-right text-xs text-zyndan-muted"></i>
                         </a>
-                    </li>
-                    <li class="h-full flex items-center">
-                        <a href="index.html" class="h-full flex items-center px-3 text-zyndan-muted hover:text-black zyndan-nav-link uppercase text-xs tracking-wider transition-colors">
-                            Саясат
+                                                                    <a href="/sayasat" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-zyndan-navy dark:text-white hover:bg-zyndan-gray dark:hover:bg-white/5 hover:text-zyndan-red transition flex items-center justify-between">
+                            <span>Саясат</span>
+                            <i class="las la-angle-right text-xs text-zyndan-muted"></i>
                         </a>
-                    </li>
-                    <li class="h-full flex items-center">
-                        <a href="index.html" class="h-full flex items-center px-3 text-zyndan-muted hover:text-black zyndan-nav-link uppercase text-xs tracking-wider transition-colors">
-                            Қоғам
+                                                                    <a href="/qogam" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-zyndan-navy dark:text-white hover:bg-zyndan-gray dark:hover:bg-white/5 hover:text-zyndan-red transition flex items-center justify-between">
+                            <span>Қоғам</span>
+                            <i class="las la-angle-right text-xs text-zyndan-muted"></i>
                         </a>
-                    </li>
-                    <li class="h-full flex items-center">
-                        <a href="index.html" class="h-full flex items-center px-3 text-zyndan-muted hover:text-black zyndan-nav-link uppercase text-xs tracking-wider transition-colors">
-                            Экономика
+                                                                    <a href="/ekonomika" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-zyndan-navy dark:text-white hover:bg-zyndan-gray dark:hover:bg-white/5 hover:text-zyndan-red transition flex items-center justify-between">
+                            <span>Экономика</span>
+                            <i class="las la-angle-right text-xs text-zyndan-muted"></i>
                         </a>
-                    </li>
-                    <li class="h-full flex items-center">
-                        <a href="index.html" class="h-full flex items-center px-3 text-zyndan-muted hover:text-black zyndan-nav-link uppercase text-xs tracking-wider transition-colors">
-                            Білім
+                                                                    <a href="/bilim" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-zyndan-navy dark:text-white hover:bg-zyndan-gray dark:hover:bg-white/5 hover:text-zyndan-red transition flex items-center justify-between">
+                            <span>Білім</span>
+                            <i class="las la-angle-right text-xs text-zyndan-muted"></i>
                         </a>
-                    </li>
-                    <li class="h-full flex items-center">
-                        <a href="index.html" class="h-full flex items-center px-3 text-zyndan-muted hover:text-black zyndan-nav-link uppercase text-xs tracking-wider transition-colors">
-                            Ауыл шаруашылығы
+                                                                    <a href="/auyl-sharuashylygy" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-zyndan-navy dark:text-white hover:bg-zyndan-gray dark:hover:bg-white/5 hover:text-zyndan-red transition flex items-center justify-between">
+                            <span>Ауыл шаруашылығы</span>
+                            <i class="las la-angle-right text-xs text-zyndan-muted"></i>
                         </a>
-                    </li>
-                    <li class="h-full flex items-center">
-                        <a href="index.html" class="h-full flex items-center px-3 text-zyndan-muted hover:text-black zyndan-nav-link uppercase text-xs tracking-wider transition-colors">
-                            Спорт
+                                                                    <a href="/sport" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-zyndan-navy dark:text-white hover:bg-zyndan-gray dark:hover:bg-white/5 hover:text-zyndan-red transition flex items-center justify-between">
+                            <span>Спорт</span>
+                            <i class="las la-angle-right text-xs text-zyndan-muted"></i>
                         </a>
-                    </li>
-                    <li class="h-full flex items-center">
-                        <a href="index.html" class="h-full flex items-center px-3 text-zyndan-muted hover:text-black zyndan-nav-link uppercase text-xs tracking-wider transition-colors">
-                            Жарнама
+                                    
+                <a href="/ads" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-zyndan-navy dark:text-white hover:bg-zyndan-gray dark:hover:bg-white/5 hover:text-zyndan-red transition flex items-center justify-between">
+                    <span>Жарнама</span>
+                    <i class="las la-angle-right text-xs text-zyndan-muted"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Подвал мобильного меню: Контакты и соцсети -->
+        <div class="pt-6 border-t border-zyndan-border dark:border-white/10 text-xs">
+            <div class="text-zyndan-muted font-medium mb-3">
+                +77470645196<br>
+                editor@zyndan.kz            </div>
+            <div class="flex gap-2">
+                <a href="https://www.instagram.com/zyndan.kz?utm_source=qr&dlrf=b3l2c3V0aHc3cnZ3" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-zyndan-gray dark:bg-white/5 flex items-center justify-center text-zyndan-navy dark:text-white hover:bg-zyndan-red hover:text-white transition" title="Instagram">
+                    <i class="lab la-instagram text-lg"></i>
+                </a>
+                <a href="https://www.facebook.com/people/Zyndan-KZ/pfbid02sXeGgRiiUymaiPHdx6LAw28LTstctiAbjSmXbrn9g95uC89JVM3Pptbf8eG6aYNRl/?rdid=dJfw75vxvx0rvdfP&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19nmaGHaF2%2F%3Fref%3D1" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-zyndan-gray dark:bg-white/5 flex items-center justify-center text-zyndan-navy dark:text-white hover:bg-zyndan-red hover:text-white transition" title="Facebook">
+                    <i class="lab la-facebook-f text-lg"></i>
+                </a>
+                <a href="https://www.threads.com/@zyndan.kz" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-zyndan-gray dark:bg-white/5 flex items-center justify-center text-zyndan-navy dark:text-white hover:bg-zyndan-red hover:text-white transition" title="Threads">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.351-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 9.607 125.202.195 97.07 0h-.113C68.882.195 47.292 9.642 32.788 28.08 19.882 44.485 13.224 67.315 13.001 95.932L13 96v.067c.224 28.617 6.882 51.447 19.788 67.854C47.292 182.358 68.882 191.805 96.957 192h.113c24.96-.173 42.554-6.708 57.048-21.19 18.963-18.945 18.392-42.692 12.142-57.27-4.484-10.454-13.033-18.945-24.723-24.552Zm-43.096 40.519c-10.44.588-21.286-4.098-21.82-14.135-.397-7.442 5.296-15.746 22.461-16.735 1.966-.113 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.58 28.713-23.802 29.274Z"/></svg>
+                </a>
+                <a href="https://wa.me/77470645196" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-zyndan-gray dark:bg-white/5 flex items-center justify-center text-emerald-600 hover:bg-emerald-600 hover:text-white transition" title="WhatsApp">
+                    <i class="lab la-whatsapp text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<main class="container mx-auto px-3 sm:px-4 py-4 sm:py-8 grid grid-cols-1 lg:grid-cols-4 gap-5 sm:gap-8">
+
+    <!-- Главная новость (Hero Left - 3 колонки) -->
+    <div class="lg:col-span-3 relative h-[320px] sm:h-[400px] md:h-[480px] overflow-hidden rounded-xl shadow-zyndan-sm border border-zyndan-border bg-black">
+                    <a href="/zhanalyqtar/arman-zhas-bagdarlamashy-zhana-veb-platformanyn-synagyn-satti-ayaqtady-2" class="block w-full h-full relative">
+                <!-- Статичное четкое фото без анимации зума -->
+                <img src="/uploads/large/6ae9df2ac30b9_1793711914.png"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    alt="АРМАН  Жас бағдарламашы жаңа веб-платформаның сынағын сәтті аяқтады">
+
+                <!-- Градиентная подложка для максимальной читаемости -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent flex flex-col justify-end p-4 sm:p-6 md:p-10 text-white">
+                    <div class="mb-2.5 sm:mb-4">
+                        <span class="bg-zyndan-red text-white px-2.5 sm:px-3 py-1 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest inline-flex items-center gap-1.5 rounded-sm shadow-md">
+                            <i class="las la-star text-sm"></i> Басты жаңалық                        </span>
+                    </div>
+
+                    <h2 class="hero-white-title text-lg sm:text-2xl md:text-4xl font-extrabold leading-tight mb-3 sm:mb-4 !text-white text-white tracking-tight line-clamp-3" style="color: #ffffff !important;">
+                        АРМАН  Жас бағдарламашы жаңа веб-платформаның сынағын сәтті аяқтады                    </h2>
+
+                    <div class="hero-white-meta flex flex-wrap items-center text-[11px] sm:text-xs font-semibold !text-white text-white gap-3 sm:gap-6" style="color: #ffffff !important;">
+                        <span class="flex items-center gap-1.5 text-white" style="color: #ffffff !important;"><i class="las la-clock text-zyndan-red text-base"></i> 18:08, Бүгін</span>
+                        <span class="flex items-center gap-1.5 text-white" style="color: #ffffff !important;"><i class="las la-eye text-base"></i> 0</span>
+                                                    <span class="border-l border-white/30 pl-3 sm:pl-4 uppercase tracking-wider text-[10px] sm:text-[11px] text-white font-bold" style="color: #ffffff !important;">Жаңалықтар</span>
+                                            </div>
+                </div>
+            </a>
+            </div>
+
+    <!-- Сайдбар (Ақпарат легі / Live Breaking News) -->
+    <div class="lg:col-span-1 bg-white rounded-xl shadow-zyndan-sm border border-zyndan-border overflow-hidden flex flex-col lg:h-[480px]">
+        <!-- Шапка сайдбара с пульсирующей красной точкой -->
+        <div class="bg-zyndan-gray border-b border-zyndan-border text-zyndan-navy px-4 sm:px-5 py-3.5 sm:py-4 font-bold uppercase flex justify-between items-center text-xs tracking-wider flex-shrink-0">
+            <span class="flex items-center gap-2.5">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-zyndan-red opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-zyndan-red"></span>
+                </span>
+                <span class="font-extrabold">Ақпарат легі</span>
+            </span>
+            <a href="https://wa.me/77470645196" target="_blank" class="text-emerald-600 hover:text-emerald-500 transition-colors" title="WhatsApp">
+                <i class="lab la-whatsapp text-2xl"></i>
+            </a>
+        </div>
+
+        <!-- Список оперативных новостей -->
+        <div class="divide-y divide-zyndan-border/70 max-h-[260px] lg:max-h-none lg:flex-1 overflow-y-auto no-scrollbar">
+                            <div class="flex items-center justify-center h-full text-xs text-zyndan-muted font-bold uppercase tracking-widest p-5 text-center">
+                    Жаңалықтар жүктелуде...                </div>
+                    </div>
+        
+        <!-- ВИДЖЕТ КАЛЕНДАРЯ / НИЖНИЙ БЛОК -->
+        <div class="flex-shrink-0 bg-zyndan-gray border-t border-zyndan-border">
+            
+<!-- Внутренняя структура календаря (без внешней обертки glass для интеграции) -->
+<div class="flex flex-col h-full">
+    <div
+        class="bg-slate-50/50 dark:bg-white/5 px-4 py-2 border-y border-slate-200 dark:border-white/10 flex justify-between items-center flex-shrink-0">
+        <h3
+            class="font-black text-slate-900 dark:text-white text-[9px] uppercase tracking-[0.2em] flex items-center gap-2">
+            <i class="far fa-calendar-alt text-brand"></i>
+            Қараша            2026        </h3>
+    </div>
+
+    <div class="p-4 flex-1 flex flex-col justify-center">
+        <div class="grid grid-cols-7 gap-1 text-center mb-1">
+                            <div class="text-[9px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-widest">
+                    Дү                </div>
+                            <div class="text-[9px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-widest">
+                    Се                </div>
+                            <div class="text-[9px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-widest">
+                    Сә                </div>
+                            <div class="text-[9px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-widest">
+                    Бе                </div>
+                            <div class="text-[9px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-widest">
+                    Жұ                </div>
+                            <div class="text-[9px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-widest">
+                    Се                </div>
+                            <div class="text-[9px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-widest">
+                    Же                </div>
+                    </div>
+
+        <div class="grid grid-cols-7 gap-1 text-center">
+            <!-- Пустые ячейки до начала месяца -->
+                            <div class="h-6 md:h-7"></div>
+                            <div class="h-6 md:h-7"></div>
+                            <div class="h-6 md:h-7"></div>
+                            <div class="h-6 md:h-7"></div>
+                            <div class="h-6 md:h-7"></div>
+                            <div class="h-6 md:h-7"></div>
+            
+            <!-- Дни месяца -->
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            1                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            2                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <a href="/search?date=2026-11-03"
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] font-bold transition-all duration-300
+                                  bg-brand text-white shadow-lg shadow-blue-500/30">
+                            3                            <span
+                                class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-0.5 h-0.5 rounded-full bg-white"></span>
                         </a>
-                    </li>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            4                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            5                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            6                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            7                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            8                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            9                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            10                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            11                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            12                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            13                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            14                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            15                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            16                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            17                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            18                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            19                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            20                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            21                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            22                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            23                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            24                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            25                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            26                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            27                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            28                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            29                        </div>
+                                    </div>
+                            <div class="relative group">
+                                            <div
+                            class="flex items-center justify-center h-6 md:h-7 w-full rounded-lg text-[10px] text-slate-400 dark:text-slate-600 cursor-default">
+                            30                        </div>
+                                    </div>
+                    </div>
+    </div>
+</div>        </div>
+    </div>
+</main>
+
+<!-- === РАЗДЕЛИТЕЛЬ С ФИРМЕННЫМ КРАСНЫМ АКЦЕНТОМ === -->
+<div class="container mx-auto px-4 my-2">
+    <div class="h-[1px] bg-zyndan-border flex items-center">
+        <div class="w-20 h-[3px] bg-zyndan-red"></div>
+    </div>
+</div>
+
+<!-- === ЛЕНТА ВСЕХ НОВОСТЕЙ === -->
+<section class="container mx-auto px-3 sm:px-4 py-6 sm:py-8 mb-8 sm:mb-12">
+    <div class="flex items-center justify-between mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-zyndan-border">
+        <h2 class="text-xl sm:text-2xl font-black text-zyndan-navy zyndan-section-title tracking-tight">
+            Барлық жаңалықтар        </h2>
+        <a href="/" class="text-[11px] sm:text-xs font-bold text-zyndan-muted hover:text-zyndan-red flex items-center gap-1 transition-colors uppercase tracking-wider">
+            Барлығын көру <i class="las la-arrow-right text-sm"></i>
+        </a>
+    </div>
+
+    <!-- Общий массив для сетки -->
+        
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                    <!-- Карточка новости ZYNDAN -->
+            <a href="/zhanalyqtar/arman-zhas-bagdarlamashy-zhana-veb-platformanyn-synagyn-satti-ayaqtady-1" class="bg-white group cursor-pointer rounded-xl zyndan-card overflow-hidden flex flex-col">
+                <div class="relative h-44 sm:h-52 overflow-hidden bg-zyndan-gray">
+                    <img src="/uploads/medium/6ae9df29ab346_1793711913.png"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" alt="АРМАН  Жас бағдарламашы жаңа веб-платформаның сынағын сәтті аяқтады">
+                    
+                    <!-- Бейдж категории -->
+                    <div class="absolute top-3 left-3 bg-zyndan-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-sm flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span>
+                        Жаңалықтар                    </div>
+                </div>
+                <div class="p-4 sm:p-6 flex flex-col flex-1 justify-between">
+                    <div>
+                        <div class="text-[11px] text-zyndan-muted font-medium mb-2 sm:mb-3 flex items-center gap-1.5">
+                            <i class="las la-calendar text-zyndan-red text-sm"></i> 03.11.2026, 18:08                        </div>
+                        <h3 class="text-base sm:text-lg font-bold leading-snug text-black group-hover:text-zyndan-red transition-colors mb-3 line-clamp-3">
+                            АРМАН  Жас бағдарламашы жаңа веб-платформаның сынағын сәтті аяқтады                        </h3>
+                    </div>
+                    <div class="pt-3 sm:pt-4 border-t border-zyndan-border/60 flex items-center justify-between text-xs text-zyndan-muted">
+                        <span class="flex items-center gap-1"><i class="las la-eye"></i> 0</span>
+                        <span class="text-zyndan-red font-semibold flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
+                            Оқу <i class="las la-angle-right text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+                    <!-- Карточка новости ZYNDAN -->
+            <a href="/zhanalyqtar/arman-zhas-bagdarlamashy-zhana-veb-platformanyn-synagyn-satti-ayaqtady" class="bg-white group cursor-pointer rounded-xl zyndan-card overflow-hidden flex flex-col">
+                <div class="relative h-44 sm:h-52 overflow-hidden bg-zyndan-gray">
+                    <img src="/uploads/medium/6ae9df2898f2b_1793711912.png"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" alt="АРМАН  Жас бағдарламашы жаңа веб-платформаның сынағын сәтті аяқтады">
+                    
+                    <!-- Бейдж категории -->
+                    <div class="absolute top-3 left-3 bg-zyndan-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-sm flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span>
+                        Жаңалықтар                    </div>
+                </div>
+                <div class="p-4 sm:p-6 flex flex-col flex-1 justify-between">
+                    <div>
+                        <div class="text-[11px] text-zyndan-muted font-medium mb-2 sm:mb-3 flex items-center gap-1.5">
+                            <i class="las la-calendar text-zyndan-red text-sm"></i> 03.11.2026, 18:08                        </div>
+                        <h3 class="text-base sm:text-lg font-bold leading-snug text-black group-hover:text-zyndan-red transition-colors mb-3 line-clamp-3">
+                            АРМАН  Жас бағдарламашы жаңа веб-платформаның сынағын сәтті аяқтады                        </h3>
+                    </div>
+                    <div class="pt-3 sm:pt-4 border-t border-zyndan-border/60 flex items-center justify-between text-xs text-zyndan-muted">
+                        <span class="flex items-center gap-1"><i class="las la-eye"></i> 2</span>
+                        <span class="text-zyndan-red font-semibold flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
+                            Оқу <i class="las la-angle-right text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+                    <!-- Карточка новости ZYNDAN -->
+            <a href="/news/adilet-arqyly-zhurgizushi-kualigin-alu-zholdarda-zhagday-qiyndauy-mumkin-be" class="bg-white group cursor-pointer rounded-xl zyndan-card overflow-hidden flex flex-col">
+                <div class="relative h-44 sm:h-52 overflow-hidden bg-zyndan-gray">
+                    <img src="/uploads/medium/6ac4f8cfda099_1791293647.jpeg"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" alt="«Әділет» арқылы жүргізуші куәлігін алу: жолдарда жағдай қиындауы мүмкін бе?">
+                    
+                    <!-- Бейдж категории -->
+                    <div class="absolute top-3 left-3 bg-zyndan-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-sm flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span>
+                        Ақпарат                    </div>
+                </div>
+                <div class="p-4 sm:p-6 flex flex-col flex-1 justify-between">
+                    <div>
+                        <div class="text-[11px] text-zyndan-muted font-medium mb-2 sm:mb-3 flex items-center gap-1.5">
+                            <i class="las la-calendar text-zyndan-red text-sm"></i> 06.10.2026, 18:32                        </div>
+                        <h3 class="text-base sm:text-lg font-bold leading-snug text-black group-hover:text-zyndan-red transition-colors mb-3 line-clamp-3">
+                            «Әділет» арқылы жүргізуші куәлігін алу: жолдарда жағдай қиындауы мүмкін бе?                        </h3>
+                    </div>
+                    <div class="pt-3 sm:pt-4 border-t border-zyndan-border/60 flex items-center justify-between text-xs text-zyndan-muted">
+                        <span class="flex items-center gap-1"><i class="las la-eye"></i> 4</span>
+                        <span class="text-zyndan-red font-semibold flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
+                            Оқу <i class="las la-angle-right text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+            </div>
+</section>
+
+<!-- === ПОПУЛЯРНОЕ (ТАНЫМАЛ ЖАҢАЛЫҚТАР В ТЕМНО-СИНЕМ БЛОКЕ #101C31) === -->
+<section class="bg-zyndan-navy text-white py-9 sm:py-14 relative border-t-2 border-zyndan-red">
+    <div class="container mx-auto px-3 sm:px-4">
+        
+        <div class="flex items-center justify-between mb-6 sm:mb-10 pb-3 sm:pb-4 border-b border-white/10">
+            <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2.5 sm:gap-3 tracking-tight">
+                <span class="w-1.5 h-5 sm:h-6 bg-zyndan-red rounded-none inline-block"></span>
+                Танымал жаңалықтар            </h2>
+            <span class="text-xs text-slate-400 font-semibold uppercase tracking-widest hidden sm:inline-block">
+                Ең көп оқылған            </span>
+        </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-10">
+                                    <a href="/news/adilet-arqyly-zhurgizushi-kualigin-alu-zholdarda-zhagday-qiyndauy-mumkin-be" class="group block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-zyndan-red/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-3xl font-black text-zyndan-red">#01</span>
+                                <span class="text-[11px] text-slate-400 flex items-center gap-1 font-mono">
+                                    <i class="las la-eye text-zyndan-red"></i> 4                                </span>
+                            </div>
+                            <h4 class="font-bold text-sm leading-snug text-white group-hover:text-slate-200 line-clamp-3 mb-4 transition-colors">
+                                «Әділет» арқылы жүргізуші куәлігін алу: жолдарда жағдай қиындауы мүмкін бе?                            </h4>
+                        </div>
+                        <div class="text-[11px] text-slate-400 font-medium flex items-center justify-between pt-3 border-t border-white/5">
+                            <span>06.10.2026</span>
+                            <i class="las la-arrow-right text-zyndan-red group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </a>
+                                    <a href="/news/arman-zhas-bagdarlamashy-zhana-veb-platformanyn-synagyn-satti-ayaqtady" class="group block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-zyndan-red/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-3xl font-black text-zyndan-red">#02</span>
+                                <span class="text-[11px] text-slate-400 flex items-center gap-1 font-mono">
+                                    <i class="las la-eye text-zyndan-red"></i> 2                                </span>
+                            </div>
+                            <h4 class="font-bold text-sm leading-snug text-white group-hover:text-slate-200 line-clamp-3 mb-4 transition-colors">
+                                АРМАН  Жас бағдарламашы жаңа веб-платформаның сынағын сәтті аяқтады                            </h4>
+                        </div>
+                        <div class="text-[11px] text-slate-400 font-medium flex items-center justify-between pt-3 border-t border-white/5">
+                            <span>03.11.2026</span>
+                            <i class="las la-arrow-right text-zyndan-red group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </a>
+                                    <a href="/news/arman-zhas-bagdarlamashy-zhana-veb-platformanyn-synagyn-satti-ayaqtady-1" class="group block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-zyndan-red/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-3xl font-black text-zyndan-red">#03</span>
+                                <span class="text-[11px] text-slate-400 flex items-center gap-1 font-mono">
+                                    <i class="las la-eye text-zyndan-red"></i> 0                                </span>
+                            </div>
+                            <h4 class="font-bold text-sm leading-snug text-white group-hover:text-slate-200 line-clamp-3 mb-4 transition-colors">
+                                АРМАН  Жас бағдарламашы жаңа веб-платформаның сынағын сәтті аяқтады                            </h4>
+                        </div>
+                        <div class="text-[11px] text-slate-400 font-medium flex items-center justify-between pt-3 border-t border-white/5">
+                            <span>03.11.2026</span>
+                            <i class="las la-arrow-right text-zyndan-red group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </a>
+                                    <a href="/news/arman-zhas-bagdarlamashy-zhana-veb-platformanyn-synagyn-satti-ayaqtady-2" class="group block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-zyndan-red/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-3xl font-black text-zyndan-red">#04</span>
+                                <span class="text-[11px] text-slate-400 flex items-center gap-1 font-mono">
+                                    <i class="las la-eye text-zyndan-red"></i> 0                                </span>
+                            </div>
+                            <h4 class="font-bold text-sm leading-snug text-white group-hover:text-slate-200 line-clamp-3 mb-4 transition-colors">
+                                АРМАН  Жас бағдарламашы жаңа веб-платформаның сынағын сәтті аяқтады                            </h4>
+                        </div>
+                        <div class="text-[11px] text-slate-400 font-medium flex items-center justify-between pt-3 border-t border-white/5">
+                            <span>03.11.2026</span>
+                            <i class="las la-arrow-right text-zyndan-red group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </a>
+                            </div>
+        
+        <!-- === ВИДЕОГАЛЕРЕЯ (ЕСЛИ ЕСТЬ) === -->
+        
+    </div>
+</section>
+
+<!-- === FOOTER === -->
+<footer class="bg-zyndan-navy text-white mt-auto relative border-t-2 border-zyndan-red">
+    <div class="container mx-auto px-3 sm:px-4 pt-9 sm:pt-14 pb-8 sm:pb-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-7 sm:gap-10 items-start pb-8 sm:pb-10 border-b border-white/10">
+            
+            <!-- Колонка 1: Бренд и миссия -->
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="zyndan-logo-wrapper bg-white rounded p-1.5">
+                        <img src="/assets/zyndan-logo.jpg?v=2" alt="ZYNDAN.KZ">
+                    </div>
+                </div>
+                <div class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-zyndan-red mb-3">
+                    Aqparat · Taldau · Senim
+                </div>
+                <p class="text-slate-300 text-xs max-w-xl leading-relaxed mb-6 font-normal">
+                    «Zyndan.kz» сайтында жарияланған барлық материалдардың (мәтін, иллюстрациялар, графика, фото, видео, аудио, сұхбаттар, шолулар, жеке авторлар бағаналары, арнайы жоба мәліметтері — бұдан әрі Материалдар) авторлық құқығы «Zyndan.kz» сайтына тиесілі. Сайтта жарияланған материалдарды басқа интернет-ресурстар пайдаланған жағдайда, авторлық құқық белгісін (©), авторды және Материал иесін, сондай-ақ гиперсілтеме (мақаланың www.zyndan.kz сайтындағы тұрақты сілтемесін көрсету) түрінде дереккөзге сілтеме көрсету міндетті. Түпнұсқадағы мәтіннің мазмұнын өзгертуге, мағынасын бұрмалап көшіруге тыйым салынады. Мазмұны өзгертілген немесе мағынасы бұрмаланған көшірме материалға қатысты жауапкершілікті көшіріп басқан жеке немесе заңды тұлға өз мойнына алады. Материалды толық немесе кез келген бөлігін көшіру, тарату үшін редакцияның жазбаша рұқсатын алу қажет.
+                </p>
+                <div class="flex items-center gap-3 text-slate-300 text-xs">
+                    <i class="las la-envelope text-zyndan-red text-base"></i>
+                    <span>editor@zyndan.kz</span>
+                </div>
+            </div>
+
+            <!-- Колонка 2: Навигация -->
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 flex items-center gap-2">
+                    <span class="w-1.5 h-3.5 bg-zyndan-red"></span>
+                    Бөлімдер                </h4>
+                <ul class="space-y-2.5 text-xs text-slate-300">
+                    <li><a href="/" class="hover:text-zyndan-red transition-colors">Басты жаңалықтар</a></li>
+                    <li><a href="/sayasat" class="hover:text-zyndan-red transition-colors">Саясат</a></li>
+                    <li><a href="/qogam" class="hover:text-zyndan-red transition-colors">Қоғам</a></li>
+                    <li><a href="/ekonomika" class="hover:text-zyndan-red transition-colors">Экономика</a></li>
+                    <li><a href="/ads" class="hover:text-zyndan-red transition-colors">Жарнама</a></li>
                 </ul>
-                
-                <!-- Правая часть: Поиск, Язык -->
-                <div class="flex items-center space-x-3 text-zyndan-muted pl-4 border-l border-zyndan-border">
-                    <button type="button" onclick="openSearchModal()" class="w-8 h-8 rounded-lg hover:bg-zyndan-gray flex items-center justify-center text-zyndan-navy hover:text-zyndan-red transition-colors focus:outline-none" title="Іздеу (Ctrl+K)">
-                        <i class="las la-search text-lg"></i>
-                    </button>
-                    <a href="#" class="px-2.5 py-1 text-[11px] font-bold tracking-wider rounded border border-zyndan-border hover:border-zyndan-red bg-zyndan-gray hover:bg-zyndan-red hover:text-white text-zyndan-navy transition-all uppercase">
-                        РУС
+            </div>
+
+            <!-- Колонка 3: Контакты и социальные сети -->
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 flex items-center gap-2">
+                    <span class="w-1.5 h-3.5 bg-zyndan-red"></span>
+                    Байланыс                </h4>
+                <div class="text-xs text-slate-300 space-y-2 mb-5">
+                    <div class="flex items-center gap-2">
+                        <i class="las la-phone text-zyndan-red text-base"></i>
+                        <span>+77470645196</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="las la-map-marker text-zyndan-red text-base"></i>
+                        <span>Қазақстан, Қызылорда қ.</span>
+                    </div>
+                </div>
+
+                <!-- Соцсети -->
+                <div class="flex gap-2 text-xl">
+                    <a href="https://www.instagram.com/zyndan.kz?utm_source=qr&dlrf=b3l2c3V0aHc3cnZ3" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-zyndan-red transition-colors flex items-center justify-center text-white" title="Instagram">
+                        <i class="lab la-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/people/Zyndan-KZ/pfbid02sXeGgRiiUymaiPHdx6LAw28LTstctiAbjSmXbrn9g95uC89JVM3Pptbf8eG6aYNRl/?rdid=dJfw75vxvx0rvdfP&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19nmaGHaF2%2F%3Fref%3D1" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-zyndan-red transition-colors flex items-center justify-center text-white" title="Facebook">
+                        <i class="lab la-facebook-f"></i>
+                    </a>
+                    <a href="https://www.threads.com/@zyndan.kz" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-zyndan-red transition-colors flex items-center justify-center text-white" title="Threads">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.351-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 9.607 125.202.195 97.07 0h-.113C68.882.195 47.292 9.642 32.788 28.08 19.882 44.485 13.224 67.315 13.001 95.932L13 96v.067c.224 28.617 6.882 51.447 19.788 67.854C47.292 182.358 68.882 191.805 96.957 192h.113c24.96-.173 42.554-6.708 57.048-21.19 18.963-18.945 18.392-42.692 12.142-57.27-4.484-10.454-13.033-18.945-24.723-24.552Zm-43.096 40.519c-10.44.588-21.286-4.098-21.82-14.135-.397-7.442 5.296-15.746 22.461-16.735 1.966-.113 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.58 28.713-23.802 29.274Z"/></svg>
+                    </a>
+                    <a href="https://wa.me/77470645196" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-emerald-600 transition-colors flex items-center justify-center text-white" title="WhatsApp">
+                        <i class="lab la-whatsapp"></i>
                     </a>
                 </div>
-
-            </div>
-        </div>
-
-        <!-- ФИРМЕННАЯ РАЗДЕЛИТЕЛЬНАЯ ЛИНИЯ ПОД ШАПКОЙ (ТЕМНО-СИНИЙ + КРАСНЫЙ АКЦЕНТ ПО МОТИВАМ ЛОГОТИПА) -->
-        <div class="h-[2.5px] w-full flex">
-            <div class="h-full bg-zyndan-navy flex-1"></div>
-            <div class="h-full bg-zyndan-red w-32 md:w-56"></div>
-            <div class="h-full bg-zyndan-navy flex-1"></div>
-        </div>
-    </nav>
-
-    <!-- === MAIN CONTENT (HERO & LIVE STREAM) === -->
-    <main class="container mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
-
-        <!-- Главная новость (Hero Left) -->
-        <a href="article.html" class="block lg:col-span-3 relative h-[420px] md:h-[480px] group cursor-pointer overflow-hidden rounded-xl shadow-zyndan-sm border border-zyndan-border bg-black">
-            <!-- Фоновое изображение -->
-            <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1200&q=80"
-                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" alt="Main News">
-
-            <!-- Градиент и текст -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent flex flex-col justify-end p-6 md:p-10 text-white">
-                <div class="mb-4">
-                    <span class="bg-zyndan-red text-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest inline-flex items-center gap-1.5 rounded-sm shadow-md">
-                        <i class="las la-star text-sm"></i> Басты жаңалық
-                    </span>
-                </div>
-
-                <h2 class="text-2xl md:text-4xl font-extrabold leading-tight mb-4 group-hover:text-slate-200 transition-colors tracking-tight line-clamp-3">
-                    Қазақстанда жаңа экономикалық бастамалар мен цифрлық реформалар пакеті бекітілді
-                </h2>
-
-                <div class="flex items-center text-xs font-semibold text-slate-300 gap-6">
-                    <span class="flex items-center gap-1.5"><i class="las la-clock text-zyndan-red text-base"></i> 11:30, Бүгін</span>
-                    <span class="flex items-center gap-1.5"><i class="las la-user-edit text-base"></i> Редакциялық талдау</span>
-                    <span class="border-l border-white/20 pl-4 uppercase tracking-wider text-[11px] text-slate-400 font-bold">Экономика</span>
-                </div>
-            </div>
-        </a>
-
-        <!-- Сайдбар (Ақпарат легі / Live Feed) -->
-        <div class="lg:col-span-1 bg-white rounded-xl shadow-zyndan-sm border border-zyndan-border overflow-hidden flex flex-col h-[420px] md:h-[480px]">
-            <div class="bg-zyndan-gray border-b border-zyndan-border text-zyndan-navy px-5 py-4 font-bold uppercase flex justify-between items-center text-xs tracking-wider flex-shrink-0">
-                <span class="flex items-center gap-2.5">
-                    <span class="relative flex h-2.5 w-2.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-zyndan-red opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-zyndan-red"></span>
-                    </span>
-                    <span class="font-extrabold">Ақпарат легі</span>
-                </span>
-                <a href="https://wa.me/77470645196" target="_blank" class="text-emerald-600 hover:text-emerald-500 transition-colors" title="WhatsApp"><i class="lab la-whatsapp text-2xl"></i></a>
             </div>
 
-            <!-- Список анонсов -->
-            <div class="divide-y divide-zyndan-border/70 flex-1 overflow-y-auto no-scrollbar">
-                <!-- Item 1 -->
-                <a href="article.html" class="block p-4 hover:bg-zyndan-gray/60 cursor-pointer transition-colors group/item">
-                    <div class="flex items-center gap-2 mb-1.5">
-                        <span class="text-[11px] font-mono font-bold text-zyndan-red flex items-center gap-1">
-                            <i class="las la-clock text-xs"></i> 10:45
-                        </span>
-                        <span class="text-[10px] text-zyndan-muted uppercase font-semibold">· Өңір</span>
-                    </div>
-                    <h4 class="text-xs font-semibold leading-snug text-black line-clamp-2 group-hover/item:text-zyndan-red transition-colors">
-                        Арал ауданында балық шаруашылығы мен жаңа өндіріс қуаты артты
-                    </h4>
-                </a>
-
-                <!-- Item 2 -->
-                <a href="article.html" class="block p-4 hover:bg-zyndan-gray/60 cursor-pointer transition-colors group/item">
-                    <div class="flex items-center gap-2 mb-1.5">
-                        <span class="text-[11px] font-mono font-bold text-zyndan-red flex items-center gap-1">
-                            <i class="las la-clock text-xs"></i> 09:20
-                        </span>
-                        <span class="text-[10px] text-zyndan-muted uppercase font-semibold">· Ғарыш</span>
-                    </div>
-                    <h4 class="text-xs font-semibold leading-snug text-black line-clamp-2 group-hover/item:text-zyndan-red transition-colors">
-                        Байқоңыр айлағынан халықаралық ғылыми спутниктер ұшырылды
-                    </h4>
-                </a>
-
-                <!-- Item 3 -->
-                <a href="article.html" class="block p-4 hover:bg-zyndan-gray/60 cursor-pointer transition-colors group/item">
-                    <div class="flex items-center gap-2 mb-1.5">
-                        <span class="text-[11px] font-mono font-bold text-zyndan-red flex items-center gap-1">
-                            <i class="las la-clock text-xs"></i> Кеше
-                        </span>
-                        <span class="text-[10px] text-zyndan-muted uppercase font-semibold">· Спорт</span>
-                    </div>
-                    <h4 class="text-xs font-semibold leading-snug text-black line-clamp-2 group-hover/item:text-zyndan-red transition-colors">
-                        "Қайсар" футбол клубы Түркиядағы оқу-жаттығу жиынын сәтті аяқтады
-                    </h4>
-                </a>
-
-                <!-- Item 4 -->
-                <a href="article.html" class="block p-4 hover:bg-zyndan-gray/60 cursor-pointer transition-colors group/item">
-                    <div class="flex items-center gap-2 mb-1.5">
-                        <span class="text-[11px] font-mono font-bold text-zyndan-red flex items-center gap-1">
-                            <i class="las la-clock text-xs"></i> 18:00
-                        </span>
-                        <span class="text-[10px] text-zyndan-muted uppercase font-semibold">· Қоғам</span>
-                    </div>
-                    <h4 class="text-xs font-semibold leading-snug text-black line-clamp-2 group-hover/item:text-zyndan-red transition-colors">
-                        Жол инфрақұрылымын жаңғыртуға арналған жаңа стандарттар енгізілді
-                    </h4>
-                </a>
-            </div>
-        </div>
-    </main>
-
-    <!-- === ФИРМЕННЫЙ РАЗДЕЛИТЕЛЬ === -->
-    <div class="container mx-auto px-4 my-2">
-        <div class="h-[1px] bg-zyndan-border flex items-center">
-            <div class="w-20 h-[3px] bg-zyndan-red"></div>
-        </div>
-    </div>
-
-    <!-- === ЛЕНТА НОВОСТЕЙ === -->
-    <section class="container mx-auto px-4 py-8 mb-12">
-        <div class="flex items-center justify-between mb-8 pb-4 border-b border-zyndan-border">
-            <h2 class="text-2xl font-black text-zyndan-navy zyndan-section-title tracking-tight">
-                Барлық жаңалықтар
-            </h2>
-            <a href="article.html" class="text-xs font-bold text-zyndan-muted hover:text-zyndan-red flex items-center gap-1 transition-colors uppercase tracking-wider">
-                Барлығын көру <i class="las la-arrow-right text-sm"></i>
-            </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            <!-- News Card 1 -->
-            <a href="article.html" class="bg-white group cursor-pointer rounded-xl zyndan-card overflow-hidden flex flex-col">
-                <div class="relative h-52 overflow-hidden bg-zyndan-gray">
-                    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=80"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-3 left-3 bg-zyndan-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-sm flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span>
-                        Ауыл шаруашылығы
-                    </div>
-                </div>
-                <div class="p-6 flex flex-col flex-1 justify-between">
-                    <div>
-                        <div class="text-[11px] text-zyndan-muted font-medium mb-3 flex items-center gap-1.5">
-                            <i class="las la-calendar text-zyndan-red text-sm"></i> Бүгін, 21:30
-                        </div>
-                        <h3 class="text-lg font-bold leading-snug text-black group-hover:text-zyndan-red transition-colors mb-3 line-clamp-3">
-                            Биылғы жылы Сыр өңірінде күріштен рекордтық өнім жиналды
-                        </h3>
-                    </div>
-                    <div class="pt-4 border-t border-zyndan-border/60 flex items-center justify-between text-xs text-zyndan-muted">
-                        <span class="flex items-center gap-1"><i class="las la-eye"></i> 1,420</span>
-                        <span class="text-zyndan-red font-semibold flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
-                            Оқу <i class="las la-angle-right text-xs"></i>
-                        </span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- News Card 2 -->
-            <a href="article.html" class="bg-white group cursor-pointer rounded-xl zyndan-card overflow-hidden flex flex-col">
-                <div class="relative h-52 overflow-hidden bg-zyndan-gray">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-3 left-3 bg-zyndan-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-sm flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span>
-                        Инфрақұрылым
-                    </div>
-                </div>
-                <div class="p-6 flex flex-col flex-1 justify-between">
-                    <div>
-                        <div class="text-[11px] text-zyndan-muted font-medium mb-3 flex items-center gap-1.5">
-                            <i class="las la-calendar text-zyndan-red text-sm"></i> Бүгін, 18:45
-                        </div>
-                        <h3 class="text-lg font-bold leading-snug text-black group-hover:text-zyndan-red transition-colors mb-3 line-clamp-3">
-                            Қызылорда қаласында жылу электр орталығы толықтай жаңғыртылуда
-                        </h3>
-                    </div>
-                    <div class="pt-4 border-t border-zyndan-border/60 flex items-center justify-between text-xs text-zyndan-muted">
-                        <span class="flex items-center gap-1"><i class="las la-eye"></i> 980</span>
-                        <span class="text-zyndan-red font-semibold flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
-                            Оқу <i class="las la-angle-right text-xs"></i>
-                        </span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- News Card 3 -->
-            <a href="article.html" class="bg-white group cursor-pointer rounded-xl zyndan-card overflow-hidden flex flex-col">
-                <div class="relative h-52 overflow-hidden bg-zyndan-gray">
-                    <img src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&w=600&q=80"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-3 left-3 bg-zyndan-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-sm flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span>
-                        Саясат
-                    </div>
-                </div>
-                <div class="p-6 flex flex-col flex-1 justify-between">
-                    <div>
-                        <div class="text-[11px] text-zyndan-muted font-medium mb-3 flex items-center gap-1.5">
-                            <i class="las la-calendar text-zyndan-red text-sm"></i> Кеше, 14:20
-                        </div>
-                        <h3 class="text-lg font-bold leading-snug text-black group-hover:text-zyndan-red transition-colors mb-3 line-clamp-3">
-                            Аймақ басшысы ауылдық елді мекендердің тұрғындарымен ашық кездесу өткізді
-                        </h3>
-                    </div>
-                    <div class="pt-4 border-t border-zyndan-border/60 flex items-center justify-between text-xs text-zyndan-muted">
-                        <span class="flex items-center gap-1"><i class="las la-eye"></i> 1,150</span>
-                        <span class="text-zyndan-red font-semibold flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
-                            Оқу <i class="las la-angle-right text-xs"></i>
-                        </span>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- === ТАНЫМАЛ (POPULAR В ТЕМНО-СИНЕМ БЛОКЕ #101C31) === -->
-    <section class="bg-zyndan-navy text-white py-14 mb-0 border-y-2 border-zyndan-red">
-        <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between mb-10 pb-4 border-b border-white/10">
-                <h2 class="text-2xl font-black text-white flex items-center gap-3 tracking-tight">
-                    <span class="w-1.5 h-6 bg-zyndan-red rounded-none inline-block"></span>
-                    Танымал жаңалықтар
-                </h2>
-                <span class="text-xs text-slate-400 font-semibold uppercase tracking-widest hidden sm:inline-block">
-                    ТОП жарияланымдар
-                </span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                <a href="article.html"
-                    class="group block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-zyndan-red/50 rounded-xl p-5 transition-all flex flex-col justify-between">
-                    <div class="flex items-start gap-4">
-                        <span class="text-4xl font-black text-zyndan-red">#01</span>
-                        <div>
-                            <span class="text-[11px] text-slate-400 font-medium mb-1.5 flex items-center gap-1 font-mono">
-                                <i class="las la-clock text-zyndan-red"></i> 23 қазан 2026
-                            </span>
-                            <h3 class="font-bold text-base leading-snug text-white group-hover:text-slate-200 line-clamp-2">
-                                Автокөлік жолдарын жөндеу және пайдалану стандарттары жаңартылды
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between pt-3 mt-4 border-t border-white/5 text-xs text-slate-400">
-                        <span>Инфрақұрылым</span>
-                        <i class="las la-arrow-right text-zyndan-red group-hover:translate-x-1 transition-transform"></i>
-                    </div>
-                </a>
-
-                <a href="article.html"
-                    class="group block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-zyndan-red/50 rounded-xl p-5 transition-all flex flex-col justify-between">
-                    <div class="flex items-start gap-4">
-                        <span class="text-4xl font-black text-zyndan-red">#02</span>
-                        <div>
-                            <span class="text-[11px] text-slate-400 font-medium mb-1.5 flex items-center gap-1 font-mono">
-                                <i class="las la-clock text-zyndan-red"></i> 21 қазан 2026
-                            </span>
-                            <h3 class="font-bold text-base leading-snug text-white group-hover:text-slate-200 line-clamp-2">
-                                Көпбейінді ауруханаға заманауи медициналық жабдықтар жеткізілді
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between pt-3 mt-4 border-t border-white/5 text-xs text-slate-400">
-                        <span>Денсаулық</span>
-                        <i class="las la-arrow-right text-zyndan-red group-hover:translate-x-1 transition-transform"></i>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- === ФУТЕР === -->
-    <footer class="bg-zyndan-navy text-white mt-auto relative border-t-2 border-zyndan-red">
-        <div class="container mx-auto px-4 pt-14 pb-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 items-start pb-10 border-b border-white/10">
-                
-                <!-- Колонка 1: Бренд и миссия -->
-                <div class="md:col-span-2">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="zyndan-logo-wrapper bg-white rounded p-1">
-                            <img src="assets/zyndan-logo.jpg" alt="ZYNDAN.KZ" class="mix-blend-multiply">
-                        </div>
-                    </div>
-                    <div class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-zyndan-red mb-3">
-                        Aqparat · Taldau · Senim
-                    </div>
-                    <p class="text-slate-300 text-xs max-w-xl leading-relaxed mb-6 font-normal">
-                        «Zyndan.kz» сайтында жарияланған барлық материалдардың (мәтін, иллюстрациялар, графика, фото, видео, аудио, сұхбаттар, шолулар, жеке авторлар бағаналары, арнайы жоба мәліметтері — бұдан әрі Материалдар) авторлық құқығы «Zyndan.kz» сайтына тиесілі. Сайтта жарияланған материалдарды басқа интернет-ресурстар пайдаланған жағдайда, авторлық құқық белгісін (©), авторды және Материал иесін, сондай-ақ гиперсілтеме (мақаланың www.zyndan.kz сайтындағы тұрақты сілтемесін көрсету) түрінде дереккөзге сілтеме көрсету міндетті. Түпнұсқадағы мәтіннің мазмұнын өзгертуге, мағынасын бұрмалап көшіруге тыйым салынады. Мазмұны өзгертілген немесе мағынасы бұрмаланған көшірме материалға қатысты жауапкершілікті көшіріп басқан жеке немесе заңды тұлға өз мойнына алады. Материалды толық немесе кез келген бөлігін көшіру, тарату үшін редакцияның жазбаша рұқсатын алу қажет.
-                    </p>
-                    <div class="flex items-center gap-3 text-slate-300 text-xs">
-                        <i class="las la-envelope text-zyndan-red text-base"></i>
-                        <span>editor@zyndan.kz</span>
-                    </div>
-                </div>
-
-                <!-- Колонка 2: Навигация -->
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 flex items-center gap-2">
-                        <span class="w-1.5 h-3.5 bg-zyndan-red"></span>
-                        Бөлімдер
-                    </h4>
-                    <ul class="space-y-2.5 text-xs text-slate-300">
-                        <li><a href="index.html" class="hover:text-zyndan-red transition-colors">Басты жаңалықтар</a></li>
-                        <li><a href="index.html" class="hover:text-zyndan-red transition-colors">Саясат</a></li>
-                        <li><a href="index.html" class="hover:text-zyndan-red transition-colors">Қоғам</a></li>
-                        <li><a href="index.html" class="hover:text-zyndan-red transition-colors">Экономика</a></li>
-                        <li><a href="index.html" class="hover:text-zyndan-red transition-colors">Жарнама</a></li>
-                    </ul>
-                </div>
-
-                <!-- Колонка 3: Байланыс -->
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 flex items-center gap-2">
-                        <span class="w-1.5 h-3.5 bg-zyndan-red"></span>
-                        Байланыс
-                    </h4>
-                    <div class="text-xs text-slate-300 space-y-2 mb-5">
-                        <div class="flex items-center gap-2">
-                            <i class="las la-phone text-zyndan-red text-base"></i>
-                            <span>8 (7242) 27-01-01</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i class="las la-map-marker text-zyndan-red text-base"></i>
-                            <span>Қазақстан, Қызылорда қ.</span>
-                        </div>
-                    </div>
-
-                    <!-- Соцсети -->
-                    <div class="flex gap-2 text-xl">
-                        <a href="#" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-zyndan-red transition-colors flex items-center justify-center text-white" title="Telegram">
-                            <i class="lab la-telegram-plane"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-zyndan-red transition-colors flex items-center justify-center text-white" title="Instagram">
-                            <i class="lab la-instagram"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-zyndan-red transition-colors flex items-center justify-center text-white" title="Facebook">
-                            <i class="lab la-facebook-f"></i>
-                        </a>
-                        <a href="https://wa.me/77470645196" target="_blank" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-emerald-600 transition-colors flex items-center justify-center text-white" title="WhatsApp">
-                            <i class="lab la-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Copyright -->
-            <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-                <div>
-                    © 2026 <strong class="text-white">ZYNDAN.KZ</strong>. Барлық құқықтар қорғалған.
-                </div>
-                <div class="flex items-center gap-4 text-[11px]">
-                    <a href="#" class="hover:text-white transition-colors">Қолдану ережелері</a>
-                    <span>·</span>
-                    <span class="text-slate-500">18+</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Модальное окно поиска -->
-    <div id="searchModal" class="fixed inset-0 bg-zyndan-dark/80 backdrop-blur-md z-[100] hidden items-center justify-center p-4 transition-all" onclick="closeSearchModal()">
-        <div class="bg-white border border-zyndan-border rounded-2xl shadow-2xl max-w-xl w-full p-6 md:p-8" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-lg font-bold text-zyndan-navy flex items-center gap-2.5">
-                    <span class="w-2 h-5 bg-zyndan-red rounded-none inline-block"></span>
-                    Сайт бойынша іздеу
-                </h3>
-                <button onclick="closeSearchModal()" class="w-8 h-8 rounded-lg bg-zyndan-gray hover:bg-zyndan-red hover:text-white transition flex items-center justify-center text-zyndan-muted focus:outline-none">
-                    <i class="las la-times text-lg"></i>
-                </button>
-            </div>
-            <form action="index.html" method="GET">
-                <div class="relative mb-4">
-                    <i class="las la-search absolute left-4 top-1/2 -translate-y-1/2 text-zyndan-muted text-xl"></i>
-                    <input type="text" name="q" id="searchInput" placeholder="Іздеу сұранысын енгізіңіз..."
-                        class="w-full pl-12 pr-4 py-3.5 bg-zyndan-gray border border-zyndan-border rounded-xl text-black placeholder-zyndan-muted focus:outline-none focus:border-zyndan-red focus:ring-1 focus:ring-zyndan-red transition-all">
-                </div>
-                <button type="submit" class="w-full bg-zyndan-red hover:bg-zyndan-red-hover text-white font-bold py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 uppercase text-xs tracking-wider">
-                    <i class="las la-search text-base"></i> Іздеу
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Мобильное меню -->
-    <div id="mobileMenu" class="fixed inset-0 bg-zyndan-dark/60 backdrop-blur-sm z-[90] hidden transition-all" onclick="closeMobileMenu()">
-        <div class="bg-white w-4/5 max-w-sm h-full p-6 overflow-y-auto flex flex-col justify-between shadow-2xl" onclick="event.stopPropagation()">
+        <!-- Нижняя строка: Copyright -->
+        <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
             <div>
-                <div class="flex justify-between items-center mb-6 pb-4 border-b border-zyndan-border">
-                    <div class="zyndan-logo-wrapper">
-                        <img src="assets/zyndan-logo.jpg" alt="ZYNDAN.KZ">
-                    </div>
-                    <button onclick="closeMobileMenu()" class="w-9 h-9 rounded-lg bg-zyndan-gray hover:bg-zyndan-red hover:text-white transition flex items-center justify-center text-zyndan-navy focus:outline-none">
-                        <i class="las la-times text-xl"></i>
-                    </button>
-                </div>
-
-                <div class="text-[11px] font-bold text-zyndan-muted uppercase tracking-wider mb-2 flex items-center gap-2">
-                    <span class="w-1.5 h-3 bg-zyndan-red"></span>
-                    Бөлімдер
-                </div>
-
-                <div class="space-y-1 mb-6 text-sm font-semibold">
-                    <a href="index.html" class="block px-3 py-2.5 rounded-lg text-zyndan-navy hover:bg-zyndan-gray hover:text-zyndan-red transition">Басты бет</a>
-                    <a href="index.html" class="block px-3 py-2.5 rounded-lg text-zyndan-navy hover:bg-zyndan-gray hover:text-zyndan-red transition">Саясат</a>
-                    <a href="index.html" class="block px-3 py-2.5 rounded-lg text-zyndan-navy hover:bg-zyndan-gray hover:text-zyndan-red transition">Қоғам</a>
-                    <a href="index.html" class="block px-3 py-2.5 rounded-lg text-zyndan-navy hover:bg-zyndan-gray hover:text-zyndan-red transition">Экономика</a>
-                    <a href="index.html" class="block px-3 py-2.5 rounded-lg text-zyndan-navy hover:bg-zyndan-gray hover:text-zyndan-red transition">Білім</a>
-                    <a href="index.html" class="block px-3 py-2.5 rounded-lg text-zyndan-navy hover:bg-zyndan-gray hover:text-zyndan-red transition">Спорт</a>
-                </div>
-            </div>
-
-            <div class="pt-6 border-t border-zyndan-border text-xs text-zyndan-muted">
-                8 (7242) 27-01-01<br>
-                editor@zyndan.kz
+                © 2026 <strong class="text-white">ZYNDAN.KZ</strong>. Барлық құқықтар қорғалған.            </div>
+            <div class="flex items-center gap-4 text-[11px]">
+                <a href="/ads" class="hover:text-white transition-colors">Жарнама</a>
+                <span>·</span>
+                <span class="text-slate-500">18+</span>
             </div>
         </div>
     </div>
+</footer>
 
-    <script>
-        function openSearchModal() {
-            const modal = document.getElementById('searchModal');
-            if (!modal) return;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            setTimeout(() => {
-                const input = document.getElementById('searchInput');
-                if (input) input.focus();
-            }, 100);
-            document.body.style.overflow = 'hidden';
+<!-- Скрипты анимаций и поведения -->
+<script>
+    // Плавный скролл прогресс-бара
+    window.onscroll = function () {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        let progress = document.getElementById("scrollProgress");
+        if (progress) progress.style.width = scrolled + "%";
+    };
+
+    // ЗАЩИТА АВТОРСКИХ ПРАВ ПРИ КОПИРОВАНИИ / АВТОРЛЫҚ ҚҰҚЫҚТЫ ҚОРҒАУ
+    document.addEventListener('copy', function (e) {
+        const target = e.target;
+        if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+            return; // Формалар мен енгізу өрістеріндегі мәтінді қаз-қалпында көшіру
         }
 
-        function closeSearchModal() {
-            const modal = document.getElementById('searchModal');
-            if (!modal) return;
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = '';
+        const selection = window.getSelection();
+        const selectedText = selection ? selection.toString() : '';
+
+        if (!selectedText || selectedText.trim().length === 0) {
+            return;
         }
 
-        function openMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            if (!menu) return;
-            menu.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+        const copyrightNotice = "\n\n«Zyndan.kz» сайтында жарияланған барлық материалдардың (мәтін, иллюстрациялар, графика, фото, видео, аудио, сұхбаттар, шолулар, жеке авторлар бағаналары, арнайы жоба мәліметтері — бұдан әрі Материалдар) авторлық құқығы «Zyndan.kz» сайтына тиесілі. Сайтта жарияланған материалдарды басқа интернет-ресурстар пайдаланған жағдайда, авторлық құқық белгісін (©), авторды және Материал иесін, сондай-ақ гиперсілтеме (мақаланың www.zyndan.kz сайтындағы тұрақты сілтемесін көрсету) түрінде дереккөзге сілтеме көрсету міндетті. Түпнұсқадағы мәтіннің мазмұнын өзгертуге, мағынасын бұрмалап көшіруге тыйым салынады. Мазмұны өзгертілген немесе мағынасы бұрмаланған көшірме материалға қатысты жауапкершілікті көшіріп басқан жеке немесе заңды тұлға өз мойнына алады. Материалды толық немесе кез келген бөлігін көшіру, тарату үшін редакцияның жазбаша рұқсатын алу қажет.\nДереккөз: " + window.location.href;
+
+        if (e.clipboardData) {
+            e.clipboardData.setData('text/plain', selectedText + copyrightNotice);
+            e.preventDefault();
         }
+    });
+</script>
 
-        function closeMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            if (!menu) return;
-            menu.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=106829765', 'ym');
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeSearchModal();
-                closeMobileMenu();
-            }
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                openSearchModal();
-            }
-        });
-
-        // ЗАЩИТА АВТОРСКИХ ПРАВ ПРИ КОПИРОВАНИИ / АВТОРЛЫҚ ҚҰҚЫҚТЫ ҚОРҒАУ
-        document.addEventListener('copy', function (e) {
-            const target = e.target;
-            if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
-                return;
-            }
-
-            const selection = window.getSelection();
-            const selectedText = selection ? selection.toString() : '';
-
-            if (!selectedText || selectedText.trim().length === 0) {
-                return;
-            }
-
-            const copyrightNotice = "\n\n«Zyndan.kz» сайтында жарияланған барлық материалдардың (мәтін, иллюстрациялар, графика, фото, видео, аудио, сұхбаттар, шолулар, жеке авторлар бағаналары, арнайы жоба мәліметтері — бұдан әрі Материалдар) авторлық құқығы «Zyndan.kz» сайтына тиесілі. Сайтта жарияланған материалдарды басқа интернет-ресурстар пайдаланған жағдайда, авторлық құқық белгісін (©), авторды және Материал иесін, сондай-ақ гиперсілтеме (мақаланың www.zyndan.kz сайтындағы тұрақты сілтемесін көрсету) түрінде дереккөзге сілтеме көрсету міндетті. Түпнұсқадағы мәтіннің мазмұнын өзгертуге, мағынасын бұрмалап көшіруге тыйым салынады. Мазмұны өзгертілген немесе мағынасы бұрмаланған көшірме материалға қатысты жауапкершілікті көшіріп басқан жеке немесе заңды тұлға өз мойнына алады. Материалды толық немесе кез келген бөлігін көшіру, тарату үшін редакцияның жазбаша рұқсатын алу қажет.\nДереккөз: " + window.location.href;
-
-            if (e.clipboardData) {
-                e.clipboardData.setData('text/plain', selectedText + copyrightNotice);
-                e.preventDefault();
-            }
-        });
-    </script>
+    ym(106829765, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
+</script>
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/106829765" style="position:absolute; left:-9999px;" alt="" /></div>
+</noscript>
+<!-- /Yandex.Metrika counter -->
 
 </body>
 
