@@ -8,7 +8,7 @@ require_once __DIR__ . '/../partials/_header.php';
 require_once __DIR__ . '/../partials/_navigation.php';
 
 // === ЛОГИКА ДАННЫХ ВНУТРИ VIEW (ЧТОБЫ НЕ БЫЛО ОШИБОК) ===
-
+// === АПДЕЙТ ИЗМЕНИЛ РЕКЛАМУ НА СТРАНИЦЕ НА АНОНСЫ ===
 // 1. Функция для безопасного получения картинки
 function getPostImage($post, $size = 'medium')
 {
@@ -153,65 +153,43 @@ $gridPosts = array_slice($feedNews, 2);
     </div>
 
     <!-- Общий массив для сетки -->
-    <?php
-    $allGridNews = array_merge($centerPosts, $gridPosts);
-    if (empty($allGridNews) && !empty($mainPost)) {
-        $allGridNews = [$mainPost];
-    }
-    $homeAds = !empty($sidebarAds) ? $sidebarAds : (!empty($contentAds) ? $contentAds : []);
-    ?>
+    <?php $allGridNews = array_merge($centerPosts, $gridPosts); ?>
     
-    <div class="grid grid-cols-1 <?= !empty($homeAds) ? 'lg:grid-cols-4' : '' ?> gap-6 sm:gap-8 items-start">
-        <div class="<?= !empty($homeAds) ? 'lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8' ?>">
-            <?php foreach ($allGridNews as $news):
-                $nTitle = $lang === 'kz' ? $news['title_kz'] : $news['title_ru'];
-                $nLink = "/" . ($lang === 'ru' ? 'ru/' : '') . ($news['category_slug'] ?? 'news') . "/" . ($lang === 'kz' ? $news['slug_kz'] : $news['slug_ru']);
-                ?>
-                <!-- Карточка новости ZYNDAN -->
-                <a href="<?= $nLink ?>" class="bg-white group cursor-pointer rounded-xl zyndan-card overflow-hidden flex flex-col">
-                    <div class="relative h-44 sm:h-52 overflow-hidden bg-zyndan-gray">
-                        <img src="<?= getPostImage($news, 'medium') ?>"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" alt="<?= htmlspecialchars($nTitle) ?>">
-                        
-                        <!-- Бейдж категории -->
-                        <div class="absolute top-3 left-3 bg-zyndan-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-sm flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span>
-                            <?= htmlspecialchars($news['category_name'] ?? 'Ақпарат') ?>
-                        </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+        <?php foreach ($allGridNews as $news):
+            $nTitle = $lang === 'kz' ? $news['title_kz'] : $news['title_ru'];
+            $nLink = "/" . ($lang === 'ru' ? 'ru/' : '') . ($news['category_slug'] ?? 'news') . "/" . ($lang === 'kz' ? $news['slug_kz'] : $news['slug_ru']);
+            ?>
+            <!-- Карточка новости ZYNDAN -->
+            <a href="<?= $nLink ?>" class="bg-white group cursor-pointer rounded-xl zyndan-card overflow-hidden flex flex-col">
+                <div class="relative h-44 sm:h-52 overflow-hidden bg-zyndan-gray">
+                    <img src="<?= getPostImage($news, 'medium') ?>"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" alt="<?= htmlspecialchars($nTitle) ?>">
+                    
+                    <!-- Бейдж категории -->
+                    <div class="absolute top-3 left-3 bg-zyndan-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-sm flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span>
+                        <?= htmlspecialchars($news['category_name'] ?? 'Ақпарат') ?>
                     </div>
-                    <div class="p-4 sm:p-6 flex flex-col flex-1 justify-between">
-                        <div>
-                            <div class="text-[11px] text-zyndan-muted font-medium mb-2 sm:mb-3 flex items-center gap-1.5">
-                                <i class="las la-calendar text-zyndan-red text-sm"></i> <?= date('d.m.Y, H:i', strtotime($news['published_at'])) ?>
-                            </div>
-                            <h3 class="text-base sm:text-lg font-bold leading-snug text-black group-hover:text-zyndan-red transition-colors mb-3 line-clamp-3">
-                                <?= htmlspecialchars($nTitle) ?>
-                            </h3>
-                        </div>
-                        <div class="pt-3 sm:pt-4 border-t border-zyndan-border/60 flex items-center justify-between text-xs text-zyndan-muted">
-                            <span class="flex items-center gap-1"><i class="las la-eye"></i> <?= number_format($news['views'] ?? 0) ?></span>
-                            <span class="text-zyndan-red font-semibold flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
-                                <?= $lang === 'ru' ? 'Подробнее' : 'Оқу' ?> <i class="las la-angle-right text-xs"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-            <?php endforeach; ?>
-        </div>
-
-        <?php if (!empty($homeAds)): ?>
-            <!-- Рекламный блок на главной (Сайдбар) -->
-            <aside class="lg:col-span-1 bg-zyndan-gray rounded-xl border border-zyndan-border p-4">
-                <div class="text-[10px] font-bold text-zyndan-muted uppercase tracking-widest mb-3 flex items-center justify-between">
-                    <span class="flex items-center gap-1.5"><i class="las la-ad text-sm text-zyndan-red"></i> <?= $lang === 'kz' ? 'Жарнама' : 'Реклама' ?></span>
-                    <a href="/<?= $lang === 'ru' ? 'ru/' : '' ?>ads" class="hover:text-zyndan-red transition-colors"><?= $lang === 'kz' ? 'Орналастыру' : 'Разместить' ?></a>
                 </div>
-                <?php
-                $ads = $homeAds;
-                require __DIR__ . '/../partials/_ads.php';
-                ?>
-            </aside>
-        <?php endif; ?>
+                <div class="p-4 sm:p-6 flex flex-col flex-1 justify-between">
+                    <div>
+                        <div class="text-[11px] text-zyndan-muted font-medium mb-2 sm:mb-3 flex items-center gap-1.5">
+                            <i class="las la-calendar text-zyndan-red text-sm"></i> <?= date('d.m.Y, H:i', strtotime($news['published_at'])) ?>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-bold leading-snug text-black group-hover:text-zyndan-red transition-colors mb-3 line-clamp-3">
+                            <?= htmlspecialchars($nTitle) ?>
+                        </h3>
+                    </div>
+                    <div class="pt-3 sm:pt-4 border-t border-zyndan-border/60 flex items-center justify-between text-xs text-zyndan-muted">
+                        <span class="flex items-center gap-1"><i class="las la-eye"></i> <?= number_format($news['views'] ?? 0) ?></span>
+                        <span class="text-zyndan-red font-semibold flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
+                            <?= $lang === 'ru' ? 'Подробнее' : 'Оқу' ?> <i class="las la-angle-right text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        <?php endforeach; ?>
     </div>
 </section>
 

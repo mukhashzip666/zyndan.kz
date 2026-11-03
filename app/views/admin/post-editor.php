@@ -187,22 +187,6 @@
                     </div>
                 </div>
 
-                <!-- Время публикации -->
-                <div class="bg-white shadow rounded-lg p-4">
-                    <h3 class="font-bold text-sm uppercase text-gray-500 mb-3">
-                        <i class="fas fa-clock mr-1"></i> Уақыты / Время публикации
-                    </h3>
-                    <input type="datetime-local" name="published_at" 
-                           value="<?= isset($post['published_at']) ? date('Y-m-d\TH:i', strtotime($post['published_at'])) : date('Y-m-d\TH:i') ?>"
-                           class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#1C3D81] focus:border-transparent">
-                    <p class="text-xs text-gray-500 mt-2">
-                        <?= isset($post) ? 'Өзгерту үшін жаңа уақыт таңдаңыз' : 'Бос қалдырсаңыз - қазіргі уақыт қолданылады' ?>
-                    </p>
-                    <p class="text-xs text-gray-500">
-                        <?= isset($post) ? 'Выберите новое время для изменения' : 'Оставьте пустым - будет использовано текущее время' ?>
-                    </p>
-                </div>
-
                 <!-- Main Image -->
                 <div class="bg-white shadow rounded-lg p-4">
                     <h3 class="font-bold text-sm uppercase text-gray-500 mb-3">Басты сурет</h3>

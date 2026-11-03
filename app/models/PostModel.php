@@ -19,8 +19,8 @@ class PostModel extends Model
                 FROM {$this->table} p
                 LEFT JOIN categories c ON p.category_id = c.id
                 LEFT JOIN users u ON p.user_id = u.id
-                WHERE p.status = 'published' AND p.published_at <= NOW()
-                ORDER BY p.published_at DESC
+                WHERE p.status = 'published'
+                ORDER BY p.published_at DESC, p.id DESC
                 LIMIT {$limit} OFFSET {$offset}";
 
         return $this->db->fetchAll($sql);
@@ -36,8 +36,8 @@ class PostModel extends Model
                 FROM {$this->table} p
                 LEFT JOIN categories c ON p.category_id = c.id
                 LEFT JOIN users u ON p.user_id = u.id
-                WHERE p.status = 'published' AND p.is_featured = 1 AND p.published_at <= NOW()
-                ORDER BY p.published_at DESC
+                WHERE p.status = 'published' AND p.is_featured = 1
+                ORDER BY p.published_at DESC, p.id DESC
                 LIMIT 1";
 
         return $this->db->fetchOne($sql);
@@ -51,8 +51,8 @@ class PostModel extends Model
         $sql = "SELECT p.*, c.name_{$lang} as category_name, c.slug_{$lang} as category_slug
                 FROM {$this->table} p
                 LEFT JOIN categories c ON p.category_id = c.id
-                WHERE p.status = 'published' AND p.is_announcement = 1 AND p.published_at <= NOW()
-                ORDER BY p.published_at DESC
+                WHERE p.status = 'published' AND p.is_announcement = 1
+                ORDER BY p.published_at DESC, p.id DESC
                 LIMIT {$limit}";
 
         return $this->db->fetchAll($sql);
@@ -89,7 +89,7 @@ class PostModel extends Model
         $sql = "SELECT p.*, c.name_{$lang} as category_name
                 FROM {$this->table} p
                 LEFT JOIN categories c ON p.category_id = c.id
-                WHERE p.status = 'published' AND p.published_at <= NOW()
+                WHERE p.status = 'published'
                 ORDER BY p.views DESC
                 LIMIT {$limit}";
 
@@ -108,8 +108,8 @@ class PostModel extends Model
                 FROM {$this->table} p
                 LEFT JOIN categories c ON p.category_id = c.id
                 LEFT JOIN users u ON p.user_id = u.id
-                WHERE {$slugColumn} = ? AND p.status = 'published' AND p.published_at <= NOW()
-                ORDER BY p.published_at DESC
+                WHERE {$slugColumn} = ? AND p.status = 'published'
+                ORDER BY p.published_at DESC, p.id DESC
                 LIMIT {$limit} OFFSET {$offset}";
 
         return $this->db->fetchAll($sql, [$categorySlug]);
@@ -234,13 +234,12 @@ class PostModel extends Model
                 LEFT JOIN categories c ON p.category_id = c.id
                 LEFT JOIN users u ON p.user_id = u.id
                 WHERE p.status = 'published' 
-                  AND p.published_at <= NOW()
                   AND (
                       p.title_{$lang} LIKE ? OR
                       p.content_{$lang} LIKE ? OR
                       p.excerpt_{$lang} LIKE ?
                   )
-                ORDER BY p.published_at DESC
+                ORDER BY p.published_at DESC, p.id DESC
                 LIMIT {$limit} OFFSET {$offset}";
 
         return $this->db->fetchAll($sql, [$searchTerm, $searchTerm, $searchTerm]);
@@ -256,7 +255,6 @@ class PostModel extends Model
         $sql = "SELECT COUNT(*) as count
                 FROM {$this->table}
                 WHERE status = 'published' 
-                  AND published_at <= NOW()
                   AND (
                       title_{$lang} LIKE ? OR
                       content_{$lang} LIKE ? OR
@@ -279,8 +277,7 @@ class PostModel extends Model
                 LEFT JOIN users u ON p.user_id = u.id
                 WHERE p.status = 'published' 
                   AND DATE(p.published_at) = ?
-                  AND p.published_at <= NOW()
-                ORDER BY p.published_at DESC
+                ORDER BY p.published_at DESC, p.id DESC
                 LIMIT {$limit} OFFSET {$offset}";
 
         return $this->db->fetchAll($sql, [$date]);
@@ -294,8 +291,7 @@ class PostModel extends Model
         $sql = "SELECT COUNT(*) as count
                 FROM {$this->table}
                 WHERE status = 'published' 
-                  AND DATE(published_at) = ?
-                  AND published_at <= NOW()";
+                  AND DATE(published_at) = ?";
 
         $result = $this->db->fetchOne($sql, [$date]);
         return (int) ($result['count'] ?? 0);
@@ -310,8 +306,7 @@ class PostModel extends Model
                 FROM {$this->table}
                 WHERE status = 'published'
                   AND MONTH(published_at) = ?
-                  AND YEAR(published_at) = ?
-                  AND published_at <= NOW()";
+                  AND YEAR(published_at) = ?";
 
         $results = $this->db->fetchAll($sql, [$month, $year]);
         return array_column($results, 'day');

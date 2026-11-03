@@ -95,7 +95,7 @@ class AdminPostController extends \Controller
             'user_id' => $_SESSION['admin_user_id'] ?? 1,
             'status' => $this->post('action') === 'publish' ? 'published' : 'draft',
             'is_announcement' => $this->post('is_announcement') ? 1 : 0,
-            'published_at' => $this->post('published_at'),  // Время из формы
+            'published_at' => date('Y-m-d H:i:s'),
             'excerpt_kz' => $this->post('excerpt_kz'),
             'excerpt_ru' => $this->post('excerpt_ru')
         ];
@@ -199,7 +199,7 @@ class AdminPostController extends \Controller
             'status' => $this->post('action') === 'publish' ? 'published' : 'draft',
             'is_featured' => $this->post('is_featured') ? 1 : 0,
             'is_announcement' => $this->post('is_announcement') ? 1 : 0,
-            'published_at' => $this->post('published_at'),  // Время из формы
+            'published_at' => $post['published_at'] ?? date('Y-m-d H:i:s'),
             'excerpt_kz' => $this->post('excerpt_kz'),
             'excerpt_ru' => $this->post('excerpt_ru')
         ];

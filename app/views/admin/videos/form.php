@@ -77,26 +77,17 @@
                                 placeholder="https://www.youtube.com/watch?v=...">
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Жрияланған күні / Дата
-                                    публикации</label>
-                                <input type="datetime-local" name="published_at"
-                                    value="<?= isset($video['published_at']) ? date('Y-m-d\TH:i', strtotime($video['published_at'])) : date('Y-m-d\TH:i') ?>"
-                                    class="w-full border border-gray-300 rounded p-2 focus:ring-red-500 focus:border-red-500 text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Мұқаба / Обложка (Preview
-                                    Image) *</label>
-                                <input type="file" name="image" <?= !$video ? 'required' : '' ?> accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded
-                                file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-red-700
-                                hover:file:bg-red-100">
-                                <?php if ($video && !empty($video['image'])): ?>
-                                    <div class="mt-2 text-[10px] text-gray-500 italic">Қазіргі сурет / Текущее фото:
-                                        <?= $video['image'] ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Мұқаба / Обложка (Preview
+                                Image) *</label>
+                            <input type="file" name="image" <?= !$video ? 'required' : '' ?> accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded
+                            file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-red-700
+                            hover:file:bg-red-100">
+                            <?php if ($video && !empty($video['image'])): ?>
+                                <div class="mt-2 text-[10px] text-gray-500 italic">Қазіргі сурет / Текущее фото:
+                                    <?= $video['image'] ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
 
