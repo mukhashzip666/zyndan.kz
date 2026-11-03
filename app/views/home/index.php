@@ -194,7 +194,7 @@ $gridPosts = array_slice($feedNews, 2);
 </section>
 
 <!-- === ПОПУЛЯРНОЕ (ТАНЫМАЛ ЖАҢАЛЫҚТАР В ТЕМНО-СИНЕМ БЛОКЕ #101C31) === -->
-<section class="bg-zyndan-navy text-white py-9 sm:py-14 mb-10 sm:mb-16 relative border-y-2 border-zyndan-red">
+<section class="bg-zyndan-navy text-white py-9 sm:py-14 relative border-t-2 border-zyndan-red">
     <div class="container mx-auto px-3 sm:px-4">
         
         <div class="flex items-center justify-between mb-6 sm:mb-10 pb-3 sm:pb-4 border-b border-white/10">
