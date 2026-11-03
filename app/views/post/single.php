@@ -36,10 +36,10 @@ function getPostImg($img)
     <div id="scrollProgress" class="h-full bg-zyndan-red w-0 transition-all duration-75 shadow-sm"></div>
 </div>
 
-<main class="container mx-auto px-4 py-6 lg:py-10">
+<main class="container mx-auto px-3 sm:px-4 py-4 sm:py-6 lg:py-10">
 
     <!-- Хлебные крошки -->
-    <nav class="flex items-center gap-2 text-[11px] font-bold text-zyndan-muted mb-6 uppercase tracking-wider">
+    <nav class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] font-bold text-zyndan-muted mb-4 sm:mb-6 uppercase tracking-wider">
         <a href="<?= $lang === 'ru' ? '/ru/' : '/' ?>" class="hover:text-zyndan-red transition flex items-center gap-1.5">
             <i class="las la-home text-sm mb-0.5"></i> <?= $lang === 'kz' ? 'Басты бет' : 'Главная' ?>
         </a>
@@ -51,26 +51,26 @@ function getPostImg($img)
         </a>
     </nav>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12">
 
         <!-- === ЛЕВАЯ КОЛОНКА (СТАТЬЯ) === -->
         <article class="lg:col-span-8">
 
             <!-- Заголовок -->
-            <header class="mb-8">
+            <header class="mb-6 sm:mb-8">
                 <!-- Категория бейдж -->
-                <div class="mb-4">
-                    <span class="inline-block bg-zyndan-navy text-white text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-sm">
+                <div class="mb-3 sm:mb-4">
+                    <span class="inline-block bg-zyndan-navy text-white text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest px-2.5 sm:px-3 py-1 rounded-sm">
                         <?= htmlspecialchars($categoryName) ?>
                     </span>
                 </div>
 
-                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-zyndan-navy dark:text-white leading-[1.2] mb-6 tracking-tight">
+                <h1 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-zyndan-navy dark:text-white leading-[1.25] sm:leading-[1.2] mb-4 sm:mb-6 tracking-tight">
                     <?= htmlspecialchars($postTitle) ?>
                 </h1>
 
                 <!-- Мета-строка -->
-                <div class="flex flex-wrap items-center justify-between border-y border-zyndan-border py-4 gap-4 text-xs">
+                <div class="flex flex-wrap items-center justify-between border-y border-zyndan-border py-3 sm:py-4 gap-3 sm:gap-4 text-xs">
                     <div class="flex items-center gap-3">
                         <div class="zyndan-logo-wrapper rounded border border-zyndan-border p-0.5 bg-white">
                             <img src="/assets/zyndan-logo.jpg?v=2" alt="ZYNDAN.KZ" style="height: 44px; width: auto;">
@@ -109,14 +109,14 @@ function getPostImg($img)
             <?php endif; ?>
 
             <!-- ТЕЛО СТАТЬИ -->
-            <div class="article-content text-black dark:text-slate-200 text-[17px] md:text-[18px] leading-[1.8] font-normal space-y-6">
+            <div class="article-content text-black dark:text-slate-200 text-[15px] sm:text-[17px] md:text-[18px] leading-[1.75] sm:leading-[1.8] font-normal space-y-4 sm:space-y-6 overflow-hidden">
                 <div class="article-body">
                     <?= $postContent ?>
                 </div>
             </div>
 
             <!-- Теги и категория -->
-            <div class="mt-10 pt-6 border-t border-zyndan-border flex items-center gap-3 flex-wrap">
+            <div class="mt-8 sm:mt-10 pt-5 sm:pt-6 border-t border-zyndan-border flex items-center gap-3 flex-wrap">
                 <span class="text-xs font-bold text-zyndan-muted uppercase tracking-wider"><?= $lang === 'kz' ? 'Айдарлар:' : 'Рубрика:' ?></span>
                 <a href="/<?= $lang === 'ru' ? 'ru/' : '' ?><?= $post['category_slug'] ?>"
                     class="bg-zyndan-gray dark:bg-white/5 border border-zyndan-border hover:border-zyndan-red transition px-3 py-1.5 rounded-lg text-xs font-bold text-zyndan-navy dark:text-white uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
@@ -126,10 +126,10 @@ function getPostImg($img)
             </div>
 
             <!-- === БЛОК КОММЕНТАРИЕВ === -->
-            <section class="mt-14" id="comments">
-                <div class="bg-zyndan-gray dark:bg-zyndan-navy/60 border border-zyndan-border dark:border-white/10 rounded-2xl p-6 md:p-8 shadow-sm">
+            <section class="mt-10 sm:mt-14" id="comments">
+                <div class="bg-zyndan-gray dark:bg-zyndan-navy/60 border border-zyndan-border dark:border-white/10 rounded-2xl p-4 sm:p-6 md:p-8 shadow-sm">
 
-                    <h3 class="text-xl font-black text-zyndan-navy dark:text-white mb-6 flex items-center gap-3 tracking-tight">
+                    <h3 class="text-lg sm:text-xl font-black text-zyndan-navy dark:text-white mb-5 sm:mb-6 flex flex-wrap items-center gap-2.5 sm:gap-3 tracking-tight">
                         <span class="w-1.5 h-5 bg-zyndan-red rounded-none inline-block"></span>
                         <i class="las la-comments text-zyndan-red text-2xl"></i>
                         <?= $lang === 'kz' ? 'Пікірлер' : 'Обсуждение материала' ?>

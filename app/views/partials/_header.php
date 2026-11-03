@@ -90,6 +90,33 @@
             background-color: #FFFFFF !important;
             background: #FFFFFF !important;
             color: #101C31;
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        /* Адаптивность контента внутри статей на мобильных */
+        .article-body img,
+        .article-body video,
+        .article-body iframe {
+            max-width: 100% !important;
+            height: auto !important;
+            border-radius: 0.5rem;
+        }
+
+        .article-body table {
+            display: block;
+            width: 100% !important;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .article-body p,
+        .article-body h1,
+        .article-body h2,
+        .article-body h3,
+        .article-body li {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -168,7 +195,7 @@
 
         @media (max-width: 640px) {
             .zyndan-logo-wrapper img {
-                height: 70px;
+                height: 60px;
             }
         }
 
@@ -219,7 +246,7 @@
 
     <!-- === HEADER (BRAND ROW) === -->
     <header class="bg-white border-b border-zyndan-border transition-colors" style="background-color: #FFFFFF !important;">
-        <div class="container mx-auto px-4 py-4 md:py-5 flex justify-between items-center">
+        <div class="container mx-auto px-3 sm:px-4 py-2.5 sm:py-4 md:py-5 flex justify-between items-center">
             
             <!-- Левая часть: Фирменный логотип ZYNDAN.KZ -->
             <div class="flex items-center gap-4">

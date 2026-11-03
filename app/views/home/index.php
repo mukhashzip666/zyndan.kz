@@ -40,10 +40,10 @@ $gridPosts = array_slice($feedNews, 2);
 
 
 
-<main class="container mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+<main class="container mx-auto px-3 sm:px-4 py-4 sm:py-8 grid grid-cols-1 lg:grid-cols-4 gap-5 sm:gap-8">
 
     <!-- Главная новость (Hero Left - 3 колонки) -->
-    <div class="lg:col-span-3 relative h-[420px] md:h-[480px] overflow-hidden rounded-xl shadow-zyndan-sm border border-zyndan-border bg-black">
+    <div class="lg:col-span-3 relative h-[320px] sm:h-[400px] md:h-[480px] overflow-hidden rounded-xl shadow-zyndan-sm border border-zyndan-border bg-black">
         <?php if ($mainPost):
             $hTitle = $lang === 'kz' ? $mainPost['title_kz'] : $mainPost['title_ru'];
             $hSlug = $lang === 'kz' ? $mainPost['slug_kz'] : $mainPost['slug_ru'];
@@ -57,22 +57,22 @@ $gridPosts = array_slice($feedNews, 2);
                     alt="<?= htmlspecialchars($hTitle) ?>">
 
                 <!-- Градиентная подложка для максимальной читаемости -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent flex flex-col justify-end p-6 md:p-10 text-white">
-                    <div class="mb-4">
-                        <span class="bg-zyndan-red text-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest inline-flex items-center gap-1.5 rounded-sm shadow-md">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent flex flex-col justify-end p-4 sm:p-6 md:p-10 text-white">
+                    <div class="mb-2.5 sm:mb-4">
+                        <span class="bg-zyndan-red text-white px-2.5 sm:px-3 py-1 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest inline-flex items-center gap-1.5 rounded-sm shadow-md">
                             <i class="las la-star text-sm"></i> <?= $lang === 'kz' ? 'Басты жаңалық' : 'Главное событие' ?>
                         </span>
                     </div>
 
-                    <h2 class="hero-white-title text-2xl md:text-4xl font-extrabold leading-tight mb-4 !text-white text-white tracking-tight line-clamp-3" style="color: #ffffff !important;">
+                    <h2 class="hero-white-title text-lg sm:text-2xl md:text-4xl font-extrabold leading-tight mb-3 sm:mb-4 !text-white text-white tracking-tight line-clamp-3" style="color: #ffffff !important;">
                         <?= htmlspecialchars($hTitle) ?>
                     </h2>
 
-                    <div class="hero-white-meta flex items-center text-xs font-semibold !text-white text-white gap-6" style="color: #ffffff !important;">
+                    <div class="hero-white-meta flex flex-wrap items-center text-[11px] sm:text-xs font-semibold !text-white text-white gap-3 sm:gap-6" style="color: #ffffff !important;">
                         <span class="flex items-center gap-1.5 text-white" style="color: #ffffff !important;"><i class="las la-clock text-zyndan-red text-base"></i> <?= date('H:i', strtotime($mainPost['published_at'])) ?>, <?= $lang === 'ru' ? 'Сегодня' : 'Бүгін' ?></span>
                         <span class="flex items-center gap-1.5 text-white" style="color: #ffffff !important;"><i class="las la-eye text-base"></i> <?= number_format($mainPost['views'] ?? 0) ?></span>
                         <?php if (!empty($mainPost['category_name'])): ?>
-                            <span class="border-l border-white/30 pl-4 uppercase tracking-wider text-[11px] text-white font-bold" style="color: #ffffff !important;"><?= htmlspecialchars($mainPost['category_name']) ?></span>
+                            <span class="border-l border-white/30 pl-3 sm:pl-4 uppercase tracking-wider text-[10px] sm:text-[11px] text-white font-bold" style="color: #ffffff !important;"><?= htmlspecialchars($mainPost['category_name']) ?></span>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -85,9 +85,9 @@ $gridPosts = array_slice($feedNews, 2);
     </div>
 
     <!-- Сайдбар (Ақпарат легі / Live Breaking News) -->
-    <div class="lg:col-span-1 bg-white rounded-xl shadow-zyndan-sm border border-zyndan-border overflow-hidden flex flex-col h-[420px] md:h-[480px]">
+    <div class="lg:col-span-1 bg-white rounded-xl shadow-zyndan-sm border border-zyndan-border overflow-hidden flex flex-col lg:h-[480px]">
         <!-- Шапка сайдбара с пульсирующей красной точкой -->
-        <div class="bg-zyndan-gray border-b border-zyndan-border text-zyndan-navy px-5 py-4 font-bold uppercase flex justify-between items-center text-xs tracking-wider flex-shrink-0">
+        <div class="bg-zyndan-gray border-b border-zyndan-border text-zyndan-navy px-4 sm:px-5 py-3.5 sm:py-4 font-bold uppercase flex justify-between items-center text-xs tracking-wider flex-shrink-0">
             <span class="flex items-center gap-2.5">
                 <span class="relative flex h-2.5 w-2.5">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-zyndan-red opacity-75"></span>
@@ -101,7 +101,7 @@ $gridPosts = array_slice($feedNews, 2);
         </div>
 
         <!-- Список оперативных новостей -->
-        <div class="divide-y divide-zyndan-border/70 flex-1 overflow-y-auto no-scrollbar">
+        <div class="divide-y divide-zyndan-border/70 max-h-[260px] lg:max-h-none lg:flex-1 overflow-y-auto no-scrollbar">
             <?php if (isset($announcements) && !empty($announcements)):
                 foreach ($announcements as $item):
                     $aTitle = $lang === 'kz' ? $item['title_kz'] : $item['title_ru'];
@@ -142,12 +142,12 @@ $gridPosts = array_slice($feedNews, 2);
 </div>
 
 <!-- === ЛЕНТА ВСЕХ НОВОСТЕЙ === -->
-<section class="container mx-auto px-4 py-8 mb-12">
-    <div class="flex items-center justify-between mb-8 pb-4 border-b border-zyndan-border">
-        <h2 class="text-2xl font-black text-zyndan-navy zyndan-section-title tracking-tight">
+<section class="container mx-auto px-3 sm:px-4 py-6 sm:py-8 mb-8 sm:mb-12">
+    <div class="flex items-center justify-between mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-zyndan-border">
+        <h2 class="text-xl sm:text-2xl font-black text-zyndan-navy zyndan-section-title tracking-tight">
             <?= $lang === 'kz' ? 'Барлық жаңалықтар' : 'Все новости' ?>
         </h2>
-        <a href="/" class="text-xs font-bold text-zyndan-muted hover:text-zyndan-red flex items-center gap-1 transition-colors uppercase tracking-wider">
+        <a href="/" class="text-[11px] sm:text-xs font-bold text-zyndan-muted hover:text-zyndan-red flex items-center gap-1 transition-colors uppercase tracking-wider">
             <?= $lang === 'kz' ? 'Барлығын көру' : 'Смотреть все' ?> <i class="las la-arrow-right text-sm"></i>
         </a>
     </div>
@@ -155,14 +155,14 @@ $gridPosts = array_slice($feedNews, 2);
     <!-- Общий массив для сетки -->
     <?php $allGridNews = array_merge($centerPosts, $gridPosts); ?>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         <?php foreach ($allGridNews as $news):
             $nTitle = $lang === 'kz' ? $news['title_kz'] : $news['title_ru'];
             $nLink = "/" . ($lang === 'ru' ? 'ru/' : '') . ($news['category_slug'] ?? 'news') . "/" . ($lang === 'kz' ? $news['slug_kz'] : $news['slug_ru']);
             ?>
             <!-- Карточка новости ZYNDAN -->
             <a href="<?= $nLink ?>" class="bg-white group cursor-pointer rounded-xl zyndan-card overflow-hidden flex flex-col">
-                <div class="relative h-52 overflow-hidden bg-zyndan-gray">
+                <div class="relative h-44 sm:h-52 overflow-hidden bg-zyndan-gray">
                     <img src="<?= getPostImage($news, 'medium') ?>"
                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" alt="<?= htmlspecialchars($nTitle) ?>">
                     
@@ -172,16 +172,16 @@ $gridPosts = array_slice($feedNews, 2);
                         <?= htmlspecialchars($news['category_name'] ?? 'Ақпарат') ?>
                     </div>
                 </div>
-                <div class="p-6 flex flex-col flex-1 justify-between">
+                <div class="p-4 sm:p-6 flex flex-col flex-1 justify-between">
                     <div>
-                        <div class="text-[11px] text-zyndan-muted font-medium mb-3 flex items-center gap-1.5">
+                        <div class="text-[11px] text-zyndan-muted font-medium mb-2 sm:mb-3 flex items-center gap-1.5">
                             <i class="las la-calendar text-zyndan-red text-sm"></i> <?= date('d.m.Y, H:i', strtotime($news['published_at'])) ?>
                         </div>
-                        <h3 class="text-lg font-bold leading-snug text-black group-hover:text-zyndan-red transition-colors mb-3 line-clamp-3">
+                        <h3 class="text-base sm:text-lg font-bold leading-snug text-black group-hover:text-zyndan-red transition-colors mb-3 line-clamp-3">
                             <?= htmlspecialchars($nTitle) ?>
                         </h3>
                     </div>
-                    <div class="pt-4 border-t border-zyndan-border/60 flex items-center justify-between text-xs text-zyndan-muted">
+                    <div class="pt-3 sm:pt-4 border-t border-zyndan-border/60 flex items-center justify-between text-xs text-zyndan-muted">
                         <span class="flex items-center gap-1"><i class="las la-eye"></i> <?= number_format($news['views'] ?? 0) ?></span>
                         <span class="text-zyndan-red font-semibold flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
                             <?= $lang === 'ru' ? 'Подробнее' : 'Оқу' ?> <i class="las la-angle-right text-xs"></i>
@@ -194,12 +194,12 @@ $gridPosts = array_slice($feedNews, 2);
 </section>
 
 <!-- === ПОПУЛЯРНОЕ (ТАНЫМАЛ ЖАҢАЛЫҚТАР В ТЕМНО-СИНЕМ БЛОКЕ #101C31) === -->
-<section class="bg-zyndan-navy text-white py-14 mb-16 relative border-y-2 border-zyndan-red">
-    <div class="container mx-auto px-4">
+<section class="bg-zyndan-navy text-white py-9 sm:py-14 mb-10 sm:mb-16 relative border-y-2 border-zyndan-red">
+    <div class="container mx-auto px-3 sm:px-4">
         
-        <div class="flex items-center justify-between mb-10 pb-4 border-b border-white/10">
-            <h2 class="text-2xl font-black text-white flex items-center gap-3 tracking-tight">
-                <span class="w-1.5 h-6 bg-zyndan-red rounded-none inline-block"></span>
+        <div class="flex items-center justify-between mb-6 sm:mb-10 pb-3 sm:pb-4 border-b border-white/10">
+            <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2.5 sm:gap-3 tracking-tight">
+                <span class="w-1.5 h-5 sm:h-6 bg-zyndan-red rounded-none inline-block"></span>
                 <?= $lang === 'kz' ? 'Танымал жаңалықтар' : 'Популярные публикации' ?>
             </h2>
             <span class="text-xs text-slate-400 font-semibold uppercase tracking-widest hidden sm:inline-block">
@@ -208,7 +208,7 @@ $gridPosts = array_slice($feedNews, 2);
         </div>
 
         <?php if (isset($popularNews) && !empty($popularNews)): ?>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-10">
                 <?php foreach (array_slice($popularNews, 0, 4) as $idx => $pop):
                     $pTitle = $lang === 'kz' ? $pop['title_kz'] : $pop['title_ru'];
                     $pLink = "/" . ($lang === 'ru' ? 'ru/' : '') . ($pop['category_slug'] ?? 'news') . "/" . ($lang === 'kz' ? $pop['slug_kz'] : $pop['slug_ru']);

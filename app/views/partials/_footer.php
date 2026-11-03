@@ -1,8 +1,8 @@
 <?php $siteConfig = $siteConfig ?? require __DIR__ . '/../../../config/app.php'; ?>
 <!-- === FOOTER === -->
 <footer class="bg-zyndan-navy text-white mt-auto relative border-t-2 border-zyndan-red">
-    <div class="container mx-auto px-4 pt-14 pb-12">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 items-start pb-10 border-b border-white/10">
+    <div class="container mx-auto px-3 sm:px-4 pt-9 sm:pt-14 pb-8 sm:pb-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-7 sm:gap-10 items-start pb-8 sm:pb-10 border-b border-white/10">
             
             <!-- Колонка 1: Бренд и миссия -->
             <div class="md:col-span-2">

@@ -24,17 +24,17 @@ require_once __DIR__ . '/../partials/_header.php';
 </div>
 
 <!-- === CATEGORY HEADER === -->
-<div class="bg-white dark:bg-zyndan-navy border-b border-zyndan-border py-10 md:py-14">
-    <div class="container mx-auto px-4">
+<div class="bg-white dark:bg-zyndan-navy border-b border-zyndan-border py-6 sm:py-10 md:py-14">
+    <div class="container mx-auto px-3 sm:px-4">
         <div class="flex items-center gap-2 mb-2">
             <span class="w-2.5 h-6 bg-zyndan-red inline-block"></span>
             <span class="text-xs font-bold uppercase tracking-widest text-zyndan-muted"><?= $lang === 'ru' ? 'Рубрика' : 'Бөлім' ?></span>
         </div>
-        <h1 class="text-3xl md:text-5xl font-black mb-3 tracking-tight text-zyndan-navy dark:text-white">
+        <h1 class="text-2xl sm:text-3xl md:text-5xl font-black mb-2 sm:mb-3 tracking-tight text-zyndan-navy dark:text-white">
             <?= htmlspecialchars($category['name'] ?? '') ?>
         </h1>
         <?php if (!empty($category['description'])): ?>
-            <p class="text-base text-zyndan-muted font-normal max-w-2xl leading-relaxed">
+            <p class="text-sm sm:text-base text-zyndan-muted font-normal max-w-2xl leading-relaxed">
                 <?= htmlspecialchars($category['description']) ?>
             </p>
         <?php endif; ?>
@@ -42,9 +42,9 @@ require_once __DIR__ . '/../partials/_header.php';
 </div>
 
 <!-- === POSTS GRID === -->
-<main class="container mx-auto px-4 py-10">
+<main class="container mx-auto px-3 sm:px-4 py-6 sm:py-10">
     <?php if (isset($posts) && !empty($posts)): ?>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10">
             <?php foreach ($posts as $post): ?>
                 <?php
                 $postTitle = $lang === 'kz' ? $post['title_kz'] : $post['title_ru'];
@@ -95,7 +95,7 @@ require_once __DIR__ . '/../partials/_header.php';
         $hasPrev = $currentPage > 1;
         ?>
         <?php if ($totalPages > 1): ?>
-            <div class="flex justify-center items-center gap-2 mt-12">
+            <div class="flex flex-wrap justify-center items-center gap-2 mt-8 sm:mt-12">
                 <?php if ($hasPrev): ?>
                     <a href="?page=<?= $currentPage - 1 ?>"
                         class="px-4 py-2.5 bg-white border border-zyndan-border rounded-lg hover:border-zyndan-red hover:text-zyndan-red transition-all text-zyndan-navy font-bold text-xs uppercase tracking-wider">

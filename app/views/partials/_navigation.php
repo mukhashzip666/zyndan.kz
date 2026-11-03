@@ -10,19 +10,19 @@ $currentUri = trim($currentUri, '/');
 
 <!-- === МЕНЮ НАВИГАЦИИ === -->
 <nav class="glass-nav border-b border-zyndan-border dark:border-white/10 sticky top-0 z-50 transition-colors">
-    <div class="container mx-auto px-4">
-        <div class="flex justify-between items-center h-14">
+    <div class="container mx-auto px-3 sm:px-4">
+        <div class="flex justify-between items-center h-12 sm:h-14">
             
             <!-- Кнопка меню (Гамбургер / Три полоски) -->
-            <button type="button" class="cursor-pointer py-2 pr-3 text-zyndan-navy hover:text-zyndan-red dark:text-slate-200 dark:hover:text-white transition-colors focus:outline-none flex items-center gap-2" onclick="openMobileMenu()" aria-label="Мәзір">
+            <button type="button" class="cursor-pointer py-2 pr-3 text-zyndan-navy hover:text-zyndan-red dark:text-slate-200 dark:hover:text-white transition-colors focus:outline-none flex items-center gap-2 min-h-[44px]" onclick="openMobileMenu()" aria-label="Мәзір">
                 <i class="las la-bars text-2xl"></i>
                 <span class="text-xs font-bold uppercase tracking-wider"><?= $lang === 'ru' ? 'Меню' : 'Мәзір' ?></span>
             </button>
             
             <!-- Правая панель: Поиск, Язык -->
-            <div class="flex items-center space-x-3 text-zyndan-muted pl-4 border-l border-zyndan-border">
+            <div class="flex items-center space-x-2.5 sm:space-x-3 text-zyndan-muted pl-3 sm:pl-4 border-l border-zyndan-border">
                 <!-- Поиск -->
-                <button type="button" onclick="openSearchModal()" class="w-8 h-8 rounded-lg hover:bg-zyndan-gray flex items-center justify-center text-zyndan-navy hover:text-zyndan-red transition-colors focus:outline-none" title="<?= $lang === 'ru' ? 'Поиск (Ctrl+K)' : 'Іздеу (Ctrl+K)' ?>">
+                <button type="button" onclick="openSearchModal()" class="w-9 h-9 rounded-lg hover:bg-zyndan-gray flex items-center justify-center text-zyndan-navy hover:text-zyndan-red transition-colors focus:outline-none" title="<?= $lang === 'ru' ? 'Поиск (Ctrl+K)' : 'Іздеу (Ctrl+K)' ?>">
                     <i class="las la-search text-lg"></i>
                 </button>
                 
@@ -141,12 +141,12 @@ $currentUri = trim($currentUri, '/');
 
 <!-- Мобильное меню (Выезжающая панель) -->
 <div id="mobileMenu" class="fixed inset-0 bg-zyndan-dark/60 backdrop-blur-sm z-[90] hidden transition-all" onclick="closeMobileMenu()">
-    <div class="bg-white dark:bg-zyndan-dark w-4/5 max-w-sm h-full p-6 overflow-y-auto flex flex-col justify-between shadow-2xl" onclick="event.stopPropagation()">
+    <div class="bg-white dark:bg-zyndan-dark w-[85%] max-w-xs sm:max-w-sm h-[100dvh] p-4 sm:p-6 overflow-y-auto flex flex-col justify-between shadow-2xl" onclick="event.stopPropagation()">
         <div>
             <!-- Шапка мобильного меню с логотипом -->
-            <div class="flex justify-between items-center mb-6 pb-4 border-b border-zyndan-border dark:border-white/10">
+            <div class="flex justify-between items-center mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-zyndan-border dark:border-white/10">
                 <div class="zyndan-logo-wrapper">
-                    <img src="/assets/zyndan-logo.jpg?v=2" alt="ZYNDAN.KZ">
+                    <img src="/assets/zyndan-logo.jpg?v=2" alt="ZYNDAN.KZ" style="height: 48px; width: auto;">
                 </div>
                 <button onclick="closeMobileMenu()" class="w-9 h-9 rounded-lg bg-zyndan-gray dark:bg-white/10 hover:bg-zyndan-red hover:text-white transition flex items-center justify-center text-zyndan-navy dark:text-white focus:outline-none">
                     <i class="las la-times text-xl"></i>

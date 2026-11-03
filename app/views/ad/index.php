@@ -7,18 +7,18 @@ require_once __DIR__ . '/../partials/_header.php';
 require_once __DIR__ . '/../partials/_navigation.php';
 ?>
 
-<main class="container mx-auto px-4 py-10 md:py-16">
+<main class="container mx-auto px-3 sm:px-4 py-6 sm:py-10 md:py-16">
     <!-- Header Section -->
-    <div class="max-w-3xl mx-auto text-center mb-14">
+    <div class="max-w-3xl mx-auto text-center mb-8 sm:mb-14">
         <div class="flex items-center justify-center gap-2 mb-3">
             <span class="w-8 h-[2.5px] bg-zyndan-red"></span>
             <span class="text-xs font-bold uppercase tracking-widest text-zyndan-muted"><?= $lang === 'kz' ? 'Серіктестік' : 'Сотрудничество' ?></span>
             <span class="w-8 h-[2.5px] bg-zyndan-red"></span>
         </div>
-        <h1 class="text-3xl md:text-5xl font-black text-zyndan-navy dark:text-white uppercase tracking-tight mb-4">
+        <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-zyndan-navy dark:text-white uppercase tracking-tight mb-3 sm:mb-4">
             <?= $lang === 'kz' ? 'Жарнама және серіктестік' : 'Реклама на портале' ?>
         </h1>
-        <p class="text-base text-zyndan-muted font-normal leading-relaxed max-w-xl mx-auto">
+        <p class="text-sm sm:text-base text-zyndan-muted font-normal leading-relaxed max-w-xl mx-auto">
             <?= $lang === 'kz'
                 ? 'ZYNDAN.KZ медиа порталында жарнамаңызды орналастырып, сапалы аудиторияға қол жеткізіңіз.'
                 : 'Разместите рекламу на портале ZYNDAN.KZ и охватите качественную целевую аудиторию.' ?>
@@ -57,11 +57,11 @@ require_once __DIR__ . '/../partials/_navigation.php';
 
     <!-- Contact Info -->
     <div
-        class="max-w-4xl mx-auto glass rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-white/10 shadow-2xl relative overflow-hidden">
+        class="max-w-4xl mx-auto glass rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 border border-slate-200 dark:border-white/10 shadow-2xl relative overflow-hidden">
         <!-- Decor -->
         <div class="absolute -top-24 -right-24 w-64 h-64 bg-brand/5 rounded-full filter blur-[100px]"></div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center relative z-10">
             <div>
                 <h2
                     class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6 uppercase tracking-tight">
