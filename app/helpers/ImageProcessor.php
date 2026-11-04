@@ -6,8 +6,8 @@
 class ImageProcessor
 {
     private $uploadDir;
-    private $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-    private $maxSize = 5242880; // 5MB
+    private $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp', 'image/gif'];
+    private $maxSize = 26214400; // 25MB
 
     public function __construct()
     {
@@ -68,26 +68,35 @@ class ImageProcessor
             case IMAGETYPE_PNG:
                 $srcImage = imagecreatefrompng($source);
                 break;
+            case IMAGETYPE_WEBP:
+                $srcImage = function_exists('imagecreatefromwebp') ? imagecreatefromwebp($source) : null;
+                break;
+            case IMAGETYPE_GIF:
+                $srcImage = imagecreatefromgif($source);
+                break;
             default:
-                throw new Exception('Неподдерживаемый тип изображения');
+                $srcImage = @imagecreatefromstring(file_get_contents($source));
+                if (!$srcImage) {
+                    throw new Exception('Неподдерживаемый тип изображения');
+                }
         }
 
         // Вычисляем пропорции
         $ratio = min($width / $origWidth, $height / $origHeight);
-        $newWidth = $origWidth * $ratio;
-        $newHeight = $origHeight * $ratio;
+        $newWidth = max(1, (int) ($origWidth * $ratio));
+        $newHeight = max(1, (int) ($origHeight * $ratio));
 
         // Создаем новое изображение
-        $dstImage = imagecreatetruecolor((int) $newWidth, (int) $newHeight);
+        $dstImage = imagecreatetruecolor($newWidth, $newHeight);
 
-        // Сохраняем прозрачность для PNG
-        if ($type == IMAGETYPE_PNG) {
+        // Сохраняем прозрачность для PNG и WEBP
+        if ($type == IMAGETYPE_PNG || $type == IMAGETYPE_WEBP || $type == IMAGETYPE_GIF) {
             imagealphablending($dstImage, false);
             imagesavealpha($dstImage, true);
         }
 
         // Копируем и изменяем размер
-        imagecopyresampled($dstImage, $srcImage, 0, 0, 0, 0, (int) $newWidth, (int) $newHeight, $origWidth, $origHeight);
+        imagecopyresampled($dstImage, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
 
         // Сохраняем
         switch ($type) {
@@ -97,11 +106,17 @@ class ImageProcessor
             case IMAGETYPE_PNG:
                 imagepng($dstImage, $destination, 8);
                 break;
+            case IMAGETYPE_WEBP:
+                if (function_exists('imagewebp')) {
+                    imagewebp($dstImage, $destination, 85);
+                } else {
+                    imagejpeg($dstImage, $destination, 85);
+                }
+                break;
+            default:
+                imagejpeg($dstImage, $destination, 85);
+                break;
         }
-
-        // Освобождаем память
-        imagedestroy($srcImage);
-        imagedestroy($dstImage);
 
         return true;
     }

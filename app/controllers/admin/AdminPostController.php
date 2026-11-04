@@ -128,12 +128,18 @@ class AdminPostController extends \Controller
         }
 
         // Обработка загрузки изображения
-        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            try {
-                $imageName = $this->imageProcessor->upload($_FILES['image']);
-                $data['image'] = $imageName;
-            } catch (\Exception $e) {
-                $_SESSION['error'] = 'Сурет жүктелмеді: ' . $e->getMessage();
+        if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
+            if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                try {
+                    $imageName = $this->imageProcessor->upload($_FILES['image']);
+                    $data['image'] = $imageName;
+                } catch (\Exception $e) {
+                    $_SESSION['error'] = 'Сурет жүктелмеді: ' . $e->getMessage();
+                    $this->redirect('/admin/posts/create');
+                    return;
+                }
+            } else {
+                $_SESSION['error'] = 'Сурет тым үлкен немесе жүктеу қатесі (код: ' . $_FILES['image']['error'] . ')';
                 $this->redirect('/admin/posts/create');
                 return;
             }
@@ -230,17 +236,21 @@ class AdminPostController extends \Controller
         }
 
         // Обработка загрузки нового изображения
-        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            try {
-                // Удаляем старое изображение
-                if (!empty($post['image'])) {
-                    $this->imageProcessor->delete($post['image']);
+        if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
+            if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                try {
+                    // Удаляем старое изображение
+                    if (!empty($post['image'])) {
+                        $this->imageProcessor->delete($post['image']);
+                    }
+                    // Загружаем новое
+                    $imageName = $this->imageProcessor->upload($_FILES['image']);
+                    $data['image'] = $imageName;
+                } catch (\Exception $e) {
+                    $_SESSION['error'] = 'Сурет жүктелмеді: ' . $e->getMessage();
                 }
-                // Загружаем новое
-                $imageName = $this->imageProcessor->upload($_FILES['image']);
-                $data['image'] = $imageName;
-            } catch (\Exception $e) {
-                $_SESSION['error'] = 'Сурет жүктелмеді: ' . $e->getMessage();
+            } else {
+                $_SESSION['error'] = 'Сурет тым үлкен немесе жүктеу қатесі (код: ' . $_FILES['image']['error'] . ')';
             }
         }
 
