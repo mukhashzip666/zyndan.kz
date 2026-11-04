@@ -323,8 +323,8 @@ return [
                         <h5 class="font-bold mb-2">🌐 ӘЛЕУМЕТТІК ЖЕЛІЛЕР:</h5>
                         <p class="text-sm mb-2">Толық сілтемелерді жазыңыз:</p>
                         <ul class="text-sm space-y-1 pl-4">
-                            <li>• Facebook: https://facebook.com/qyzylordatimes</li>
-                            <li>• Instagram: https://instagram.com/qyzylordatimes</li>
+                            <li>• Facebook: https://facebook.com/zyndan.kz</li>
+                            <li>• Instagram: https://instagram.com/zyndan.kz</li>
                             <li>• Twitter, YouTube, Telegram...</li>
                         </ul>
                     </div>

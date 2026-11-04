@@ -10,7 +10,7 @@ class SitemapGenerator
     private $baseUrl;
     private $outputPath;
 
-    public function __construct($baseUrl = 'https://qyzylordatimes.kz')
+    public function __construct($baseUrl = 'https://zyndan.kz')
     {
         $this->db = Database::getInstance();
         $this->baseUrl = rtrim($baseUrl, '/');

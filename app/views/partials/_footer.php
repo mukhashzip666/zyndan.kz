@@ -58,7 +58,7 @@ if (!isset($siteViewsStats)) {
                     </div>
                     <div class="flex items-center gap-2">
                         <i class="las la-map-marker text-zyndan-red text-base"></i>
-                        <span><?= $siteConfig['address'] ?? 'Қазақстан, Қызылорда қ.' ?></span>
+                        <span><?= (!empty($siteConfig['address']) && $siteConfig['address'] !== 'Қазақстан') ? $siteConfig['address'] : ($lang === 'ru' ? 'Казахстан' : 'Қазақстан') ?></span>
                     </div>
                 </div>
 

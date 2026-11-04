@@ -1,6 +1,6 @@
 <?php
 /**
- * Qyzylorda Times - Application Entry Point
+ * ZYNDAN.KZ - Application Entry Point
  * Точка входа приложения
  */
 
@@ -34,7 +34,7 @@ if (php_sapi_name() === 'cli-server') {
 }
 
 // Установка часового пояса
-date_default_timezone_set('Asia/Qyzylorda');
+date_default_timezone_set('Asia/Almaty');
 
 // Включаем отображение ошибок (отключить в продакшене)
 error_reporting(E_ALL);

@@ -85,7 +85,7 @@
                             <div>
                                 <label class="block text-sm font-medium mb-1">Таймзона</label>
                                 <input type="text" name="timezone" value="<?= $config['timezone'] ?>"
-                                    placeholder="Asia/Qyzylorda"
+                                    placeholder="Asia/Almaty"
                                     class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-red-500 focus:border-red-500">
                             </div>
                             <div>
@@ -195,13 +195,13 @@
                             <div class="md:col-span-2">
                                 <label class="block text-sm font-medium mb-1">Мекен-жайы / Адрес</label>
                                 <input type="text" name="address" value="<?= $config['address'] ?? '' ?>"
-                                    placeholder="Қызылорда қ., Бейбарыс сұлтан, 1"
+                                    placeholder="Қазақстан"
                                     class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-red-500 focus:border-red-500">
                             </div>
                             <div class="md:col-span-2">
                                 <label class="block text-sm font-medium mb-1">Компания аты / Название компании</label>
                                 <input type="text" name="company_name" value="<?= $config['company_name'] ?? '' ?>"
-                                    placeholder="&quot;Сыр медиа&quot; ЖШС"
+                                    placeholder="ZYNDAN.KZ"
                                     class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-red-500 focus:border-red-500">
                             </div>
                         </div>

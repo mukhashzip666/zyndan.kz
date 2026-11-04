@@ -8,7 +8,7 @@ class WeatherService
 {
     private $db;
     private $apiKey;
-    private $city = 'Kyzylorda';
+    private $city = 'Astana';
     private $cacheTime = 3600; // 1 час в секундах
 
     public function __construct()
@@ -19,7 +19,7 @@ class WeatherService
         $config = require __DIR__ . '/../../config/app.php';
 
         $this->apiKey = $config['openweather_api_key'] ?? 'YOUR_API_KEY_HERE';
-        $this->city = $config['weather_city'] ?? 'Kyzylorda';
+        $this->city = $config['weather_city'] ?? 'Astana';
         $this->cacheTime = ($config['weather_cache_hours'] ?? 1) * 3600;
     }
 

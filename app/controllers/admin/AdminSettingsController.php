@@ -92,7 +92,7 @@ class AdminSettingsController extends \Controller
         $configContent = "<?php\n";
         $configContent .= "/**\n";
         $configContent .= " * Конфигурация приложения\n";
-        $configContent .= " * Qyzylorda Times News Portal\n";
+        $configContent .= " * ZYNDAN.KZ News Portal\n";
         $configContent .= " */\n\n";
         $configContent .= "return " . var_export($config, true) . ";\n";
 

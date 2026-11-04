@@ -1,7 +1,7 @@
 <?php
 /**
  * Конфигурация приложения
- * Qyzylorda Times News Portal
+ * ZYNDAN.KZ News Portal
  */
 
 return array (
@@ -15,7 +15,7 @@ return array (
   ),
   'brand_color' => '#101C31',
   'brand_red' => '#D71920',
-  'timezone' => 'Asia/Qyzylorda',
+  'timezone' => 'Asia/Almaty',
   'pagination' => 15,
   'image_sizes' => 
   array (
@@ -36,7 +36,7 @@ return array (
     ),
   ),
   'openweather_api_key' => '3ad5e27a7879a17e0354e8ef6c754d6b',
-  'weather_city' => 'Kyzylorda,KZ',
+  'weather_city' => 'Astana,KZ',
   'weather_cache_hours' => 1,
   'currency_cache_hours' => 24,
   'session_lifetime' => 7200,
@@ -47,7 +47,7 @@ return array (
   'contact_email' => 'editor@zyndan.kz',
   'admin_email' => 'admin@zyndan.kz',
   'phone' => '+77470645196',
-  'address' => 'Қазақстан, Қызылорда қ.',
+  'address' => 'Қазақстан',
   'company_name' => 'ZYNDAN.KZ',
   'info_email' => 'info@zyndan.kz',
   'social_instagram' => 'https://www.instagram.com/zyndan.kz?utm_source=qr&dlrf=b3l2c3V0aHc3cnZ3',
