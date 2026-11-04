@@ -199,16 +199,9 @@
             user-select: none;
         }
 
-        header .zyndan-logo-wrapper img {
-            height: 264px;
-        }
-
         @media (max-width: 640px) {
             .zyndan-logo-wrapper img {
                 height: 60px;
-            }
-            header .zyndan-logo-wrapper img {
-                height: 180px;
             }
         }
 
@@ -259,22 +252,24 @@
 
     <!-- === HEADER (BRAND ROW) === -->
     <header class="bg-white border-b border-zyndan-border transition-colors" style="background-color: #FFFFFF !important;">
-        <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-5 flex flex-col justify-center items-center text-center">
+        <div class="container mx-auto px-3 sm:px-4 py-2.5 sm:py-4 md:py-5 flex justify-between items-center">
             
-            <!-- Центральный фирменный логотип ZYNDAN.KZ -->
-            <a href="<?= $lang === 'ru' ? '/ru/' : '/' ?>" class="inline-flex items-center justify-center group cursor-pointer focus:outline-none" title="ZYNDAN.KZ">
-                <div class="zyndan-logo-wrapper rounded-sm">
-                    <img src="/assets/zyndan-logo.jpg?v=2" alt="ZYNDAN.KZ — Aqparat • Taldau • Senim">
-                </div>
-            </a>
-
-            <!-- Девиз / Слоган медиа снизу логотипа -->
-            <div class="-mt-2 sm:-mt-4 text-center">
-                <div class="text-[11px] sm:text-xs font-extrabold uppercase tracking-[0.22em] text-zyndan-navy">
-                    Aqparat <span class="text-zyndan-red">·</span> Taldau <span class="text-zyndan-red">·</span> Senim
-                </div>
-                <div class="text-xs sm:text-sm text-zyndan-muted font-medium mt-1">
-                    <?= $lang === 'ru' ? 'Информационно-аналитический портал' : 'Ақпараттық-сараптамалық портал' ?>
+            <!-- Левая часть: Фирменный логотип ZYNDAN.KZ -->
+            <div class="flex items-center gap-4">
+                <a href="<?= $lang === 'ru' ? '/ru/' : '/' ?>" class="inline-flex items-center group cursor-pointer focus:outline-none" title="ZYNDAN.KZ">
+                    <div class="zyndan-logo-wrapper rounded-sm">
+                        <img src="/assets/zyndan-logo.jpg?v=2" alt="ZYNDAN.KZ — Aqparat • Taldau • Senim">
+                    </div>
+                </a>
+                
+                <!-- Девиз / Слоган медиа -->
+                <div class="hidden lg:block pl-4 border-l border-zyndan-border dark:border-white/10">
+                    <div class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-zyndan-navy dark:text-slate-200">
+                        Aqparat <span class="text-zyndan-red">·</span> Taldau <span class="text-zyndan-red">·</span> Senim
+                    </div>
+                    <div class="text-[11px] text-zyndan-muted dark:text-slate-400 font-medium mt-0.5">
+                        <?= $lang === 'ru' ? 'Информационно-аналитический портал' : 'Ақпараттық-сараптамалық портал' ?>
+                    </div>
                 </div>
             </div>
 
