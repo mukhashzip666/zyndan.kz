@@ -56,10 +56,6 @@ if (!isset($siteViewsStats)) {
                         <i class="las la-phone text-zyndan-red text-base"></i>
                         <span><?= $siteConfig['phone'] ?? '+77470645196' ?></span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i class="las la-map-marker text-zyndan-red text-base"></i>
-                        <span><?= (!empty($siteConfig['address']) && $siteConfig['address'] !== 'Қазақстан') ? $siteConfig['address'] : ($lang === 'ru' ? 'Казахстан' : 'Қазақстан') ?></span>
-                    </div>
                 </div>
 
                 <!-- Соцсети -->

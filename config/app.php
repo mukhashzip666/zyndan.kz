@@ -47,7 +47,7 @@ return array (
   'contact_email' => 'editor@zyndan.kz',
   'admin_email' => 'admin@zyndan.kz',
   'phone' => '+77470645196',
-  'address' => 'Қазақстан',
+  'address' => '',
   'company_name' => 'ZYNDAN.KZ',
   'info_email' => 'info@zyndan.kz',
   'social_instagram' => 'https://www.instagram.com/zyndan.kz?utm_source=qr&dlrf=b3l2c3V0aHc3cnZ3',
