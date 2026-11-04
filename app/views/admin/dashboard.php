@@ -63,14 +63,22 @@
                         </div>
                     </div>
 
-                    <!-- Stat Card 2 -->
+                    <!-- Stat Card 2: Просмотры сайта и статей -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 transition-all hover:shadow-md">
                         <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-slate-500 font-medium text-sm mb-1">Бүгінгі қаралым</p>
+                                <p class="text-slate-500 font-medium text-sm mb-1">Сайт қаралымы (Просмотры)</p>
                                 <h3 class="text-3xl font-bold text-slate-900">
-                                    <?= number_format($stats['today_views'] ?? 0) ?>
+                                    <?= number_format($stats['total_site_views'] ?? 0) ?>
                                 </h3>
+                                <div class="mt-2 flex flex-wrap items-center gap-2 text-xs font-semibold">
+                                    <span class="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                        Бүгін: +<?= number_format($stats['today_views'] ?? 0) ?>
+                                    </span>
+                                    <span class="text-slate-400">
+                                        Мақалалар: <?= number_format($stats['total_post_views'] ?? 0) ?>
+                                    </span>
+                                </div>
                             </div>
                             <div class="w-12 h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center">
                                 <i class="las la-eye text-2xl"></i>
@@ -136,6 +144,9 @@
                                         Статус</th>
                                     <th
                                         class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-widest">
+                                        Қаралым</th>
+                                    <th
+                                        class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-widest">
                                         Дата</th>
                                     <th
                                         class="px-6 py-4 text-right text-xs font-bold text-slate-500 uppercase tracking-widest">
@@ -177,6 +188,9 @@
                                                     <?= $statusText ?>
                                                 </span>
                                             </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-slate-600 font-semibold font-mono text-xs">
+                                                <i class="las la-eye text-slate-400 mr-1"></i><?= number_format($post['views'] ?? 0) ?>
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-slate-500 font-medium">
                                                 <?= date('d.m.Y', strtotime($post['created_at'] ?? 'now')) ?>
                                             </td>
@@ -195,7 +209,7 @@
                                     <?php endforeach; ?>
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="6" class="px-6 py-8 text-center text-gray-500">
+                                        <td colspan="7" class="px-6 py-8 text-center text-gray-500">
                                             Жаңалықтар жоқ
                                         </td>
                                     </tr>

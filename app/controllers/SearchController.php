@@ -22,6 +22,8 @@ class SearchController extends Controller
     {
         $lang = $this->getLang();
         $query = $_GET['q'] ?? '';
+        $categoryModel = $this->model('CategoryModel');
+        $categories = $categoryModel->getAllCategories($lang);
 
         // Пагинация
         $page = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
@@ -39,6 +41,7 @@ class SearchController extends Controller
             if (mb_strlen($query, 'UTF-8') < 3) {
                 $this->view('search/results', [
                     'lang' => $lang,
+                    'categories' => $categories,
                     'query' => $query,
                     'results' => [],
                     'totalResults' => 0,
@@ -58,6 +61,7 @@ class SearchController extends Controller
 
         $this->view('search/results', [
             'lang' => $lang,
+            'categories' => $categories,
             'query' => $queryDisplay,
             'results' => $results,
             'totalResults' => $totalResults,

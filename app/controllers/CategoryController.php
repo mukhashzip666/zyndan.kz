@@ -18,18 +18,23 @@ class CategoryController extends Controller
     }
 
     /**
-     * Показать посты категории
+     * Показать посты категории (или все новости для zhanalyqtar / novosti)
      */
     public function show($categorySlug)
     {
-        // DEBUG - HTML output
-        echo "<!-- DEBUG: slug=$categorySlug, lang={$this->lang} -->\n";
+        $isAllNews = in_array($categorySlug, ['zhanalyqtar', 'novosti', 'all', 'news'], true);
 
         // Получаем категорию
         $category = $this->categoryModel->getBySlug($categorySlug, $this->lang);
 
-        // DEBUG
-        echo "<!-- DEBUG: category=" . ($category ? $category['name'] : 'NOT FOUND') . " -->\n";
+        if (!$category && $isAllNews) {
+            $category = [
+                'id' => 0,
+                'name' => $this->lang === 'kz' ? 'Барлық жаңалықтар' : 'Все новости',
+                'slug' => $this->lang === 'kz' ? 'zhanalyqtar' : 'novosti',
+                'description' => $this->lang === 'kz' ? 'Порталда жарияланған барлық жаңалықтар тізімі' : 'Полный список всех опубликованных новостей портала'
+            ];
+        }
 
         if (!$category) {
             http_response_code(404);
@@ -38,28 +43,32 @@ class CategoryController extends Controller
         }
 
         // Пагинация
-        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $page = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
         $perPage = 15;
         $offset = ($page - 1) * $perPage;
 
-        // Получаем посты категории
-        $posts = $this->postModel->getByCategory($categorySlug, $this->lang, $perPage, $offset);
+        // Если это общий раздел "Жаңалықтар / Новости" — показываем ВСЕ опубликованные новости всех категорий
+        if ($isAllNews) {
+            $posts = $this->postModel->getPublished($this->lang, $perPage, $offset);
+            $totalPosts = $this->postModel->countPublished();
+        } else {
+            $posts = $this->postModel->getByCategory($categorySlug, $this->lang, $perPage, $offset);
+            $totalPosts = $this->postModel->countByCategory($categorySlug, $this->lang);
+        }
 
-        // DEBUG
-        echo "<!-- DEBUG: posts count=" . count($posts) . " -->\n";
+        $totalPages = max(1, (int) ceil($totalPosts / $perPage));
 
         // Получаем все категории для меню
         $categories = $this->categoryModel->getAllCategories($this->lang);
-
-        // DEBUG перед передачей в view
-        echo "<!-- DEBUG BEFORE VIEW: category name=" . ($category['name'] ?? 'EMPTY') . " -->\n";
 
         // Передаем данные в представление
         $this->view('category/index', [
             'category' => $category,
             'posts' => $posts,
             'categories' => $categories,
-            'currentPage' => $page
+            'currentPage' => $page,
+            'totalPages' => $totalPages,
+            'totalPosts' => $totalPosts
         ]);
     }
 }

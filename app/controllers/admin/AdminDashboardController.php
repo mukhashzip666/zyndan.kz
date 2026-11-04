@@ -25,10 +25,14 @@ class AdminDashboardController extends \Controller
      */
     public function index()
     {
+        $siteStats = $this->postModel->recordSiteVisit(false);
+
         // Статистика
         $stats = [
             'total_posts' => $this->postModel->countPublished(),
-            'today_views' => $this->postModel->getTodayViews(),
+            'today_views' => $siteStats['today'],
+            'total_site_views' => $siteStats['total'],
+            'total_post_views' => $siteStats['posts_views'],
             'pending_comments' => $this->commentModel->countPending(),
             'total_comments' => $this->commentModel->count()
         ];

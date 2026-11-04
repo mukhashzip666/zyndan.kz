@@ -177,9 +177,7 @@ $currentUri = trim($currentUri, '/');
                 <?php if (isset($categories) && !empty($categories)): ?>
                     <?php foreach ($categories as $cat): ?>
                         <?php
-                        $catUrl = ($cat['slug'] === 'zhanalyqtar' || $cat['slug'] === 'novosti')
-                            ? ($lang === 'ru' ? '/ru/' : '/')
-                            : '/' . ($lang === 'ru' ? 'ru/' : '') . $cat['slug'];
+                        $catUrl = '/' . ($lang === 'ru' ? 'ru/' : '') . $cat['slug'];
                         ?>
                         <a href="<?= $catUrl ?>" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-zyndan-navy dark:text-white hover:bg-zyndan-gray dark:hover:bg-white/5 hover:text-zyndan-red transition flex items-center justify-between">
                             <span><?= htmlspecialchars($cat['name']) ?></span>

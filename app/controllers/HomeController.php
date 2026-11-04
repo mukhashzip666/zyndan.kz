@@ -32,16 +32,11 @@ class HomeController extends Controller
         // Получаем данные для главной страницы
         $postModel = $this->model('PostModel');
 
-        // Последние новости (увеличиваем лимит до 7)
-        $latestNews = $postModel->getPublished($lang, 7, 0);
+        // Последние новости (увеличиваем лимит до 18)
+        $latestNews = $postModel->getPublished($lang, 18, 0);
 
         // Hero новость - автоматически берем самую свежую (первую в списке)
         $heroPost = !empty($latestNews) ? $latestNews[0] : null;
-
-        // Убираем Hero из списка остальных новостей (если новостей больше одной)
-        if ($heroPost && count($latestNews) > 1) {
-            array_shift($latestNews);
-        }
 
         // Анонсы (is_announcement = 1)
         $announcements = $postModel->getAnnouncements($lang, 5);

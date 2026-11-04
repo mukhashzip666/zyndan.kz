@@ -1,4 +1,11 @@
-<?php $siteConfig = $siteConfig ?? require __DIR__ . '/../../../config/app.php'; ?>
+<?php
+$siteConfig = $siteConfig ?? require __DIR__ . '/../../../config/app.php';
+if (!isset($siteViewsStats)) {
+    require_once __DIR__ . '/../../models/PostModel.php';
+    $_footerPostModel = new PostModel();
+    $siteViewsStats = $_footerPostModel->recordSiteVisit(true);
+}
+?>
 <!-- === FOOTER === -->
 <footer class="bg-zyndan-navy text-white mt-auto relative border-t-2 border-zyndan-red">
     <div class="container mx-auto px-3 sm:px-4 pt-9 sm:pt-14 pb-8 sm:pb-12">
@@ -74,12 +81,24 @@
 
         </div>
 
-        <!-- Нижняя строка: Copyright -->
+        <!-- Нижняя строка: Copyright + Счетчик просмотров сайта -->
         <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
             <div>
                 © <?= date('Y') ?> <strong class="text-white">ZYNDAN.KZ</strong>. <?= $lang === 'ru' ? 'Все права защищены.' : 'Барлық құқықтар қорғалған.' ?>
             </div>
-            <div class="flex items-center gap-4 text-[11px]">
+            <div class="flex flex-wrap items-center justify-center gap-4 text-[11px]">
+                <div class="flex items-center gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg text-slate-300 font-mono" title="<?= $lang === 'ru' ? 'Статистика посещений сайта' : 'Сайт қаралымының статистикасы' ?>">
+                    <span class="flex items-center gap-1.5">
+                        <i class="las la-eye text-zyndan-red text-sm"></i>
+                        <?= $lang === 'ru' ? 'Просмотры сайта:' : 'Сайт қаралымы:' ?>
+                        <strong class="text-white"><?= number_format($siteViewsStats['total'] ?? 0) ?></strong>
+                    </span>
+                    <span class="text-white/20">|</span>
+                    <span class="flex items-center gap-1">
+                        <?= $lang === 'ru' ? 'Сегодня:' : 'Бүгін:' ?>
+                        <strong class="text-emerald-400">+<?= number_format($siteViewsStats['today'] ?? 0) ?></strong>
+                    </span>
+                </div>
                 <a href="/<?= ($lang === 'ru' ? 'ru/' : '') ?>ads" class="hover:text-white transition-colors"><?= $lang === 'ru' ? 'Реклама' : 'Жарнама' ?></a>
                 <span>·</span>
                 <span class="text-slate-500">18+</span>

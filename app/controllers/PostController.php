@@ -38,6 +38,7 @@ class PostController extends Controller
 
         // Увеличиваем счетчик просмотров
         $this->postModel->incrementViews($post['id']);
+        $post['views'] = ((int) ($post['views'] ?? 0)) + 1;
 
         // Получаем одобренные комментарии
         $comments = $this->commentModel->getApproved($post['id']);

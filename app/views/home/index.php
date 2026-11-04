@@ -142,18 +142,19 @@ $gridPosts = array_slice($feedNews, 2);
 </div>
 
 <!-- === ЛЕНТА ВСЕХ НОВОСТЕЙ === -->
+<?php $allNewsUrl = '/' . ($lang === 'ru' ? 'ru/novosti' : 'zhanalyqtar'); ?>
 <section class="container mx-auto px-3 sm:px-4 py-6 sm:py-8 mb-8 sm:mb-12">
     <div class="flex items-center justify-between mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-zyndan-border">
         <h2 class="text-xl sm:text-2xl font-black text-zyndan-navy zyndan-section-title tracking-tight">
             <?= $lang === 'kz' ? 'Барлық жаңалықтар' : 'Все новости' ?>
         </h2>
-        <a href="/" class="text-[11px] sm:text-xs font-bold text-zyndan-muted hover:text-zyndan-red flex items-center gap-1 transition-colors uppercase tracking-wider">
+        <a href="<?= $allNewsUrl ?>" class="text-[11px] sm:text-xs font-bold text-zyndan-red hover:underline flex items-center gap-1 transition-colors uppercase tracking-wider">
             <?= $lang === 'kz' ? 'Барлығын көру' : 'Смотреть все' ?> <i class="las la-arrow-right text-sm"></i>
         </a>
     </div>
 
-    <!-- Общий массив для сетки -->
-    <?php $allGridNews = array_merge($centerPosts, $gridPosts); ?>
+    <!-- Общий массив для сетки (все свежие новости) -->
+    <?php $allGridNews = !empty($latestNews) ? $latestNews : array_merge($centerPosts, $gridPosts); ?>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         <?php foreach ($allGridNews as $news):
@@ -190,6 +191,13 @@ $gridPosts = array_slice($feedNews, 2);
                 </div>
             </a>
         <?php endforeach; ?>
+    </div>
+
+    <div class="mt-8 text-center">
+        <a href="<?= $allNewsUrl ?>" class="inline-flex items-center gap-2 px-6 py-3 bg-zyndan-navy hover:bg-zyndan-red text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors shadow-sm">
+            <?= $lang === 'kz' ? 'Барлық жаңалықтарды көру' : 'Смотреть все новости' ?>
+            <i class="las la-arrow-right text-sm"></i>
+        </a>
     </div>
 </section>
 

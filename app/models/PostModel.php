@@ -86,7 +86,7 @@ class PostModel extends Model
      */
     public function getPopular($lang, $limit = 10)
     {
-        $sql = "SELECT p.*, c.name_{$lang} as category_name
+        $sql = "SELECT p.*, c.name_{$lang} as category_name, c.slug_{$lang} as category_slug
                 FROM {$this->table} p
                 LEFT JOIN categories c ON p.category_id = c.id
                 WHERE p.status = 'published'
@@ -113,6 +113,22 @@ class PostModel extends Model
                 LIMIT {$limit} OFFSET {$offset}";
 
         return $this->db->fetchAll($sql, [$categorySlug]);
+    }
+
+    /**
+     * Подсчитать посты в категории
+     */
+    public function countByCategory($categorySlug, $lang)
+    {
+        $slugColumn = "c.slug_{$lang}";
+
+        $sql = "SELECT COUNT(*) as count
+                FROM {$this->table} p
+                LEFT JOIN categories c ON p.category_id = c.id
+                WHERE {$slugColumn} = ? AND p.status = 'published'";
+
+        $result = $this->db->fetchOne($sql, [$categorySlug]);
+        return (int) ($result['count'] ?? 0);
     }
 
     /**
@@ -194,16 +210,74 @@ class PostModel extends Model
     }
 
     /**
+     * Общее количество просмотров всех новостей
+     */
+    public function getTotalViews()
+    {
+        $sql = "SELECT COALESCE(SUM(views), 0) as total_views FROM {$this->table}";
+        $result = $this->db->fetchOne($sql);
+        return (int) ($result['total_views'] ?? 0);
+    }
+
+    /**
+     * Зафиксировать посещение сайта и вернуть статистику посещений сайта
+     */
+    public function recordSiteVisit($increment = true)
+    {
+        $today = date('Y-m-d');
+        $rows = $this->db->fetchAll("SELECT setting_key, setting_value FROM settings WHERE setting_key IN ('site_views_total', 'site_views_today', 'site_views_date')");
+        $map = [];
+        foreach ($rows as $r) {
+            $map[$r['setting_key']] = $r['setting_value'];
+        }
+
+        $postsTotalViews = $this->getTotalViews();
+        $total = isset($map['site_views_total']) ? (int) $map['site_views_total'] : $postsTotalViews;
+        if ($total < $postsTotalViews) {
+            $total = $postsTotalViews;
+        }
+
+        $savedDate = $map['site_views_date'] ?? '';
+        $todayViews = ($savedDate === $today && isset($map['site_views_today'])) ? (int) $map['site_views_today'] : 0;
+
+        if ($savedDate !== $today && $todayViews === 0) {
+            $sqlTodayPosts = "SELECT COALESCE(SUM(views), 0) as tv FROM {$this->table} WHERE DATE(published_at) = ?";
+            $resToday = $this->db->fetchOne($sqlTodayPosts, [$today]);
+            $todayViews = (int) ($resToday['tv'] ?? 0);
+        }
+
+        if ($increment) {
+            $total++;
+            $todayViews++;
+            $this->upsertSetting('site_views_total', (string) $total);
+            $this->upsertSetting('site_views_today', (string) $todayViews);
+            $this->upsertSetting('site_views_date', $today);
+        }
+
+        return [
+            'total' => $total,
+            'today' => $todayViews,
+            'posts_views' => $postsTotalViews
+        ];
+    }
+
+    private function upsertSetting($key, $value)
+    {
+        $exists = $this->db->fetchOne("SELECT id FROM settings WHERE setting_key = ?", [$key]);
+        if ($exists) {
+            $this->db->execute("UPDATE settings SET setting_value = ? WHERE setting_key = ?", [$value, $key]);
+        } else {
+            $this->db->execute("INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)", [$key, $value]);
+        }
+    }
+
+    /**
      * Подсчитать просмотры за сегодня
      */
     public function getTodayViews()
     {
-        $sql = "SELECT SUM(views) as total_views 
-                FROM {$this->table} 
-                WHERE DATE(published_at) = CURDATE()";
-
-        $result = $this->db->fetchOne($sql);
-        return $result['total_views'] ?? 0;
+        $stats = $this->recordSiteVisit(false);
+        return $stats['today'];
     }
 
     /**

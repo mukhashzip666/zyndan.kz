@@ -77,8 +77,9 @@ function getPostImg($img)
                         </div>
                         <div class="leading-tight pl-2 border-l border-zyndan-border">
                             <div class="font-bold text-zyndan-navy dark:text-white text-xs">ZYNDAN.KZ</div>
-                            <div class="text-[11px] text-zyndan-muted font-medium flex items-center gap-1.5 mt-0.5 font-mono">
-                                <i class="las la-clock text-zyndan-red text-sm"></i> <?= date('d.m.Y, H:i', $postDate) ?>
+                            <div class="text-[11px] text-zyndan-muted font-medium flex flex-wrap items-center gap-3 mt-0.5 font-mono">
+                                <span class="flex items-center gap-1"><i class="las la-clock text-zyndan-red text-sm"></i> <?= date('d.m.Y, H:i', $postDate) ?></span>
+                                <span class="flex items-center gap-1"><i class="las la-eye text-zyndan-red text-sm"></i> <?= number_format($post['views'] ?? 0) ?></span>
                             </div>
                         </div>
                     </div>

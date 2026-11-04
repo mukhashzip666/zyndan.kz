@@ -50,7 +50,8 @@ require_once __DIR__ . '/../partials/_header.php';
                 $postTitle = $lang === 'kz' ? $post['title_kz'] : $post['title_ru'];
                 $postExcerpt = $lang === 'kz' ? $post['excerpt_kz'] : $post['excerpt_ru'];
                 $postSlug = $lang === 'kz' ? $post['slug_kz'] : $post['slug_ru'];
-                $postCategory = $category['slug'] ?? 'aqparat';
+                $postCategory = !empty($post['category_slug']) ? $post['category_slug'] : ($category['slug'] ?? 'zhanalyqtar');
+                $postCategoryName = !empty($post['category_name']) ? $post['category_name'] : ($category['name'] ?? ($lang === 'kz' ? 'Жаңалықтар' : 'Новости'));
                 $postImage = !empty($post['image'])
                     ? '/uploads/medium/' . $post['image']
                     : 'https://placehold.co/400x300/101c31/FFF?text=ZYNDAN.KZ';
@@ -62,6 +63,10 @@ require_once __DIR__ . '/../partials/_header.php';
                         <img src="<?= $postImage ?>"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             alt="<?= htmlspecialchars($postTitle) ?>">
+                        <div class="absolute top-3 left-3 bg-zyndan-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-sm flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-zyndan-red"></span>
+                            <?= htmlspecialchars($postCategoryName) ?>
+                        </div>
                         <span class="absolute top-3 right-3 bg-zyndan-navy/90 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm tracking-wider uppercase flex items-center gap-1 font-mono">
                             <i class="las la-eye text-zyndan-red"></i>
                             <?= number_format($post['views'] ?? 0) ?>
@@ -90,7 +95,7 @@ require_once __DIR__ . '/../partials/_header.php';
 
         <!-- === PAGINATION === -->
         <?php
-        $totalPages = 5;
+        $totalPages = $totalPages ?? 1;
         $hasNext = $currentPage < $totalPages;
         $hasPrev = $currentPage > 1;
         ?>
