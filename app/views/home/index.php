@@ -15,8 +15,8 @@ function getPostImage($post, $size = 'medium')
     if (!empty($post['image'])) {
         return "/uploads/$size/" . $post['image'];
     }
-    // Фирменная заглушка в цвет бренда ZYNDAN.KZ, если фото нет
-    return 'https://placehold.co/800x600/101C31/FFF?text=ZYNDAN.KZ';
+    // Фирменная заглушка ZYNDAN.KZ, если фото нет
+    return '/assets/zyndan-logo.jpg?v=2';
 }
 
 // 2. Умное определение Главной новости
@@ -165,7 +165,8 @@ $gridPosts = array_slice($feedNews, 2);
             <a href="<?= $nLink ?>" class="bg-white group cursor-pointer rounded-xl zyndan-card overflow-hidden flex flex-col">
                 <div class="relative h-44 sm:h-52 overflow-hidden bg-zyndan-gray">
                     <img src="<?= getPostImage($news, 'medium') ?>"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" alt="<?= htmlspecialchars($nTitle) ?>">
+                        onerror="this.onerror=null;this.src='/assets/zyndan-logo.jpg?v=2';"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="<?= htmlspecialchars($nTitle) ?>">
                     
                     <!-- Бейдж категории -->
                     <div class="absolute top-3 left-3 bg-zyndan-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-sm flex items-center gap-1.5">

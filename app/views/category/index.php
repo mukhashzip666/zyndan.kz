@@ -54,13 +54,14 @@ require_once __DIR__ . '/../partials/_header.php';
                 $postCategoryName = !empty($post['category_name']) ? $post['category_name'] : ($category['name'] ?? ($lang === 'kz' ? 'Жаңалықтар' : 'Новости'));
                 $postImage = !empty($post['image'])
                     ? '/uploads/medium/' . $post['image']
-                    : 'https://placehold.co/400x300/101c31/FFF?text=ZYNDAN.KZ';
+                    : '/assets/zyndan-logo.jpg?v=2';
                 $postDate = date('d.m.Y H:i', strtotime($post['published_at'] ?? 'now'));
                 ?>
                 <a href="/<?= $lang === 'ru' ? 'ru/' : '' ?><?= $postCategory ?>/<?= $postSlug ?>"
                     class="bg-white dark:bg-zyndan-navy border border-zyndan-border zyndan-card group cursor-pointer rounded-xl overflow-hidden flex flex-col">
                     <div class="relative h-52 overflow-hidden bg-zyndan-gray">
                         <img src="<?= $postImage ?>"
+                            onerror="this.onerror=null;this.src='/assets/zyndan-logo.jpg?v=2';"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             alt="<?= htmlspecialchars($postTitle) ?>">
                         <div class="absolute top-3 left-3 bg-zyndan-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-sm flex items-center gap-1.5">

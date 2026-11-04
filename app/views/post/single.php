@@ -17,9 +17,13 @@ $pageTitle = htmlspecialchars($postTitle) . ' — ZYNDAN.KZ';
 $metaDescription = mb_substr(strip_tags($postExcerpt), 0, 160);
 
 // Open Graph
+$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ? 'https' : 'http';
+$currentHost = $_SERVER['HTTP_HOST'] ?? 'zyndan.kz';
+$baseHostUrl = $scheme . '://' . $currentHost;
 $ogTitle = htmlspecialchars($postTitle);
-$ogImage = !empty($post['image']) ? 'https://zyndan.kz/uploads/large/' . $post['image'] : 'https://zyndan.kz/assets/zyndan-logo.jpg';
-$ogUrl = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$ogDescription = $metaDescription;
+$ogImage = !empty($post['image']) ? $baseHostUrl . '/uploads/large/' . $post['image'] : $baseHostUrl . '/assets/zyndan-logo.jpg';
+$ogUrl = $baseHostUrl . $_SERVER['REQUEST_URI'];
 
 require_once __DIR__ . '/../partials/_header.php';
 require_once __DIR__ . '/../partials/_navigation.php';
@@ -27,7 +31,7 @@ require_once __DIR__ . '/../partials/_navigation.php';
 // Хелпер для картинок
 function getPostImg($img)
 {
-    return !empty($img) ? "/uploads/large/$img" : null;
+    return !empty($img) ? "/uploads/large/$img" : '/assets/zyndan-logo.jpg?v=2';
 }
 ?>
 
@@ -105,7 +109,7 @@ function getPostImg($img)
             <!-- Главное фото -->
             <?php if ($imgSrc = getPostImg($post['image'])): ?>
                 <figure class="mb-8 rounded-xl overflow-hidden shadow-zyndan-sm border border-zyndan-border bg-zyndan-gray">
-                    <img src="<?= $imgSrc ?>" class="w-full h-auto object-cover" alt="<?= htmlspecialchars($postTitle) ?>">
+                    <img src="<?= $imgSrc ?>" onerror="this.onerror=null;this.src='/assets/zyndan-logo.jpg?v=2';" class="w-full h-auto object-cover" alt="<?= htmlspecialchars($postTitle) ?>">
                 </figure>
             <?php endif; ?>
 

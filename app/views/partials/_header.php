@@ -20,17 +20,23 @@
     <?php endif; ?>
 
     <!-- Open Graph -->
+    <?php
+    $_ogScheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ? 'https' : 'http';
+    $_ogBaseUrl = $_ogScheme . '://' . ($_SERVER['HTTP_HOST'] ?? 'zyndan.kz');
+    $_defaultOgImg = $_ogBaseUrl . '/assets/zyndan-logo.jpg';
+    ?>
     <meta property="og:site_name" content="ZYNDAN.KZ">
     <meta property="og:type" content="website">
     <?php if (isset($ogTitle)): ?>
         <meta property="og:title" content="<?= htmlspecialchars($ogTitle) ?>">
         <meta property="og:description" content="<?= htmlspecialchars($ogDescription ?? '') ?>">
-        <meta property="og:image" content="<?= $ogImage ?? '/assets/zyndan-logo.jpg' ?>">
-        <meta property="og:url" content="<?= $ogUrl ?? '' ?>">
+        <meta property="og:image" content="<?= $ogImage ?? $_defaultOgImg ?>">
+        <meta property="og:url" content="<?= $ogUrl ?? ($_ogBaseUrl . $_SERVER['REQUEST_URI']) ?>">
     <?php else: ?>
         <meta property="og:title" content="ZYNDAN.KZ — Aqparat • Taldau • Senim">
         <meta property="og:description" content="Қазақстанның ақпараттық-сараптамалық жаңалықтар порталы">
-        <meta property="og:image" content="/assets/zyndan-logo.jpg">
+        <meta property="og:image" content="<?= $_defaultOgImg ?>">
+        <meta property="og:url" content="<?= $_ogBaseUrl . $_SERVER['REQUEST_URI'] ?>">
     <?php endif; ?>
 
     <!-- Tailwind CSS -->

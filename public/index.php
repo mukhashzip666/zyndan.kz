@@ -6,9 +6,30 @@
 
 // Поддержка встроенного PHP веб-сервера (php -S) для статических файлов
 if (php_sapi_name() === 'cli-server') {
-    $filePath = __DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $uriPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $filePath = __DIR__ . $uriPath;
     if (is_file($filePath) && !str_ends_with($filePath, '.php')) {
         return false;
+    }
+    // Если запрошена картинка из /uploads/, которой нет в нужном размере, ищем в других папках или отдаем логотип
+    if (str_starts_with($uriPath, '/uploads/')) {
+        $basename = basename($uriPath);
+        foreach (['large', 'medium', 'original', 'thumbnail'] as $folder) {
+            $altPath = __DIR__ . "/uploads/{$folder}/{$basename}";
+            if (is_file($altPath)) {
+                $mime = mime_content_type($altPath) ?: 'image/jpeg';
+                header("Content-Type: {$mime}");
+                header('Cache-Control: public, max-age=86400');
+                readfile($altPath);
+                exit;
+            }
+        }
+        $fallbackLogo = __DIR__ . '/assets/zyndan-logo.jpg';
+        if (is_file($fallbackLogo)) {
+            header('Content-Type: image/jpeg');
+            readfile($fallbackLogo);
+            exit;
+        }
     }
 }
 
