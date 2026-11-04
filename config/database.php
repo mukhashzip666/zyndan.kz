@@ -5,7 +5,7 @@
  */
 
 return [
-    'host' => getenv('DB_HOST') ?: 'localhost',
+    'host' => getenv('DB_HOST') ?: '127.0.0.1',
     'port' => getenv('DB_PORT') ?: '3306',
     'database' => getenv('DB_NAME') ?: 'qyzylorda_times',
     'username' => getenv('DB_USER') ?: 'qyzylorda_user',
