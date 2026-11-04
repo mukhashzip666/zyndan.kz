@@ -32,18 +32,18 @@
 <body class="bg-gray-100 font-sans">
 
     <!-- Шапка (упрощенная) -->
-    <header class="bg-[#1F1F1F] text-white h-14 flex items-center justify-between px-6">
-        <div class="font-bold flex items-center gap-2">
-            <a href="/admin" class="text-gray-400 hover:text-white"><i class="fas fa-arrow-left"></i> Артқа</a>
-            <span class="mx-2">|</span>
-            <span><?= isset($post) ? 'Мақаланы өзгерту' : 'Жаңа мақала қосу' ?></span>
+    <header class="bg-[#1F1F1F] text-white min-h-[3.5rem] py-2 flex flex-wrap items-center justify-between px-3 sm:px-6 gap-2">
+        <div class="font-bold flex items-center gap-2 text-sm sm:text-base">
+            <a href="/admin/posts" class="text-gray-300 hover:text-white flex items-center gap-1.5 bg-white/10 px-2.5 py-1.5 rounded-lg"><i class="fas fa-arrow-left"></i> Артқа</a>
+            <span class="mx-1 text-gray-500">|</span>
+            <span class="truncate max-w-[160px] sm:max-w-none"><?= isset($post) ? 'Мақаланы өзгерту' : 'Жаңа мақала қосу' ?></span>
         </div>
-        <button type="submit" form="post-form" class="text-sm bg-red-600 hover:bg-red-700 px-4 py-1 rounded">
+        <button type="submit" form="post-form" class="text-xs sm:text-sm bg-red-600 hover:bg-red-700 px-3.5 py-1.5 rounded-lg font-semibold">
             Сақтау (Save)
         </button>
     </header>
 
-    <div class="container mx-auto p-6">
+    <div class="container mx-auto p-3 sm:p-6">
 
         <?php if (isset($_SESSION['success'])): ?>
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">

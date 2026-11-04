@@ -19,13 +19,13 @@
         <?php include __DIR__ . '/../partials/_admin_sidebar.php'; ?>
 
         <!-- Main Content -->
-        <div class="flex-1 p-8">
-            <div class="mb-6 flex items-center justify-between">
-                <h1 class="text-3xl font-bold text-gray-800">
+        <div class="flex-1 p-4 sm:p-8 overflow-x-hidden">
+            <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+                <h1 class="text-xl sm:text-3xl font-bold text-gray-800">
                     <i class="fas fa-folder mr-2"></i>Категориялар / Категории
                 </h1>
                 <button onclick="openCreateModal()"
-                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">
                     <i class="fas fa-plus mr-2"></i>Жаңа категория / Новая категория
                 </button>
             </div>
