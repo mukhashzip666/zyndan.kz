@@ -4,37 +4,37 @@
  * ZYNDAN.KZ News Portal
  */
 
-return array (
+return array(
   'name' => 'ZYNDAN.KZ',
   'url' => 'https://zyndan.kz',
   'default_lang' => 'kz',
-  'supported_langs' => 
-  array (
-    0 => 'kz',
-    1 => 'ru',
-  ),
+  'supported_langs' =>
+    array(
+      0 => 'kz',
+      1 => 'ru',
+    ),
   'brand_color' => '#101C31',
   'brand_red' => '#D71920',
   'timezone' => 'Asia/Almaty',
   'pagination' => 15,
-  'image_sizes' => 
-  array (
-    'large' => 
-    array (
-      0 => 800,
-      1 => 600,
+  'image_sizes' =>
+    array(
+      'large' =>
+        array(
+          0 => 800,
+          1 => 600,
+        ),
+      'medium' =>
+        array(
+          0 => 400,
+          1 => 300,
+        ),
+      'thumbnail' =>
+        array(
+          0 => 100,
+          1 => 100,
+        ),
     ),
-    'medium' => 
-    array (
-      0 => 400,
-      1 => 300,
-    ),
-    'thumbnail' => 
-    array (
-      0 => 100,
-      1 => 100,
-    ),
-  ),
   'openweather_api_key' => '3ad5e27a7879a17e0354e8ef6c754d6b',
   'weather_city' => 'Astana,KZ',
   'weather_cache_hours' => 1,
